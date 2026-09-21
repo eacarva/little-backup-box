@@ -328,7 +328,7 @@ details[open] > summary::after {
 	content: "\2212";
 }
 
-/* Settings: one floating save button (the top duplicate is hidden) */
+/* Settings: one floating save bar (the top duplicate is hidden) */
 .card:has(> button[name='save']):not([style*="sticky"]) {
 	display: none;
 }
@@ -337,20 +337,18 @@ details[open] > summary::after {
 	display: flex;
 	flex-direction: row !important;
 	justify-content: flex-end;
-	padding: 0 !important;
+	align-items: center;
+	padding: .6rem .75rem !important;
 	margin: 1.5rem 0 1rem !important;
-	background: transparent !important;
-	border: 0 !important;
-	box-shadow: none !important;
-	pointer-events: none;
+	background: color-mix(in srgb, var(--csurface) 88%, transparent) !important;
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
 }
 
 .card[style*="sticky"] button {
 	margin: 0 !important;
-	pointer-events: auto;
-	min-height: 48px;
+	min-height: 44px;
 	padding-inline: 1.75rem;
-	box-shadow: 0 10px 24px -8px rgba(0, 0, 0, .55);
 }
 
 /* Controls ################################################# */

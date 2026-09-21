@@ -238,6 +238,7 @@
 		$conf_DISP_COLOR_INVERSE					= isset($conf_DISP_COLOR_INVERSE)?'true':'false';
 		$conf_DISP_BACKLIGHT_ENABLED				= isset($conf_DISP_BACKLIGHT_ENABLED)?'true':'false';
 		$conf_DISP_IP_REPEAT						= isset($conf_DISP_IP_REPEAT)?'true':'false';
+		$conf_DISP_HIGHLIGHT_NO_FILL				= isset($conf_DISP_HIGHLIGHT_NO_FILL)?'true':'false';
 		$conf_DISP_SHOW_STATUSBAR					= isset($conf_DISP_SHOW_STATUSBAR)?'true':'false';
 		$conf_MENU_ENABLED							= isset($conf_MENU_ENABLED)?'true':'false';
 		$conf_VIRTUAL_KEYBOARD_ENABLED				= isset($conf_VIRTUAL_KEYBOARD_ENABLED)?'true':'false';
@@ -382,6 +383,7 @@ conf_DISP_FONT_SIZE=$conf_DISP_FONT_SIZE
 conf_DISP_FRAME_TIME=$conf_DISP_FRAME_TIME
 conf_DISP_FRAME_TIME_IP=$conf_DISP_FRAME_TIME_IP
 conf_DISP_IP_REPEAT=$conf_DISP_IP_REPEAT
+conf_DISP_HIGHLIGHT_NO_FILL=$conf_DISP_HIGHLIGHT_NO_FILL
 conf_DISP_SHOW_STATUSBAR=$conf_DISP_SHOW_STATUSBAR
 conf_MENU_ENABLED=$conf_MENU_ENABLED
 conf_MENU_BUTTON_COMBINATION='$conf_MENU_BUTTON_COMBINATION'
@@ -972,6 +974,8 @@ CONFIGDATA;
 					<div>
 						<input type="checkbox" id="conf_DISP_IP_REPEAT" name="conf_DISP_IP_REPEAT"<?php echo $config['conf_DISP_IP_REPEAT']=="1"?" checked":""; ?>>
 						<label for="conf_DISP_IP_REPEAT"><?php echo L::config_display_ip_label; ?></label><br />
+						<input type="checkbox" id="conf_DISP_HIGHLIGHT_NO_FILL" name="conf_DISP_HIGHLIGHT_NO_FILL"<?php echo $config['conf_DISP_HIGHLIGHT_NO_FILL']=="1"?" checked":""; ?>>
+						<label for="conf_DISP_HIGHLIGHT_NO_FILL"><?php echo L::config_display_highlight_no_fill_label; ?></label><br />
 						<br />
 						<input type="checkbox" id="conf_DISP_SHOW_STATUSBAR" name="conf_DISP_SHOW_STATUSBAR"<?php echo $config['conf_DISP_SHOW_STATUSBAR']=="1"?" checked":""; ?>>
 						<label for="conf_DISP_SHOW_STATUSBAR"><?php echo L::config_display_statusbar_label; ?></label><br />

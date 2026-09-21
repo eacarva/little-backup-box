@@ -528,6 +528,7 @@
       "i2c_address_label": "i2c address of the display",
       "i2c_header": "I2C display configuration",
       "ip_label": "Show the IP on the display when it changes.",
+      "highlight_no_fill_label": "Highlight without a lit bar (black-and-white panels): titles are underlined instead of shown on a lit background. Wears the panel less and hides burn-in.",
       "device_available": "Device detected",
       "behavior_header": "Display behavior",
       "spi_header": "SPI display configuration",

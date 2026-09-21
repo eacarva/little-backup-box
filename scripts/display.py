@@ -117,6 +117,7 @@ class DISPLAY(object):
 		self.__conf_DISP_COLOR_BACKGROUND			= self.__setup.get_val('conf_DISP_COLOR_BACKGROUND')
 		self.__conf_DISP_FONT_SIZE					= self.__setup.get_val('conf_DISP_FONT_SIZE')
 		self.__conf_DISP_BAND_TOP					= self.__setup.get_val('conf_DISP_BAND_TOP')
+		self.__conf_DISP_HIGHLIGHT_NO_FILL			= self.__setup.get_val('conf_DISP_HIGHLIGHT_NO_FILL')
 		self.__conf_DISP_FRAME_TIME					= self.__setup.get_val('conf_DISP_FRAME_TIME')
 		self.__conf_DISP_SHOW_STATUSBAR				= self.__setup.get_val('conf_DISP_SHOW_STATUSBAR')
 		self.__conf_DISP_BACKLIGHT_PIN				= self.__setup.get_val('conf_DISP_BACKLIGHT_PIN')
@@ -387,12 +388,16 @@ class DISPLAY(object):
 					if FormatType == 's':
 						if self.device.mode == '1':
 							# monochrome
+							# fork: optional highlight without a lit bar, lit bars wear OLED panels and reveal burn-in
 							if FormatValue == 'h': # highlight
-								fg_fill = self.color_bg
-								bg_fill = self.color_text
+								if self.__conf_DISP_HIGHLIGHT_NO_FILL:
+									underline = True
+								else:
+									fg_fill = self.color_bg
+									bg_fill = self.color_text
 							elif FormatValue == 'a': # alert
 								underline = True
-							elif FormatValue == 's': # statusbar
+							elif FormatValue == 's' and not self.__conf_DISP_HIGHLIGHT_NO_FILL: # statusbar
 								fg_fill = self.color_bg
 								bg_fill = self.color_text
 						else:

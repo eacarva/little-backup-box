@@ -206,6 +206,7 @@ sudo DEBIAN_FRONTEND=noninteractive \
 			python3 \
 			python3-pip \
 			python3-pil \
+			fonts-dejavu-core \
 			python3-configobj \
 			python3-gpiozero \
 			python3-rpi-lgpio \

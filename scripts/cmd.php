@@ -309,8 +309,8 @@ function exec_command($CMD, $PARAM1, $PARAM2, $MAIL_RESULT) {
 
 			case 'update_code':
 				$COMMAND_LINE	= "sudo python3 $WORKING_DIR/lib_display.py ':" . L::box_cmd_update_start1 . "' ':" . L::box_cmd_update_start2 . "'";
-				$COMMAND_LINE	.= ";sudo -u pi curl -sSL https://raw.githubusercontent.com/eacarva/little-backup-box/main/install-little-backup-box.sh -o ~pi/install-little-backup-box.sh";
-				$COMMAND_LINE	.= ";sudo -u pi bash ~pi/install-little-backup-box.sh main code";
+				$COMMAND_LINE	.= ";sudo -u pi curl -sSL https://raw.githubusercontent.com/eacarva/little-backup-box/main/update-quick.sh -o ~pi/update-quick.sh";
+				$COMMAND_LINE	.= ";sudo -u pi bash ~pi/update-quick.sh main";
 				break;
 
 			case 'update_development':

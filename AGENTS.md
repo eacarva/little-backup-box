@@ -34,6 +34,14 @@ Neste fork, o segundo argumento `code` (`install-little-backup-box.sh main code`
 `apt-get update`/`full-upgrade`, os `pip --upgrade` e a reinstalação do rclone — também nos
 scripts satélites, via `SYSTEM_UPGRADE`. Na instalação, o upgrade sempre roda.
 
+O botão "Atualizar só a Little Backup Box" roda `update-quick.sh`: baixa o repositório
+(`--depth 1`) e compara com `~/little-backup-box` (clone deixado pelo instalador). Se só
+`scripts/` mudou, copia com `rsync --delete` (preserva `config.cfg`, `tmp/`, o link `media`),
+roda `lib_setup.py`, ajusta permissões e reinicia o display — sem apt e sem reboot. Se mudou
+qualquer outra coisa (instalador, `etc/`, scripts satélites), cai no instalador em modo `code`.
+**Mudança que precise de pacote novo ou config de sistema tem de passar pelo instalador**
+(`etc/` ou `install-*.sh`), senão a atualização rápida não a aplica.
+
 O que ele faz:
 - Detecta a versão do OS: 13 (Trixie) segue; 12 (Bookworm) redireciona para a branch
   `bookworm`; qualquer outra aborta.

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "deny": [
+      "Read(scripts/css/bootstrap.css)",
+      "Read(scripts/css/bootstrap.min.css)",
+      "Read(scripts/js/bootstrap.bundle.js)",
+      "Read(scripts/js/bootstrap.bundle.min.js)",
+      "Read(scripts/favicon.ico)",
+      "Read(scripts/img/**)",
+      "Read(scripts/lang/de.json)",
+      "Read(scripts/lang/es.json)",
+      "Read(scripts/lang/fr.json)"
+    ],
+    "allow": [
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git show:*)",
+      "Bash(git branch:*)",
+      "Bash(grep:*)",
+      "Bash(rg:*)",
+      "Bash(find:*)",
+      "Bash(ls:*)",
+      "Bash(wc:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(sed -n:*)",
+      "Bash(php -l:*)",
+      "Bash(bash -n:*)",
+      "Bash(python3 -m py_compile:*)",
+      "Bash(jq:*)"
+    ]
+  }
+}

@@ -212,3 +212,46 @@ Imite o código ao redor. O estilo do upstream é consistente e deliberado:
 │   └── tmp/                        runtime: log, lockfiles, conteúdo do display
 └── .github/workflows/              CodeQL
 ```
+
+---
+
+## 7. Navegação econômica (leia antes de abrir arquivos)
+
+Este repositório tem poucos arquivos, mas vários são enormes. Abrir um deles inteiro
+consome uma fatia grande do contexto e quase nunca é necessário.
+
+**Arquivos grandes — nunca leia por inteiro, use `grep -n` e depois `sed -n 'A,Bp'`:**
+
+| Arquivo | Tamanho | Como navegar |
+|---|---|---|
+| `scripts/setup.php` | ~102 KB | `grep -n 'conf_<CHAVE>'` para achar o campo do formulário |
+| `scripts/backup.py` | ~71 KB | `grep -nP '^\tdef '` lista os métodos da classe `backup` |
+| `scripts/view.php` | ~60 KB | `grep -n 'function \|case '` |
+| `scripts/lib_storage.py` | ~49 KB | `grep -nP '^\tdef \|^def '` |
+| `scripts/lang/*.json` | ~45–50 KB cada | `grep -n '"<chave>"'`; use `en.json` como referência |
+| `scripts/cmd.php` | ~22 KB | `grep -n "case '"` lista os comandos |
+
+**Nunca leia** (vendorizados ou binários, sem valor para o trabalho; já bloqueados por
+`Read` em `.claude/settings.json`): `scripts/css/bootstrap*.css`, `scripts/js/bootstrap*.js`,
+`scripts/favicon.ico`, `scripts/img/**`.
+
+**Padrões que resolvem a maioria das buscas em uma chamada:**
+
+```bash
+grep -nP '^\tdef |^def |^class ' scripts/<arquivo>.py   # mapa de um módulo Python
+grep -n "case '"                 scripts/cmd.php        # comandos da web UI
+grep -rn 'conf_<CHAVE>' scripts/                        # onde uma config é lida/escrita
+grep -n '<chave>' scripts/lang/en.json                  # string de i18n
+grep -rn 'outdoorbits' --include='*.py' --include='*.php' --include='*.sh' .
+```
+
+**Verificação estática (não precisa de Raspberry Pi):**
+
+```bash
+python3 -m py_compile scripts/*.py
+for f in scripts/*.php; do php -l "$f"; done
+bash -n install-little-backup-box.sh
+```
+
+**Regra geral:** localize com `grep -n`, leia só a faixa de linhas relevante, e prefira
+`git diff` a reler o arquivo depois de editar.

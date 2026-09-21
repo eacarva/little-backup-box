@@ -94,7 +94,7 @@ conf.update({
 lib_setup.setup = lambda *a, **k: types.SimpleNamespace(get_val=lambda key: conf[key])
 module('lib_log', log=lambda: types.SimpleNamespace(message=lambda message, level=10: logs.append(message)))
 module('lib_comitup', comitup=lambda: types.SimpleNamespace(get_status=lambda: {'state': 'CONNECTED'}))
-module('lib_network')
+module('lib_network', get_IPs=lambda OneLine=False: '192.168.0.46\n2804:f84::1')
 module('lib_system', get_uptime_sec=lambda: 1.0)
 module('displaymenu', MENU_CONTROLLER=lambda: types.SimpleNamespace(terminate=lambda: None), menu=lambda *a: None)
 
@@ -187,6 +187,30 @@ for band in (0, 16):
 			error = repr(e)
 		os.remove(f'{sim}/tasks/t.txt')
 		check(f'band {band}, {style}: runs through messages, progress, image, alert, task', error is None and len(panel_frames) >= 4, error or f'{len(panel_frames)} frames')
+
+
+print('statusbar with the IP')
+conf.update({'conf_DISP_BAND_TOP': 16, 'conf_DISP_HIGHLIGHT_STYLE': 'underline'})
+shown = []
+original_show = display.DISPLAY.show
+
+
+def recording_show(self, Lines, statusbar=None, new_content=True):
+	original_show(self, Lines, statusbar, new_content)
+	shown.append((list(Lines[:self.maxLines]), statusbar))
+
+
+display.DISPLAY.show = recording_show
+run_main(lambda: put('001', [':Pronto', ':Insira o destino']), run_seconds=8)
+idle = [entry for entry in shown if 'Pronto' in entry[0][0]]
+check('idle screen: the IP is on the free last line', idle and idle[-1][0][-1] == 's=s:STATUSBAR' and idle[-1][1] == ['192.168.0.46'],
+	idle[-1] if idle else 'no idle frame')
+shown.clear()
+run_main(lambda: put('001', ['set:clear', 's=hc:Arm. interno', 's=hc:Backup de Armaz. USB', 's=hc:1.243 de 3.980', 's=hc:Tempo: 00:14', 's=hc:PGBAR=31.2']), run_seconds=8)
+progress = [entry for entry in shown if 'Arm. interno' in entry[0][0]]
+check('backup progress uses all lines: the progress bar is not replaced by the statusbar', progress and progress[-1][0][-1] == 's=hc:PGBAR=31.2',
+	progress[-1] if progress else 'no progress frame')
+display.DISPLAY.show = original_show
 
 
 print('temporary messages')

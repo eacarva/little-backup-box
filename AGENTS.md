@@ -179,7 +179,8 @@ sobrescrevia arquivos de mesmo nome. Neste fork o ID termina com o UUID
   para no primeiro lote com erro ou abortado. `backup()` retorna `True` só quando termina normal.
 - Página inicial é `status.php` (`DirectoryIndex` no site do Apache); `index.php` é o backup
   completo, no menu "Mais".
-- OLED: uma mensagem por tela (sem histórico), IP só quando muda, barra de status só com alertas.
+- OLED: uma mensagem por tela (sem histórico), QR do IP só quando muda, barra de status com o IP
+  e alertas (HOT, temperatura), só na última linha e só quando ela está livre.
 - Painel bicolor (`conf_DISP_BAND_TOP`, px da faixa superior): a linha 1 fica dentro da faixa e as
   outras abaixo, sem cruzar a divisa. 0 mantém o cálculo original.
 

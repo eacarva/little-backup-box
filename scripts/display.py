@@ -97,6 +97,8 @@ class DISPLAY(object):
 		# objects
 		self.__setup							= lib_setup.setup()
 		self.__log								= lib_log.log()
+		self.__statusbar_ip						= ''
+		self.__statusbar_ip_time				= 0
 		self.__display_content_files			= display_content_files(self.__setup)
 
 		# setup
@@ -311,7 +313,15 @@ class DISPLAY(object):
 		if Tasks:
 			return(['|'.join(Tasks)])
 
-		statusbar	= []
+		# the IP, so the box can be found on any network (nmcli is slow: refreshed every 30 s)
+		if time.time() - self.__statusbar_ip_time >= 30:
+			self.__statusbar_ip_time	= time.time()
+			try:
+				self.__statusbar_ip	= lib_network.get_IPs().split('\n')[0].strip()
+			except:
+				self.__statusbar_ip	= ''
+
+		statusbar	= [self.__statusbar_ip] if self.__statusbar_ip else []
 
 		# hotspot active: connect to it
 		if lib_comitup.comitup().get_status()['state'] == 'HOTSPOT':
@@ -356,7 +366,8 @@ class DISPLAY(object):
 		else:
 			# Write lines
 
-			if statusbar is not None:
+			# fork: the statusbar only takes the last line when it is free (the backup progress uses all lines)
+			if statusbar is not None and not Lines[self.maxLines-1].split(':', 1)[-1].strip():
 				Lines[self.maxLines-1] = f's=s:STATUSBAR'
 
 			# create image and draw onject

@@ -189,6 +189,23 @@ for band in (0, 16):
 		check(f'band {band}, {style}: runs through messages, progress, image, alert, task', error is None and len(panel_frames) >= 4, error or f'{len(panel_frames)} frames')
 
 
+print('temporary messages')
+conf.update({'conf_DISP_BAND_TOP': 16, 'conf_DISP_HIGHLIGHT_STYLE': 'bar'})
+panel_frames.clear()
+
+
+def saved_after_ready():
+	put('001', [':Pronto', ':Insira o destino'])
+	put('002', ['set:temp,time=3', 'Configurações', 'salvas.'])
+
+
+run_main(saved_after_ready, run_seconds=12)
+old_text = open(f'{sim}/old.txt').read()
+check('"settings saved" is temporary: the waiting message is kept as the current screen', 'Pronto' in old_text and 'salvas' not in old_text, old_text)
+check('the screen goes back to the waiting message', len(panel_frames) >= 3 and panel_frames[-1].tobytes() == panel_frames[0].tobytes(),
+	f'{len(panel_frames)} frames')
+
+
 print('panel retry')
 conf.update({'conf_DISP_BAND_TOP': 16, 'conf_DISP_HIGHLIGHT_STYLE': 'underline'})
 panel_frames.clear()

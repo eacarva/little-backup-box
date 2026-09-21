@@ -104,7 +104,7 @@
 		}
 
 		// restart display using new config
-		exec("sudo bash -c \"python3 $WORKING_DIR/lib_display.py 'set:kill'; sleep ".($config['conf_DISP_FRAME_TIME']>$config['conf_DISP_FRAME_TIME_IP']?$config['conf_DISP_FRAME_TIME']:$config['conf_DISP_FRAME_TIME_IP'])+0.2."; python3 $WORKING_DIR/lib_display.py '" . L::config_display_message_settings_saved_1 . "' '" . L::config_display_message_settings_saved_2 . "'  > /dev/null 2>&1 &\"");
+		exec("sudo bash -c \"python3 $WORKING_DIR/lib_display.py 'set:kill'; sleep ".($config['conf_DISP_FRAME_TIME']>$config['conf_DISP_FRAME_TIME_IP']?$config['conf_DISP_FRAME_TIME']:$config['conf_DISP_FRAME_TIME_IP'])+0.2."; python3 $WORKING_DIR/lib_display.py 'set:temp,time=3' '" . L::config_display_message_settings_saved_1 . "' '" . L::config_display_message_settings_saved_2 . "'  > /dev/null 2>&1 &\"");
 	}
 
 	if (isset($_GET['check_update'])) {
@@ -584,7 +584,7 @@ CONFIGDATA;
 						exec("sudo python3 $WORKING_DIR/lib_setup.py");
 
 						# Feedback: Files in place
-						exec("sudo python3 $WORKING_DIR/lib_display.py ':" . L::config_display_message_settings_uploaded_1 . "' ':" . L::config_display_message_settings_uploaded_2 . "' > /dev/null 2>&1 &");
+						exec("sudo python3 $WORKING_DIR/lib_display.py 'set:temp,time=3' ':" . L::config_display_message_settings_uploaded_1 . "' ':" . L::config_display_message_settings_uploaded_2 . "' > /dev/null 2>&1 &");
 						$SetupMessages	.= popup(L::config_alert_settings_upload_success. " ". $Files_Copied, POPUP_ALLOWED: true, ECHO_OUTPUT: false);
 
 						# reload config

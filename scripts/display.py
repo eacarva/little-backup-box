@@ -226,9 +226,9 @@ class DISPLAY(object):
 				print('Error: No valid connection type for display',file=sys.stderr)
 				if self.__conf_DISP_DRIVER != 'none':
 					raise Exception('Error: No valid connection type for display')
-		except:
+		except Exception as e:
 			self.hardware_ready	= False
-			self.__log.message(f'Display connection to {self.__conf_DISP_CONNECTION} could not be enabled.')
+			self.__log.message(f'Display connection to {self.__conf_DISP_CONNECTION} could not be enabled. ({e})')
 
 		try:
 			if self.__conf_DISP_DRIVER == 'none' or serial is None:
@@ -252,9 +252,10 @@ class DISPLAY(object):
 				self.device.backlight(self.__conf_DISP_BACKLIGHT_ENABLED)
 			else:
 				print('Error: No valid display driver', file=sys.stderr)
-		except:
+		except Exception as e:
 			self.hardware_ready	= False
-			self.__log.message(f'Display driver {self.__conf_DISP_DRIVER} could not be enabled.')
+			self.device			= self.__display_dummy() # keeps running (web mirror, retry) when the panel does not answer
+			self.__log.message(f'Display driver {self.__conf_DISP_DRIVER} could not be enabled. ({e})')
 
 		if self.hardware_ready:
 			self.device.capabilities(width=self.__conf_DISP_RESOLUTION_X, height=self.__conf_DISP_RESOLUTION_Y, rotate=self.__conf_DISP_ROTATE, mode=self.__conf_DISP_COLOR_MODEL)

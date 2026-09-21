@@ -35,10 +35,14 @@ os.makedirs(f'{sim}/content')
 panel_frames = []
 logs = []
 i2c_failures = [0]
+driver_failures = [0]
 
 
 class FakePanel:
 	def __init__(self, *args, **kwargs):
+		if driver_failures[0]:
+			driver_failures[0] -= 1
+			raise OSError('[Errno 121] Remote I/O error')
 		self.mode = '1'
 		self.width = 128
 		self.height = 64
@@ -193,6 +197,19 @@ i2c_failures[0] = 1
 d, start_ready = run_main(lambda: put('001', [':Pronto', ':Insira o destino']), run_seconds=45)
 check('I2C fails at start: runs without the panel first', start_ready is False)
 check('panel answers on retry within 30 s and gets the screen', d.hardware_ready and len(panel_frames) >= 1, f'ready {d.hardware_ready}, frames {len(panel_frames)}')
-check('both events are in the log', logs == ['Display connection to I2C could not be enabled.', 'Display answers again.'], logs)
+check('both events are in the log', [l.split(' (')[0] for l in logs] == ['Display connection to I2C could not be enabled.', 'Display answers again.'], logs)
+
+# the panel is missing from the bus: the bus opens, the SSD1306 driver fails (seen on a real box, crashed in a loop before)
+panel_frames.clear()
+logs.clear()
+driver_failures[0] = 1
+error = None
+try:
+	d, start_ready = run_main(lambda: put('001', [':Pronto', ':Insira o destino']), run_seconds=45)
+except Exception as e:
+	error = repr(e)
+check('driver fails at start: no crash, runs without the panel', error is None and start_ready is False, error)
+check('panel answers later: gets the screen', error is None and d.hardware_ready and len(panel_frames) >= 1, error or f'ready {d.hardware_ready}')
+check('the driver error text is logged', error is None and 'Remote I/O error' in logs[0], logs)
 
 raise SystemExit(f'{len(failures)} failed' if failures else 0)

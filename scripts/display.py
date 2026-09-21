@@ -530,6 +530,7 @@ class DISPLAY(object):
 
 	def __display_image(self, image):
 		if self.hardware_ready:
+			self.device.show() # re-enable panel, an exiting display.py switches it off via luma cleanup
 			self.device.display(image)
 
 	def __save_image(self, image, new_content=True):

@@ -18,7 +18,7 @@
 #######################################################################
 
 # Provides a menu for the display.
-# It can be used by hardware-buttons. Please read the Wiki at https://github.com/outdoorbits/little-backup-box/wiki/02a.-Displaymenu.
+# It can be used by hardware-buttons. Please read the Wiki at https://github.com/eacarva/little-backup-box/wiki/02b._Displaymenu.
 
 import configparser
 from gpiozero import Button

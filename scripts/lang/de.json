@@ -36,7 +36,7 @@
     "cloudservice": "Cloud-Dienst",
     "reboot_m": "Die Little Backup Box startet neu.<br>In wenigen Sekunden können Sie wieder auf Ihre<br><a href=\"/\">Little Backup Box</a><br>zugreifen.",
     "shutdown_m": "Little Backup Box wird ausgeschaltet. Sie können diese Seite schließen.",
-    "help_txt": "<ul>\n  <li>alle USB: Alle angeschlossenen USB Geräte, sowohl Kameras als auch Speicher, werden gesichert.</li>\n  <li>Ziel rsync Server: Von Kameras kann nicht direkt auf einen rsync Server gesichert werden. Hier ist eine lokale Zwischenspeicherung erforderlich.</li>\n</ul>\n<p class = 'text-center'> Bitte lesen Sie das <a href='https://github.com/outdoorbits/little-backup-box/wiki/05.-Operation'>Wiki</a>.</p>",
+    "help_txt": "<ul>\n  <li>alle USB: Alle angeschlossenen USB Geräte, sowohl Kameras als auch Speicher, werden gesichert.</li>\n  <li>Ziel rsync Server: Von Kameras kann nicht direkt auf einen rsync Server gesichert werden. Hier ist eine lokale Zwischenspeicherung erforderlich.</li>\n</ul>\n<p class = 'text-center'> Bitte lesen Sie das <a href='https://github.com/eacarva/little-backup-box/wiki/05._Operation'>Wiki</a>.</p>",
     "stopbackup_button": "STOPP",
     "stopbackup_m": "Backup wird angehalten",
     "usb_button": "USB Speicher",
@@ -160,7 +160,7 @@
       "section": "Backup",
       "camera": {
         "folder_mask_header": "Zu sichernde Verzeichnisse auf Smartphones und Kameras",
-        "folder_mask_label": "Hier kann vorgegeben werden, welche Verzeichnisse von welchen Kameras oder Smartphones gesichert werden.<br>\nEinträge hier haben das Format: <br>\n&quot;KAMERA:PFAD&quot;<br>\nDen Namen einer angeschlossenen Kamera finden Sie auf der Seite &quot;System&quot; unter &quot;Kamera/Smartphone&quot;.<br>\nWenn eine Anweisung für alle Kameras gelten soll, wird &quot;*&quot; (ohne weitere Zusätze) als Joker für alle Geräte nutzbar.<br>\nDer Pfad muss nicht vollständig angegeben werden. Es reicht aus, einen eindeutigen Teil davon zu verwenden. <br>\nBeispiele: <br>\n&quot;*:DCIM&quot; (alle Kameras: alle Ordner, die &quot;DCIM&quot; enthalten)<br>\n&quot;*:DCIM;MyCamera:IMAGES&quot; (zusätzlich von der Kamera &quot;MyCamera&quot;: alle Ordner, die im Namen &quot;IMAGES&quot; enthalten)<br>\n&quot;&quot; (Feld bleibt leer: Alle Ordner aller Kameras sichern.)<br>\n<br>\nStatt einem Muster, können auch absolute Pfade angegeben werden. Diese müssen immer mit &quot;!/&quot; beginnen:\n&quot;MyCamera:!/store_00020002/DCIM&quot;<br>\nSobald ein absoluter Ordner für eine Kamera definiert ist, erfolgt für diese Kamera keine Suche nach Mustern mehr. Dies spart beispielsweise bei Smartphones sehr viel Zeit, da hier sehr viele Ordner zu durchsuchen wären.<br>\nWeitere Informationen im <a href=\"https://github.com/outdoorbits/little-backup-box/wiki/04.-Setup\">Wiki</a>.",
+        "folder_mask_label": "Hier kann vorgegeben werden, welche Verzeichnisse von welchen Kameras oder Smartphones gesichert werden.<br>\nEinträge hier haben das Format: <br>\n&quot;KAMERA:PFAD&quot;<br>\nDen Namen einer angeschlossenen Kamera finden Sie auf der Seite &quot;System&quot; unter &quot;Kamera/Smartphone&quot;.<br>\nWenn eine Anweisung für alle Kameras gelten soll, wird &quot;*&quot; (ohne weitere Zusätze) als Joker für alle Geräte nutzbar.<br>\nDer Pfad muss nicht vollständig angegeben werden. Es reicht aus, einen eindeutigen Teil davon zu verwenden. <br>\nBeispiele: <br>\n&quot;*:DCIM&quot; (alle Kameras: alle Ordner, die &quot;DCIM&quot; enthalten)<br>\n&quot;*:DCIM;MyCamera:IMAGES&quot; (zusätzlich von der Kamera &quot;MyCamera&quot;: alle Ordner, die im Namen &quot;IMAGES&quot; enthalten)<br>\n&quot;&quot; (Feld bleibt leer: Alle Ordner aller Kameras sichern.)<br>\n<br>\nStatt einem Muster, können auch absolute Pfade angegeben werden. Diese müssen immer mit &quot;!/&quot; beginnen:\n&quot;MyCamera:!/store_00020002/DCIM&quot;<br>\nSobald ein absoluter Ordner für eine Kamera definiert ist, erfolgt für diese Kamera keine Suche nach Mustern mehr. Dies spart beispielsweise bei Smartphones sehr viel Zeit, da hier sehr viele Ordner zu durchsuchen wären.<br>\nWeitere Informationen im <a href=\"https://github.com/eacarva/little-backup-box/wiki/04._Setup\">Wiki</a>.",
         "model_folders_header": "Von Kameramodell zu synchronisierende Ordner",
         "specific_device_folders_header": "Von spezifischer Kamera zu synchronisierende Ordner",
         "device_folder_pattern": "Zur Verwendung als Muster in den Einstellungen"
@@ -406,14 +406,14 @@
       "section": "Soziale Medien",
       "bluesky": {
         "header": "Bluesky konfigurieren",
-        "install_desc": "Bitte entnehmen Sie die Vorbereitungen dem <a href=\"https://github.com/outdoorbits/little-backup-box/wiki/04f_Bluesky\">Wiki: Bluesky</a>",
+        "install_desc": "Bitte entnehmen Sie die Vorbereitungen dem <a href=\"https://github.com/eacarva/little-backup-box/wiki/04f_Bluesky\">Wiki: Bluesky</a>",
         "base_url_label": "Basis-URL",
         "identifier_label": "Benutzerkennung (E-Mail oder Handle)",
         "app_password_label": "App-Passwort"
       },
       "telegram": {
         "header": "Telegram konfigurieren",
-        "install_desc": "Bitte entnehmen Sie die Vorbereitungen dem <a href=\"https://github.com/outdoorbits/little-backup-box/wiki/04c_Telegram\">Wiki: Telegram</a>",
+        "install_desc": "Bitte entnehmen Sie die Vorbereitungen dem <a href=\"https://github.com/eacarva/little-backup-box/wiki/04c_Telegram\">Wiki: Telegram</a>",
         "token_label": "Token",
         "chat_id_label": "Chat ID",
         "error_unreachable": "Telegramm nicht erreichbar",
@@ -437,7 +437,7 @@
       },
       "mastodon": {
         "header": "Mastodon konfigurieren",
-        "install_desc": "Bitte entnehmen Sie die Vorbereitungen dem <a href=\"https://github.com/outdoorbits/little-backup-box/wiki/04e_Mastodon\">Wiki: Mastodon</a>",
+        "install_desc": "Bitte entnehmen Sie die Vorbereitungen dem <a href=\"https://github.com/eacarva/little-backup-box/wiki/04e_Mastodon\">Wiki: Mastodon</a>",
         "token_label": "Zugriffstoken",
         "base_url_label": "Mastodon-Basis-URL"
       },
@@ -448,7 +448,7 @@
       },
       "matrix": {
         "header": "Matrix konfigurieren",
-        "install_desc": "Bitte entnehmen Sie die Vorbereitungen dem <a href=\"https://github.com/outdoorbits/little-backup-box/wiki/04d_Matrix\">Wiki: Matrix</a>",
+        "install_desc": "Bitte entnehmen Sie die Vorbereitungen dem <a href=\"https://github.com/eacarva/little-backup-box/wiki/04d_Matrix\">Wiki: Matrix</a>",
         "homeserver_label": "Matrix-Homeserver (z.B. https://matrix.example.org)",
         "token_label": "Access-Token des Bot-Accounts",
         "error": {
@@ -941,7 +941,7 @@
       "comment": "Kommentar"
     },
     "footer": {
-      "footer": "Hier werden nur Bilder mit Vorschaubild angezeigt. Automatische Vorschaubilder unter Einstellungen › Bildbetrachter View einschalten oder jetzt unter Mehr › Backup › View-Datenbank erstellen.<br>\nWeitere Informationen finden Sie im <a href=\"https://github.com/outdoorbits/little-backup-box/wiki/05a.-view-image-viewer\">Wiki</a>."
+      "footer": "Hier werden nur Bilder mit Vorschaubild angezeigt. Automatische Vorschaubilder unter Einstellungen › Bildbetrachter View einschalten oder jetzt unter Mehr › Backup › View-Datenbank erstellen.<br>\nWeitere Informationen finden Sie im <a href=\"https://github.com/eacarva/little-backup-box/wiki/05b._View_image_viewer\">Wiki</a>."
     },
     "ratings_save_button": "Speichern",
     "ratings_1_delete_button": "Mediendateien löschen",

@@ -147,12 +147,15 @@ O caminho de auto-atualização usa `eacarva/little-backup-box`:
 - `scripts/cmd.php` — comandos `update` e `update_development`
 - `install-little-backup-box.sh` — o `git clone`
 
-Ainda apontam para `outdoorbits`, de propósito:
+A wiki foi copiada do original (com histórico) para `eacarva/little-backup-box/wiki`, e
+todos os links de wiki da interface, do instalador e do `buttons.cfg` apontam para ela.
+Quatro nomes de página estavam errados no upstream e foram corrigidos (`04._Setup`,
+`05._Operation`, `05b._View_image_viewer`, `02b._Displaymenu`).
+
+Ainda aponta para `outdoorbits`, de propósito:
 
 - `install-little-backup-box.sh:45` — o redirecionamento para Bookworm. O fork não tem
   branch `bookworm`; esse suporte legado vive no upstream.
-- Os links de wiki (`install-little-backup-box.sh`, `scripts/displaymenu.py`). O fork não
-  tem wiki.
 
 **Branch `development`:** o fork não tem. O comando `update_development` do `cmd.php`
 busca essa branch, mas o botão que o dispara já vem comentado no upstream

@@ -623,7 +623,7 @@ hotspot as follows:
 Please use the settings of the web UI to optimally adapt the Little Backup Box for you.
 
 If you have further questions, please check the wiki first:
-https://github.com/outdoorbits/little-backup-box/wiki
+https://github.com/eacarva/little-backup-box/wiki
 
 We are always happy to receive your feedback!
 
@@ -670,7 +670,7 @@ echo "*** "
 echo "*** Please use the settings of the web UI to optimally adapt the Little Backup Box for you."
 echo "***"
 echo "*** If you have further questions, please check the wiki first:"
-echo "*** https://github.com/outdoorbits/little-backup-box/wiki"
+echo "*** https://github.com/eacarva/little-backup-box/wiki"
 echo "***"
 echo "*** IF YOU ARE USING COMITUP: READ ALSO 'How to proceed' in README/Installation!"
 echo "***"

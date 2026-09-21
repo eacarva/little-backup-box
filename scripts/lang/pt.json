@@ -293,7 +293,7 @@
     "stopbackup_m": "Parando o backup.",
     "reboot_m": "A Little Backup Box está reiniciando.<br>Em alguns segundos você poderá acessar a<br><a href=\"/\">Little Backup Box</a><br>novamente.",
     "shutdown_m": "A Little Backup Box foi desligada. Você pode fechar esta página.",
-    "help_txt": "<ul>\n   <li>qualquer USB: todos os dispositivos USB conectados, câmeras e armazenamentos, entram no backup.</li>\n   <li>Destino servidor rsync: não é possível fazer backup de câmeras direto para um servidor rsync. É preciso um armazenamento local intermediário.</li>\n</ul>\n<p class = 'text-center'> Leia a <a href='https://github.com/outdoorbits/little-backup-box/wiki/05.-Operation'>Wiki</a>.</p>",
+    "help_txt": "<ul>\n   <li>qualquer USB: todos os dispositivos USB conectados, câmeras e armazenamentos, entram no backup.</li>\n   <li>Destino servidor rsync: não é possível fazer backup de câmeras direto para um servidor rsync. É preciso um armazenamento local intermediário.</li>\n</ul>\n<p class = 'text-center'> Leia a <a href='https://github.com/eacarva/little-backup-box/wiki/05._Operation'>Wiki</a>.</p>",
     "usb_button": "Armaz. USB",
     "view_database": "Banco de dados do View",
     "thumbnails_header": "Gerar miniaturas e importá-las no banco de dados",
@@ -426,7 +426,7 @@
       "section": "Backup",
       "camera": {
         "folder_mask_header": "Pastas a copiar de smartphones e câmeras",
-        "folder_mask_label": "Aqui você define quais pastas de quais câmeras ou smartphones entram no backup. <br>\nAs entradas têm o formato: <br>\n&quot;CÂMERA:CAMINHO&quot; <br>\nO nome de uma câmera conectada aparece na página &quot;Sistema&quot;, em &quot;Câmeras/smartphones&quot;. <br>\nPara aplicar uma regra a todas as câmeras, use &quot;*&quot; (sem mais nada) como curinga para todos os dispositivos. <br>\nO caminho não precisa estar completo. Basta um trecho que o identifique sem ambiguidade. <br>\nExemplos: <br>\n&quot;*:DCIM&quot; (todas as câmeras: todas as pastas que contêm &quot;DCIM&quot;) <br>\n&quot;*:DCIM;MinhaCamera:IMAGES&quot; (e também da câmera &quot;MinhaCamera&quot;: todas as pastas que contêm &quot;IMAGES&quot;) <br>\n&quot;&quot; (campo vazio: copiar todas as pastas de todas as câmeras.) <br>\n<br>\nEm vez de buscar por um padrão, você também pode informar caminhos absolutos. Eles sempre começam com &quot;!/&quot;:\n&quot;MinhaCamera:!/store_00020002/DCIM&quot; <br>\nQuando uma câmera tem um caminho absoluto, ela deixa de ser varrida por padrão. Isso economiza tempo.\nMais informações na <a href=\"https://github.com/outdoorbits/little-backup-box/wiki/04.-Setup\">wiki</a>",
+        "folder_mask_label": "Aqui você define quais pastas de quais câmeras ou smartphones entram no backup. <br>\nAs entradas têm o formato: <br>\n&quot;CÂMERA:CAMINHO&quot; <br>\nO nome de uma câmera conectada aparece na página &quot;Sistema&quot;, em &quot;Câmeras/smartphones&quot;. <br>\nPara aplicar uma regra a todas as câmeras, use &quot;*&quot; (sem mais nada) como curinga para todos os dispositivos. <br>\nO caminho não precisa estar completo. Basta um trecho que o identifique sem ambiguidade. <br>\nExemplos: <br>\n&quot;*:DCIM&quot; (todas as câmeras: todas as pastas que contêm &quot;DCIM&quot;) <br>\n&quot;*:DCIM;MinhaCamera:IMAGES&quot; (e também da câmera &quot;MinhaCamera&quot;: todas as pastas que contêm &quot;IMAGES&quot;) <br>\n&quot;&quot; (campo vazio: copiar todas as pastas de todas as câmeras.) <br>\n<br>\nEm vez de buscar por um padrão, você também pode informar caminhos absolutos. Eles sempre começam com &quot;!/&quot;:\n&quot;MinhaCamera:!/store_00020002/DCIM&quot; <br>\nQuando uma câmera tem um caminho absoluto, ela deixa de ser varrida por padrão. Isso economiza tempo.\nMais informações na <a href=\"https://github.com/eacarva/little-backup-box/wiki/04._Setup\">wiki</a>",
         "model_folders_header": "Pastas a sincronizar por modelo de câmera",
         "specific_device_folders_header": "Pastas a sincronizar de uma câmera específica",
         "device_folder_pattern": "Para usar como padrão nas Configurações"
@@ -672,14 +672,14 @@
       "section": "Redes sociais",
       "bluesky": {
         "header": "Configurar Bluesky",
-        "install_desc": "Veja os preparativos na <a href=\"https://github.com/outdoorbits/little-backup-box/wiki/04f_Bluesky\">Wiki: Bluesky</a>",
+        "install_desc": "Veja os preparativos na <a href=\"https://github.com/eacarva/little-backup-box/wiki/04f_Bluesky\">Wiki: Bluesky</a>",
         "base_url_label": "URL base da API",
         "identifier_label": "Identificador (e-mail ou handle)",
         "app_password_label": "Senha de app"
       },
       "telegram": {
         "header": "Configurar Telegram",
-        "install_desc": "Veja os preparativos na <a href=\"https://github.com/outdoorbits/little-backup-box/wiki/04c_Telegram\">Wiki: Telegram</a>",
+        "install_desc": "Veja os preparativos na <a href=\"https://github.com/eacarva/little-backup-box/wiki/04c_Telegram\">Wiki: Telegram</a>",
         "token_label": "Token",
         "chat_id_label": "ID do chat",
         "error_unreachable": "Telegram inacessível",
@@ -703,7 +703,7 @@
       },
       "mastodon": {
         "header": "Configurar Mastodon",
-        "install_desc": "Veja os preparativos na <a href=\"https://github.com/outdoorbits/little-backup-box/wiki/04e_Mastodon\">Wiki: Mastodon</a>",
+        "install_desc": "Veja os preparativos na <a href=\"https://github.com/eacarva/little-backup-box/wiki/04e_Mastodon\">Wiki: Mastodon</a>",
         "token_label": "Token de acesso",
         "base_url_label": "URL base do Mastodon"
       },
@@ -714,7 +714,7 @@
       },
       "matrix": {
         "header": "Configurar Matrix",
-        "install_desc": "Veja os preparativos na <a href=\"https://github.com/outdoorbits/little-backup-box/wiki/04d_Matrix\">Wiki: Matrix</a>",
+        "install_desc": "Veja os preparativos na <a href=\"https://github.com/eacarva/little-backup-box/wiki/04d_Matrix\">Wiki: Matrix</a>",
         "homeserver_label": "Homeserver Matrix (ex.: https://matrix.example.org)",
         "token_label": "Token de acesso da conta do bot",
         "error": {
@@ -941,7 +941,7 @@
       "comment": "Comentário"
     },
     "footer": {
-      "footer": "Aqui só aparecem imagens que têm miniatura. Ative as miniaturas automáticas em Configurações › Visualizador de imagens View, ou gere agora em Mais › Backup › Banco de dados do View.<br>\nVeja a <a href=\"https://github.com/outdoorbits/little-backup-box/wiki/05a.-view-image-viewer\">Wiki</a> para mais informações."
+      "footer": "Aqui só aparecem imagens que têm miniatura. Ative as miniaturas automáticas em Configurações › Visualizador de imagens View, ou gere agora em Mais › Backup › Banco de dados do View.<br>\nVeja a <a href=\"https://github.com/eacarva/little-backup-box/wiki/05b._View_image_viewer\">Wiki</a> para mais informações."
     },
     "ratings_save_button": "Salvar",
     "ratings_1_delete_button": "Apagar arquivos de mídia",

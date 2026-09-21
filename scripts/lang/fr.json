@@ -36,7 +36,7 @@
     "cloudservice": "service cloud",
     "reboot_m": "Little Backup Box redémarre.<br>Dans quelques secondes, vous pourrez accéder à nouveau à votre<br><a href=\"/\">Little Backup Box</a>.",
     "shutdown_m": "Little Backup Box est éteint. Vous pouvez fermer cette page.",
-    "help_txt": "<ul>\n   <li>tous USB : tous les périphériques USB connectés, caméras et stockage, sont sauvegardés.</li>\n   <li>Serveur rsync cible: les caméras ne peuvent pas être sauvegardées directement sur un serveur rsync. La mise en cache locale est requise ici.</li>\n</ul>\n<p class = 'text-center'> Veuillez lire le <a href='https://github.com/outdoorbits/little-backup-box/wiki/05.-Operation'>Wiki</a>.< / p>",
+    "help_txt": "<ul>\n   <li>tous USB : tous les périphériques USB connectés, caméras et stockage, sont sauvegardés.</li>\n   <li>Serveur rsync cible: les caméras ne peuvent pas être sauvegardées directement sur un serveur rsync. La mise en cache locale est requise ici.</li>\n</ul>\n<p class = 'text-center'> Veuillez lire le <a href='https://github.com/eacarva/little-backup-box/wiki/05._Operation'>Wiki</a>.< / p>",
     "stopbackup_button": "ARRÊTER",
     "stopbackup_m": "Arrêt de la sauvegarde.",
     "usb_button": "Poste stockage USB",
@@ -160,7 +160,7 @@
       "section": "Sauvegarde",
       "camera": {
         "folder_mask_header": "Répertoires à sauvegarder sur les smartphones et les caméras",
-        "folder_mask_label": "Des instructions pour le comportement de sauvegarde pour certains appareils photo ou smartphones peuvent être données ici.<br>\nLes entrées ici ont la forme : <br>\n&quot;CAMERA:CHEMIN&quot; <br>\nLe nom d'une caméra connectée se trouve sur la page &quot;Système&quot; sur &quot;Appareil photo/Smartphone&quot;.<br>\nSi une instruction doit s'appliquer à toutes les caméras, &quot;*&quot; (sans autres ajouts) peut être utilisé comme joker pour tous les appareils.<br>\nLe chemin n'a pas besoin d'être spécifié en entier. Il suffit d'en utiliser une partie importante. <br>\nExemples : <br>\n&quot;*:DCIM&quot; <br>\n&quot;*:DCIM;MyCamera:IMAGES&quot; <br>\n&quot;&quot; (Le champ reste vide, sauvegardez tous les dossiers de toutes les caméras.)<br>\nPlus d'informations sur le <a href=\"https://github.com/outdoorbits/little-backup-box/wiki/04.-Setup\">wiki</a>",
+        "folder_mask_label": "Des instructions pour le comportement de sauvegarde pour certains appareils photo ou smartphones peuvent être données ici.<br>\nLes entrées ici ont la forme : <br>\n&quot;CAMERA:CHEMIN&quot; <br>\nLe nom d'une caméra connectée se trouve sur la page &quot;Système&quot; sur &quot;Appareil photo/Smartphone&quot;.<br>\nSi une instruction doit s'appliquer à toutes les caméras, &quot;*&quot; (sans autres ajouts) peut être utilisé comme joker pour tous les appareils.<br>\nLe chemin n'a pas besoin d'être spécifié en entier. Il suffit d'en utiliser une partie importante. <br>\nExemples : <br>\n&quot;*:DCIM&quot; <br>\n&quot;*:DCIM;MyCamera:IMAGES&quot; <br>\n&quot;&quot; (Le champ reste vide, sauvegardez tous les dossiers de toutes les caméras.)<br>\nPlus d'informations sur le <a href=\"https://github.com/eacarva/little-backup-box/wiki/04._Setup\">wiki</a>",
         "model_folders_header": "Modèle de caméra à synchroniser avec Ordner",
         "specific_device_folders_header": "Carpetas para sincronizar desde una cámara específica",
         "device_folder_pattern": "À utiliser comme modèle dans les paramètres"
@@ -406,14 +406,14 @@
       "section": "Réseaux sociaux",
       "bluesky": {
         "header": "Configurer Bluesky",
-        "install_desc": "Veuillez vous référer aux préparatifs dans le <a href=\"https://github.com/outdoorbits/little-backup-box/wiki/04f_Bluesky\">Wiki: Bluesky</a>",
+        "install_desc": "Veuillez vous référer aux préparatifs dans le <a href=\"https://github.com/eacarva/little-backup-box/wiki/04f_Bluesky\">Wiki: Bluesky</a>",
         "base_url_label": "URL de base de l’API",
         "identifier_label": "Identifiant (e-mail ou handle)",
         "app_password_label": "Mot de passe de l’application"
       },
       "telegram": {
         "header": "Configurer Telegram",
-        "install_desc": "Veuillez vous référer aux préparatifs dans le <a href=\"https://github.com/outdoorbits/little-backup-box/wiki/04c_Telegram\">Wiki : Telegram</a>",
+        "install_desc": "Veuillez vous référer aux préparatifs dans le <a href=\"https://github.com/eacarva/little-backup-box/wiki/04c_Telegram\">Wiki : Telegram</a>",
         "token_label": "Jeton",
         "chat_id_label": "ID de discussion",
         "error_unreachable": "Télégramme inaccessible",
@@ -437,7 +437,7 @@
       },
       "mastodon": {
         "header": "Configurer Mastodon",
-        "install_desc": "Veuillez vous référer aux préparatifs dans le <a href=\"https://github.com/outdoorbits/little-backup-box/wiki/04e_Mastodon\">Wiki: Mastodon</a>",
+        "install_desc": "Veuillez vous référer aux préparatifs dans le <a href=\"https://github.com/eacarva/little-backup-box/wiki/04e_Mastodon\">Wiki: Mastodon</a>",
         "token_label": "Jeton d'accès",
         "base_url_label": "URL de base de Mastodon"
       },
@@ -448,7 +448,7 @@
       },
       "matrix": {
         "header": "Configurer Matrix",
-        "install_desc": "Veuillez vous référer aux préparatifs dans le <a href=\"https://github.com/outdoorbits/little-backup-box/wiki/04d_Matrix\">Wiki: Matrix</a>",
+        "install_desc": "Veuillez vous référer aux préparatifs dans le <a href=\"https://github.com/eacarva/little-backup-box/wiki/04d_Matrix\">Wiki: Matrix</a>",
         "homeserver_label": "Serveur Matrix (ex. https://matrix.example.org)",
         "token_label": "Jeton d’accès du compte bot",
         "error": {
@@ -941,7 +941,7 @@
       "comment": "Commentaire"
     },
     "footer": {
-      "footer": "Seules les images avec vignette sont affichées ici. Activez les vignettes automatiques dans Réglages › Visionneuse d'images View, ou créez-les maintenant dans Plus › Sauvegarde › View-Base de données.<br>\nConsulte la <a href=\"https://github.com/outdoorbits/little-backup-box/wiki/05a.-view-image-viewer\">Wiki</a> para obtener más información."
+      "footer": "Seules les images avec vignette sont affichées ici. Activez les vignettes automatiques dans Réglages › Visionneuse d'images View, ou créez-les maintenant dans Plus › Sauvegarde › View-Base de données.<br>\nConsulte la <a href=\"https://github.com/eacarva/little-backup-box/wiki/05b._View_image_viewer\">Wiki</a> para obtener más información."
     },
     "ratings_save_button": "Sauvegarder",
     "ratings_1_delete_button": "Supprimer des fichiers multimédias",

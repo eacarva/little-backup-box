@@ -706,6 +706,20 @@ class DISPLAY(object):
 			return()
 
 if __name__ == "__main__":
+	# fork: only one display.py may drive the panel. lib_display starts it after a pgrep check that is not atomic,
+	# so two could start together and interleave their frames on the bus. Take the lock before touching the panel.
+	import fcntl
+	pathlib.Path(WORKING_DIR, 'tmp').mkdir(parents=True, exist_ok=True)
+	lock_file	= open(os.path.join(WORKING_DIR, 'tmp', 'display.lock'), 'w')
+	for attempt in range(20): # a restarting display.py may still be shutting down
+		try:
+			fcntl.flock(lock_file, fcntl.LOCK_EX | fcntl.LOCK_NB)
+			break
+		except BlockingIOError:
+			time.sleep(0.5)
+	else:
+		sys.exit() # another display.py drives the panel
+
 	display	= DISPLAY()
 	display.main()
 

@@ -418,9 +418,8 @@ iframe {
 	border-radius: 10px;
 }
 
-/* log monitor shows a plain-text file with a white inline background */
-html[data-theme='dark'] #logmonitor {
-	filter: invert(.9) hue-rotate(180deg);
+#logmonitor {
+	background: var(--csurface2) !important;
 }
 
 /* Backup page: source slots with an indicator LED ########## */

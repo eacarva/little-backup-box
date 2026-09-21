@@ -9,6 +9,7 @@ let LogMonitorInterval = 'undefined';
 
 function refreshLogMonitor() {
 	var logmonitor = document.getElementById("logmonitor");
+	logmonitor.onload = function() {styleLogMonitor(logmonitor);};
 
 	if (!(logmonitor === document.activeElement)) {
 
@@ -30,4 +31,15 @@ function clearIntervalLogMonitor() {
 		clearInterval(LogMonitorInterval);
 		LogMonitorInterval = 'undefined'
 	}
+}
+
+// the log is a plain-text file: give it the page's theme colors
+function styleLogMonitor(logmonitor) {
+	try {
+		var page	= getComputedStyle(document.documentElement);
+		var style	= logmonitor.contentDocument.createElement('style');
+		style.textContent	= 'html, body {margin: 0; color-scheme: ' + page.colorScheme + '; color: ' + page.getPropertyValue('--cfg') + '; background: ' + page.getPropertyValue('--csurface2') + ';}' +
+			' pre {margin: .5rem .75rem; font: ' + page.getPropertyValue('--font-c') + '; white-space: pre-wrap;}';
+		logmonitor.contentDocument.head.appendChild(style);
+	} catch(e) {}
 }

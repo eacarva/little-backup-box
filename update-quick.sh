@@ -32,14 +32,24 @@ if ! git clone --quiet --depth 1 --branch "${branch}" "${REPO}" "${NEW_DIR}"; th
 	exit 1
 fi
 
-# only scripts/ may differ, everything the installer applies to the system must be unchanged
-if [ ! -d "${INSTALLED_DIR}" ] || ! diff -rq --exclude=.git --exclude=scripts --exclude=dev --exclude='*.md' "${INSTALLED_DIR}" "${NEW_DIR}" >/dev/null; then
+# files the installer applies to the system; a change there needs the regular update, anything else is copied
+system_changed() {
+	[ -d "${INSTALLED_DIR}" ] || return 0
+	local name
+	for name in $(cd "${INSTALLED_DIR}" && ls -d install-*.sh setup-*.sh set_locale.sh prefer-ipv4-eth0.sh etc 2>/dev/null) \
+				$(cd "${NEW_DIR}" && ls -d install-*.sh setup-*.sh set_locale.sh prefer-ipv4-eth0.sh etc 2>/dev/null); do
+		diff -rq "${INSTALLED_DIR}/${name}" "${NEW_DIR}/${name}" >/dev/null 2>&1 || return 0
+	done
+	return 1
+}
+
+if system_changed; then
 	echo "System files changed since the last install: running the regular update."
 	cp -f "${NEW_DIR}/install-little-backup-box.sh" "${HOME}/install-little-backup-box.sh"
 	exec bash "${HOME}/install-little-backup-box.sh" "${branch}" code
 fi
 
-echo "Only Little Backup Box files changed: quick update."
+echo "No system files changed: quick update."
 echo "const_SOFTWARE_BRANCH='${branch}'" >> "${NEW_DIR}/scripts/constants.sh"
 
 # config, runtime files and the media link created by view.php stay

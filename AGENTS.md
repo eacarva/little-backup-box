@@ -35,12 +35,14 @@ Neste fork, o segundo argumento `code` (`install-little-backup-box.sh main code`
 scripts satélites, via `SYSTEM_UPGRADE`. Na instalação, o upgrade sempre roda.
 
 O botão "Atualizar só a Little Backup Box" roda `update-quick.sh`: baixa o repositório
-(`--depth 1`) e compara com `~/little-backup-box` (clone deixado pelo instalador). Se só
-`scripts/` mudou, copia com `rsync --delete` (preserva `config.cfg`, `tmp/`, o link `media`),
+(`--depth 1`) e compara com `~/little-backup-box` (clone deixado pelo instalador) só os
+arquivos que o instalador aplica no sistema: `install-*.sh`, `setup-*.sh`, `set_locale.sh`,
+`prefer-ipv4-eth0.sh` e `etc/`. Se nenhum mudou, copia `scripts/` com `rsync --delete` (preserva `config.cfg`, `tmp/`, o link `media`),
 roda `lib_setup.py`, ajusta permissões e reinicia o display — sem apt e sem reboot. Um backup só
 esperando dispositivos é parado e relançado com a mesma linha de comando (lida de `/proc`);
-um backup copiando (`rsync`, `gphoto2`, `exiftool`, `rclone copy`…) bloqueia a atualização. Se mudou
-qualquer outra coisa (instalador, `etc/`, scripts satélites), cai no instalador em modo `code`.
+um backup copiando (`rsync`, `gphoto2`, `exiftool`, `rclone copy`…) bloqueia a atualização. Se algum
+deles mudou, cai no instalador em modo `code` (com reboot). Arquivo novo que o instalador passe a
+aplicar no sistema precisa entrar nessa lista, em `system_changed()`.
 **Mudança que precise de pacote novo ou config de sistema tem de passar pelo instalador**
 (`etc/` ou `install-*.sh`), senão a atualização rápida não a aplica.
 

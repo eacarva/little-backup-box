@@ -117,7 +117,7 @@ class DISPLAY(object):
 		self.__conf_DISP_COLOR_BACKGROUND			= self.__setup.get_val('conf_DISP_COLOR_BACKGROUND')
 		self.__conf_DISP_FONT_SIZE					= self.__setup.get_val('conf_DISP_FONT_SIZE')
 		self.__conf_DISP_BAND_TOP					= self.__setup.get_val('conf_DISP_BAND_TOP')
-		self.__conf_DISP_HIGHLIGHT_NO_FILL			= self.__setup.get_val('conf_DISP_HIGHLIGHT_NO_FILL')
+		self.__conf_DISP_HIGHLIGHT_STYLE			= self.__setup.get_val('conf_DISP_HIGHLIGHT_STYLE')
 		self.__conf_DISP_FRAME_TIME					= self.__setup.get_val('conf_DISP_FRAME_TIME')
 		self.__conf_DISP_SHOW_STATUSBAR				= self.__setup.get_val('conf_DISP_SHOW_STATUSBAR')
 		self.__conf_DISP_BACKLIGHT_PIN				= self.__setup.get_val('conf_DISP_BACKLIGHT_PIN')
@@ -374,6 +374,7 @@ class DISPLAY(object):
 
 				# basic text decoration settings
 				underline = False
+				frame = False
 
 				Formatstring, Content = Line.split(':',1)
 				Formats = Formatstring.split(',')
@@ -388,16 +389,18 @@ class DISPLAY(object):
 					if FormatType == 's':
 						if self.device.mode == '1':
 							# monochrome
-							# fork: optional highlight without a lit bar, lit bars wear OLED panels and reveal burn-in
+							# fork: highlight style is a setting, lit bars wear OLED panels and reveal burn-in
 							if FormatValue == 'h': # highlight
-								if self.__conf_DISP_HIGHLIGHT_NO_FILL:
+								if self.__conf_DISP_HIGHLIGHT_STYLE == 'frame':
+									frame = True
+								elif self.__conf_DISP_HIGHLIGHT_STYLE == 'underline':
 									underline = True
-								else:
+								elif self.__conf_DISP_HIGHLIGHT_STYLE != 'plain':
 									fg_fill = self.color_bg
 									bg_fill = self.color_text
 							elif FormatValue == 'a': # alert
 								underline = True
-							elif FormatValue == 's' and not self.__conf_DISP_HIGHLIGHT_NO_FILL: # statusbar
+							elif FormatValue == 's' and self.__conf_DISP_HIGHLIGHT_STYLE in ['', 'bar']: # statusbar
 								fg_fill = self.color_bg
 								bg_fill = self.color_text
 						else:
@@ -430,6 +433,11 @@ class DISPLAY(object):
 					draw.rectangle(
 						(x, y + 2, self.device.width, min(y + self.line_height + 1, self.device.height)),
 						outline=bg_fill, fill=bg_fill)
+
+				if frame:
+					draw.rectangle(
+						(x, y + 2, self.device.width - 1, min(y + self.line_height + 1, self.device.height - 1)),
+						outline=self.color_text, fill=self.color_bg)
 
 				if Content.startswith("IMAGE="):
 					Content	= ''
@@ -489,7 +497,7 @@ class DISPLAY(object):
 						i += 1
 				else:
 					## regular text
-					draw.text((x + 1, y), Content, font=self.FONT, fill=fg_fill)
+					draw.text((x + (3 if frame else 1), y), Content, font=self.FONT, fill=fg_fill)
 
 				if underline:
 					(left, top, right, bottom) = draw.textbbox((0, 0), Content, font=self.FONT)

@@ -192,8 +192,7 @@ Imite o código ao redor. O estilo do upstream é consistente e deliberado:
 
 - O clone é **raso** (`--depth`), com 56 commits. `git log` completo não está disponível.
 - Não há remote do upstream configurado — só `origin` (`eacarva/little-backup-box`).
-- Desenvolva na branch designada da sessão, nunca direto na `main`, para manter a `main`
-  alinhada com o upstream e facilitar rebases futuros.
+- Commite direto na `main`. Não crie branch de feature sem pedido explícito.
 - Não abra pull request sem pedido explícito.
 
 ---

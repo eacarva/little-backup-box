@@ -254,7 +254,12 @@ Diga isso com clareza ao relatar o trabalho, em vez de afirmar que "está funcio
 - **OLED apaga quando um `display.py` sai:** a `luma` desliga o painel no `atexit`. Por isso o
   `display.py` religa o painel a cada quadro e só um processo pode desenhar (trava de arquivo).
 - **"Desligar após o backup" ligado** faz a box desligar ao fim de cada backup — parece
-  "a tela apagou". Confira `conf_POWER_OFF` antes de caçar bug de display.
+  "a tela apagou". Confira `conf_POWER_OFF` antes de caçar bug de display. Neste fork, um backup
+  sem falha que não copiou nenhum arquivo novo não desliga (o backup do boot com cartão já
+  copiado desligava a box logo depois de ligar).
+- **Destino = primeiro disco USB encontrado:** com SSD e cartão plugados juntos no boot, a ordem
+  de enumeração decide quem é destino. Use "Requisitos da partição de destino" (tamanho mínimo
+  maior que qualquer cartão) para o cartão nunca virar destino.
 - **`umount -l` é preguiçoso:** retorna antes de gravar tudo. Antes de dizer que um cartão pode
   sair, rode `sync` (o `backup.py` já faz).
 - **Esperas sem limite:** qualquer laço que espera o display ou um dispositivo precisa de

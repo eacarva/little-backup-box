@@ -362,6 +362,9 @@ class reporter(object):
 	def has_errors(self):
 		return(any(Tries[-1]['Errors'] for Tries in self.__BackupReports.values() if Tries))
 
+	def files_copied(self):
+		return(sum(Try['FilesCopied'] for Tries in self.__BackupReports.values() for Try in Tries))
+
 	def get_time_elapsed(self):
 		if self.StopTime == 0:
 			self.StopTime	= lib_system.get_uptime_sec()

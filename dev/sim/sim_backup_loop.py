@@ -105,18 +105,20 @@ class Lan:
 namespace = {
 	'lib_system': types.SimpleNamespace(rpi_leds=lambda **k: None),
 	'lib_storage': types.SimpleNamespace(umount=lambda *a: None),
-	'lib_poweroff': types.SimpleNamespace(poweroff=lambda action, summary: types.SimpleNamespace(poweroff=lambda: calls.append(('summary', summary)))),
+	'lib_poweroff': types.SimpleNamespace(poweroff=lambda action, summary: types.SimpleNamespace(poweroff=lambda: calls.append((action, summary)))),
 }
 Backup = load_methods('backup.py', 'backup', ['run', 'finish'], namespace)
 
 
-def run_scenario(station, backup_results, fail_on_call=None, summary=(':Backup complete.', ':3 of 3 files copied', ':0 failed attempts', ':Duration: 0:01:00')):
+def run_scenario(station, backup_results, fail_on_call=None, summary=(':Backup complete.', ':3 of 3 files copied', ':0 failed attempts', ':Duration: 0:01:00'), power_off=False, files_copied=3):
 	calls.clear()
 	b = Backup.__new__(Backup)
 	results = iter(backup_results)
 	count = [0]
 	b._backup__StationMode = station
 	b._backup__SourcesFailed = 0
+	b._backup__SourcesDone = 0
+	b._backup__FilesCopiedTotal = 0
 	b._backup__TIMSCopied = False
 	b._backup__setup = None
 	b._backup__lan = Lan()
@@ -130,7 +132,7 @@ def run_scenario(station, backup_results, fail_on_call=None, summary=(':Backup c
 	b.DoUpdateEXIF = False
 	b.DoGenerateThumbnails_primary = True
 	b.SecondaryBackupFollows = False
-	b.PowerOff = False
+	b.PowerOff = power_off
 	b.syncDatabase = lambda: calls.append('db')
 	b.generateThumbnails = lambda Device: calls.append('thumbnails')
 
@@ -141,22 +143,31 @@ def run_scenario(station, backup_results, fail_on_call=None, summary=(':Backup c
 
 	def backup():
 		count[0] += 1
+		b._backup__SourcesDone += 1
+		b._backup__FilesCopiedTotal += files_copied
 		if fail_on_call == count[0]:
 			b._backup__SourcesFailed += 1
 		return next(results, None)
 	b.backup = backup
 	b.run()
-	return count[0], [c[1] for c in calls if isinstance(c, tuple)][0]
+	finished = [c for c in calls if isinstance(c, tuple)][0]
+	return count[0], finished[1], finished[0]
 
 
 check('normal, all fine: one batch, "complete"',
-	run_scenario(False, [True]), (1, [':Backup complete.', ':3 of 3 files copied', ':0 failed attempts', ':Duration: 0:01:00']))
+	run_scenario(False, [True])[:2], (1, [':Backup complete.', ':3 of 3 files copied', ':0 failed attempts', ':Duration: 0:01:00']))
 check('normal, first card failed (last one fine): never "complete", 5 lines',
-	run_scenario(False, [True], fail_on_call=1), (1, ['s=a:COPY ERROR', ':Do not format', ':3 of 3 files copied', ':Duration: 0:01:00']))
+	run_scenario(False, [True], fail_on_call=1)[:2], (1, ['s=a:COPY ERROR', ':Do not format', ':3 of 3 files copied', ':Duration: 0:01:00']))
 check('station: two clean batches, then an aborted one stops the station',
 	run_scenario(True, [True, True, None])[0], 3)
 check('station: a failure stops the station after that batch',
 	run_scenario(True, [True, True, True], fail_on_call=2)[0], 2)
+check('power off after backup: files copied, box powers off',
+	run_scenario(False, [True], power_off=True, files_copied=3)[2], 'poweroff')
+check('power off after backup: nothing new copied, box stays on',
+	run_scenario(False, [True], power_off=True, files_copied=0)[2], 'None')
+check('power off after backup: nothing copied but a card failed, box powers off as before',
+	run_scenario(False, [True], power_off=True, files_copied=0, fail_on_call=1)[2], 'poweroff')
 
 
 print('reporter.has_errors()')
@@ -172,5 +183,10 @@ def has_errors(reports):
 check('no tries: no error', has_errors({}), False)
 check('error only in an earlier try: no error', has_errors({'/': [{'Errors': ['x']}, {'Errors': []}]}), False)
 check('error in the last try of any folder: error', has_errors({'/': [{'Errors': []}], 'DCIM': [{'Errors': ['missing']}]}), True)
+
+Reporter = load_methods('lib_backup.py', 'reporter', ['files_copied'], {})
+r = Reporter.__new__(Reporter)
+r._reporter__BackupReports = {'/': [{'FilesCopied': 2}, {'FilesCopied': 1}], 'DCIM': [{'FilesCopied': 5}]}
+check('files_copied() adds every try of every folder', r.files_copied(), 8)
 
 raise SystemExit(f'{len(failures)} failed' if failures else 0)

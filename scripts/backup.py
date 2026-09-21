@@ -182,6 +182,8 @@ class backup(object):
 		self.__completedSources_usb		= []
 		self.__completedSources_camera	= []
 		self.__SourcesFailed			= 0 # the report of the last source is not enough to call the whole run complete
+		self.__SourcesDone				= 0
+		self.__FilesCopiedTotal			= 0
 
 		# define TransferMode for _non_ camera transfers
 		self.TransferMode	= 'rsync' if (self.SourceStorageType in ['anyusb', 'usb', 'internal', 'nvme'] and self.TargetStorageType in ['anyusb', 'usb', 'internal', 'nvme']) or self.SourceStorageType == 'cloud_rsync' or self.TargetStorageType == 'cloud_rsync' else 'rclone'
@@ -1054,6 +1056,9 @@ class backup(object):
 			if self.SourceDevice.mountable:
 				self.SourceDevice.umount()
 
+			self.__SourcesDone		+= 1
+			self.__FilesCopiedTotal	+= self.__reporter.files_copied()
+
 			# fork: tell whether this source can go (database and thumbnails work on the target only)
 			if self.__reporter.has_errors():
 				self.__SourcesFailed	+= 1
@@ -1688,7 +1693,9 @@ class backup(object):
 			self.__display.message(display_summary)
 		else:
 			# Power off
-			if self.PowerOff:
+			# fork: a clean backup that found nothing new (e.g. the boot backup with an already copied card) keeps the box on
+			NothingNew	= self.__SourcesDone and not self.__FilesCopiedTotal and not self.__SourcesFailed
+			if self.PowerOff and not NothingNew:
 				Action	= 'poweroff'
 			else:
 				Action	= 'None'

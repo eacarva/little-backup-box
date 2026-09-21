@@ -106,6 +106,12 @@
 
 	$running	= backup_running($WORKING_DIR);
 
+	// backup state, so the page can follow a backup that starts or ends
+	if (isset($_GET['running'])) {
+		print($running ? '1' : '0');
+		exit;
+	}
+
 	// device list refresh
 	if (isset($_GET['devices'])) {
 		print_devices(connected_devices($running));
@@ -176,8 +182,16 @@
 	</div>
 
 	<script>
+		const shownRunning	= '<?php echo $running ? '1' : '0'; ?>';
+
 		function refreshDevices() {
 			setTimeout(function() {
+				// the start / stop card is drawn by the server: reload when a backup starts or ends
+				fetch('/status.php?running=1')
+					.then(response => response.ok ? response.text() : null)
+					.then(state => {if (state !== null && state.trim() !== shownRunning) {location.reload();}})
+					.catch(() => {});
+
 				fetch('/status.php?devices=1')
 					.then(response => response.ok ? response.text() : null)
 					.then(html => {if (html !== null) {document.getElementById('home-devices').innerHTML = html;}})

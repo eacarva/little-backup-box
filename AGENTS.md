@@ -114,7 +114,9 @@ Sem framework: PHP procedural + Bootstrap 5 (vendorizado em `scripts/css` e `scr
 (`L::main_usb_button`). Os JSON são aninhados e a chave é achatada com underscore:
 `box.backup.primary` vira `box_backup_primary`. O Python acessa as mesmas chaves via
 `lib_language.py` (`lan.l('box_backup_primary')`).
-**Toda string nova precisa ser adicionada nos 4 idiomas: `en`, `de`, `es`, `fr`.**
+**Toda string nova precisa ser adicionada nos 5 idiomas: `en`, `de`, `es`, `fr`, `pt`.**
+`pt.json` é português do Brasil e só existe neste fork. Não há fallback para `en`
+(`mergeFallback = false`): chave faltando em qualquer idioma quebra a página.
 
 ### Camada 4 — Hardware e rede
 
@@ -222,7 +224,7 @@ Imite o código ao redor. O estilo do upstream é consistente e deliberado:
 │   ├── sub-*.php                   includes de UI
 │   ├── constants.sh                constantes compartilhadas (bash + python + php)
 │   ├── buttons.cfg                 mapeamento dos botões do display
-│   ├── lang/                       en, de, es, fr (JSON)
+│   ├── lang/                       en, de, es, fr, pt (JSON)
 │   ├── css/, js/, img/             assets (Bootstrap vendorizado)
 │   ├── mods/                       scripts opcionais (update_libraw.sh)
 │   └── tmp/                        runtime: log, lockfiles, conteúdo do display
@@ -302,8 +304,8 @@ a prosa. Desligar numa sessão: `stop ponytail` / `normal mode` e `stop caveman`
 
 ### O que os modos NÃO comprimem
 
-- **Strings de i18n.** Os 4 JSON de idioma são texto de produto, não prosa de resposta.
-  Escreva a string por extenso e correta, em `en`, `de`, `es` e `fr`.
+- **Strings de i18n.** Os 5 JSON de idioma são texto de produto, não prosa de resposta.
+  Escreva a string por extenso e correta, em `en`, `de`, `es`, `fr` e `pt`.
 - **Mensagens de commit.** Seguem o estilo do upstream (inglês, minúsculas, descritivo),
   não o registro caveman.
 - **Comentários `ponytail:`.** Uma simplificação deliberada com teto conhecido leva o

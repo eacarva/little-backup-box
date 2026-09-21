@@ -1,0 +1,952 @@
+{
+  "help": "Ajuda",
+  "right_arrow": " &rarr; ",
+  "seconds_short": "s",
+  "log": {
+    "logmonitor": "Monitor de log",
+    "refresh_button": "Atualizar",
+    "delete_button": "Apagar log"
+  },
+  "box": {
+    "backup": {
+      "primary": "Backup primário",
+      "secondary": "Backup secundário",
+      "storage_size": "tamanho",
+      "storage_used": "usado",
+      "storage_free": "livre",
+      "invalid_mode_combination_1": "Combinação",
+      "invalid_mode_combination_2": "de modos",
+      "invalid_mode_combination_3": "inválida",
+      "no_valid_source_mode_1": "Nenhum modo",
+      "no_valid_source_mode_2": "de origem",
+      "no_valid_source_mode_3": "válido definido",
+      "waiting_for_cloud_1": "Pronto",
+      "waiting_for_cloud_2": "Aguardando nuvem",
+      "no_valid_destination_mode_1": "Nenhum modo",
+      "no_valid_destination_mode_2": "de destino",
+      "no_valid_destination_mode_3": "válido definido",
+      "working": "Trabalhando",
+      "connect_camera_1": "Pronto",
+      "connect_camera_2": "Conecte câmeras",
+      "camera_ok": "Câmera ok",
+      "try_backup": "Tentativa",
+      "of": "de",
+      "try": "tentativa",
+      "error_cooling_1": "Erro!",
+      "error_cooling_2": "Resfriando",
+      "error_cooling_3": "Suspeita de",
+      "error_cooling_4": "superaquecimento",
+      "complete": "Backup concluído",
+      "lost_device": "Erro: disp. perdido!",
+      "files_missing": "Erro: faltam arq.!",
+      "checking_old_files": "comparando",
+      "camera_scanning_folders": "Lendo pastas ...",
+      "mail": {
+        "backup_complete": "Backup concluído",
+        "backup_type": "Tipo",
+        "to": "para",
+        "log": "Log do backup",
+        "tries_needed": "tentativa(s) necessária(s)",
+        "lost_device": "Erro: dispositivo perdido!",
+        "files_missing": "Erro: arquivos faltando!",
+        "exception": "Exceção",
+        "error": "Erro",
+        "backup_failed": "Backup falhou",
+        "summary": "Resumo",
+        "no_backup": "Erro: nenhum backup realizado!",
+        "removed_source": "Os arquivos transferidos foram apagados da origem. (quando possível)",
+        "files_validation_failed": "Não foi possível encontrar os arquivos no disco de destino durante a validação.",
+        "empty_files": "Os arquivos a seguir chegaram vazios e foram apagados do destino. Verifique se também estão vazios na origem. Se estiverem, apague-os lá para evitar mensagens de erro futuras.<br>Arquivos vazios:",
+        "remount_device_target_failed": "Falha ao remontar o destino!",
+        "remount_device_source_failed": "Falha ao remontar a origem!",
+        "checksum_compared": "Os checksums foram comparados (quando possível)."
+      },
+      "storage_filesystem_short": "FS",
+      "exception": "Erro desconhecido",
+      "time_remaining": "Tempo",
+      "mount": "montando",
+      "umount": "desmontando",
+      "files_copied": "arquivos copiados",
+      "generating_thumbnails_finding_images1": "Gerando miniaturas",
+      "generating_thumbnails_finding_images3": "Só um momento...",
+      "usb_target_ok": "Destino ok",
+      "usb_source_ok": "Origem ok",
+      "camera_storage_not_exists_2": "não existe.",
+      "camera_storage_not_exists_1": "Memória da câmera",
+      "generating_database_finding_images1": "Sinc. banco dados",
+      "generating_database_finding_images3": "Só um momento...",
+      "cleaning_database": "Limpando banco",
+      "counting_images": "Contando imagens.",
+      "generating_thumbnails": "Gerando miniaturas",
+      "updating_exif": "Atualizando EXIF",
+      "generating_database": "Sinc. banco dados",
+      "vpn": {
+        "connecting_failed": "VPN falhou",
+        "connecting": "Conectando VPN",
+        "disconnecting": "Desconectando VPN",
+        "connecting_success": "VPN conectada"
+      },
+      "error_code": "Código de erro",
+      "usb_target": "Destino USB",
+      "usb_source": "Origem USB",
+      "cloud": "nuvem",
+      "cloud_ok": "Nuvem ok",
+      "internal_ok": "Arm. interno ok",
+      "serial": "Número de série",
+      "source_id": "ID da origem",
+      "usb": "USB",
+      "folder": "Pasta",
+      "files_just_copied": "recém-copiados",
+      "failed_attempts": "tentativas falhas",
+      "report": {
+        "time_elapsed": "Duração"
+      },
+      "connect_source_2": "Insira as origens",
+      "connect_target_2": "Insira o destino",
+      "connect_source_any_2": "Insira as origens",
+      "connect_source_1": "Pronto",
+      "connect_target_1": "Pronto",
+      "connect_source_any_1": "Pronto",
+      "break1": "Backup",
+      "break2": "interrompido",
+      "mode": {
+        "anyusb": "qualquer USB",
+        "camera": "Câmera",
+        "cameras": "Câmeras",
+        "cloud": "Nuvem",
+        "cloud_rsync": "servidor rsync",
+        "database": "Banco de dados",
+        "exif": "EXIF",
+        "internal": "Arm. interno",
+        "thumbnails": "Miniaturas",
+        "usb": "Armaz. USB",
+        "usbs": "Armaz. USB",
+        "nvme": "SSD NVMe",
+        "nvmes": "SSDs NVMe",
+        "rename": "Renomear",
+        "ftp": "Servidor FTP da LBB",
+        "validate": "verificar",
+        "delete": "apagar",
+        "clean": "limpar",
+        "social": "Redes",
+        "social_telegram": "Telegram",
+        "social_mastodon": "Mastodon",
+        "social_bluesky": "Bluesky",
+        "social_matrix": "Matrix"
+      },
+      "nvme": "SSD NVMe",
+      "nvme_source": "Origem USB",
+      "nvme_source_ok": "Origem ok",
+      "nvme_target": "Destino USB",
+      "nvme_target_ok": "Destino ok",
+      "camera": {
+        "removing_files_1": "Apagando arquivos",
+        "removing_files_2": "da câmera"
+      },
+      "validate_files_from": "Validar arquivos de",
+      "rename_files": {
+        "renaming_files": "Renomeando arquivos"
+      },
+      "mounting": {
+        "source": "Montar origem",
+        "target": "Montar destino"
+      },
+      "ftp": {
+        "started": "Servidor FTP iniciado.",
+        "starting": "Iniciando servidor FTP...",
+        "ok": "FTP ok"
+      },
+      "not_configured": "não configurado",
+      "delay_rate_limit": "Limite de taxa"
+    },
+    "poweroff": {
+      "poweroff": "Desligando",
+      "do_not_unplug": "Não desconecte",
+      "while_act_led_on_1": "enquanto o LED",
+      "while_act_led_on_2": "ACT acender. Tchau!",
+      "rebooting": "Reiniciando",
+      "power_down_via_gui_1": "Desligado pela",
+      "power_down_via_gui_2": "interface web",
+      "idle_time_reached": "Tempo ocioso atingido",
+      "waiting_outgoing_mails1": "Aguardando",
+      "waiting_outgoing_mails2": "envio de e-mails",
+      "finished_outgoing_mails2": "concluído",
+      "finished_outgoing_mails1": "Envio de e-mails"
+    },
+    "cronip": {
+      "online": "online",
+      "offline": "offline",
+      "mail": {
+        "main": "interface web",
+        "description_http": "http (inseguro)",
+        "open_samba": "Abrir no gerenciador de arquivos (Samba / Windows)",
+        "info": "Informações da Little Backup Box",
+        "description_https": "https (seguro; o certificado não pode ser verificado automaticamente, confirme-o)",
+        "open_ftp": "Acesso via FTP"
+      }
+    },
+    "cmd": {
+      "format": {
+        "start1": "Formatação",
+        "start2": "iniciada...",
+        "stop2": "concluída",
+        "stop1": "Formatação"
+      },
+      "update": {
+        "start1": "Atualização",
+        "start2": "iniciada...",
+        "stop2": "concluída",
+        "stop1": "Atualização"
+      },
+      "f3": {
+        "probe_start1": "Teste",
+        "probe_start2": "iniciado...",
+        "probe_stop1": "Teste",
+        "probe_stop2": "concluído",
+        "probe_non_destructive": "não destrutivo",
+        "probe_destructive": "destrutivo"
+      },
+      "fsck": {
+        "start1": "Verificação do",
+        "start2": "sist. de arquivos",
+        "stop1": "Verificação",
+        "stop2": "concluída"
+      }
+    },
+    "menu": {
+      "confirm": "Confirmar?",
+      "yes": "Sim >",
+      "to": "->",
+      "ip": "Endereço IP",
+      "power_shutdown": "Desligar",
+      "power_reboot": "Reiniciar",
+      "system": "Sistema",
+      "network": "Rede",
+      "comitup_reset": "Resetar Comitup",
+      "vpn_stop": "Desconectar VPN",
+      "backup": {
+        "backup": "Backup",
+        "mode": {
+          "camera": "Câmera",
+          "cloud": "Nuvem",
+          "cloud_rsync": "servidor rsync",
+          "internal": "Int.",
+          "nvme": "SSD NVMe",
+          "usb": "USB",
+          "anyusb": "qualquer USB",
+          "ftp": "Servidor FTP da LBB",
+          "telegram": "Telegram",
+          "mastodon": "mastodon",
+          "bluesky": "Bluesky"
+        },
+        "stop": "PARAR backup"
+      },
+      "wifi": "QR code do Wi-Fi"
+    },
+    "backup_local": "Backup local",
+    "finished": "concluído",
+    "comitup": {
+      "status": {
+        "HOTSPOT": "hotspot",
+        "CONNECTING": "conectando ...",
+        "CONNECTED": "conectado"
+      },
+      "reset": {
+        "done": "resetado",
+        "started": "Resetando..."
+      }
+    }
+  },
+  "mainmenue": {
+    "main": "Backup",
+    "sysinfo": "Sistema",
+    "config": "Configurações",
+    "tools": "Ferramentas",
+    "filebrowser": "Arquivos",
+    "view": "Visualizar",
+    "update": "atualizar",
+    "captive_portal": "<nobr>Portal Wi-Fi</nobr>"
+  },
+  "main": {
+    "internal_button": "arm. interno",
+    "camera_button": "câmera",
+    "rsync_button": "servidor rsync",
+    "reboot_button": "Reiniciar",
+    "shutdown_button": "Desligar",
+    "cloudservice": "serviço de nuvem",
+    "stopbackup_button": "PARAR",
+    "stopbackup_m": "Parando o backup.",
+    "reboot_m": "A Little Backup Box está reiniciando.<br>Em alguns segundos você poderá acessar a<br><a href=\"/\">Little Backup Box</a><br>novamente.",
+    "shutdown_m": "A Little Backup Box foi desligada. Você pode fechar esta página.",
+    "help_txt": "<ul>\n   <li>qualquer USB: todos os dispositivos USB conectados, câmeras e armazenamentos, entram no backup.</li>\n   <li>Destino servidor rsync: não é possível fazer backup de câmeras direto para um servidor rsync. É preciso um armazenamento local intermediário.</li>\n</ul>\n<p class = 'text-center'> Leia a <a href='https://github.com/outdoorbits/little-backup-box/wiki/05.-Operation'>Wiki</a>.</p>",
+    "usb_button": "Armaz. USB",
+    "view_database": "Banco de dados do View",
+    "thumbnails_header": "Gerar miniaturas e importá-las no banco de dados",
+    "database_header": "Sincronizar e limpar o banco de dados",
+    "thumbnails_button": "Miniaturas",
+    "exif_header": "Gravar dados EXIF (avaliações) nos arquivos originais",
+    "database_button": "Banco de dados",
+    "exif_button": "EXIF",
+    "source": "Origem",
+    "target": "Destino",
+    "source_select": "selecione uma opção",
+    "target_execute": "executar",
+    "backup": {
+      "modifications": "Modificações",
+      "backup": "Backup de",
+      "generate_thumbnails_checkbox_label": "Gerar miniaturas e importar no banco de dados (só armazenamento local)",
+      "initiated": "iniciado",
+      "power_off_checkbox_label": "Desligar ao terminar",
+      "to": "para",
+      "update_exif_checkbox_label": "Gravar dados EXIF nos arquivos originais (só armazenamento local)",
+      "preset_target_label": "Definir partição de destino",
+      "preset_source_label": "Definir partição de origem",
+      "preset_partition_auto": "seleção automática",
+      "stopped": "Backup interrompido",
+      "primary": "Backup primário",
+      "secondary": "Backup secundário",
+      "general": "Geral",
+      "secondary_label": "Fazer um backup na nuvem depois do backup primário?",
+      "on": "em",
+      "rename_checkbox_label": "Renomear arquivos (só armazenamento local)",
+      "checksum_checkbox_label": "Comparar checksums dos arquivos que já existem no destino (em vez de tamanho e data)?"
+    },
+    "logout_button": "Sair",
+    "nvme_button": "SSD NVMe",
+    "anyusb_button": "qualquer USB (câmeras e armazenamentos)",
+    "function": {
+      "thumbnails": "Criando miniaturas",
+      "exif": "Atualizar dados EXIF",
+      "sync": "Sincronizar banco de dados"
+    },
+    "file_operations": "Operações com arquivos",
+    "telegram": {
+      "telegram": "Telegram"
+    },
+    "matrix": {
+      "matrix": "Matrix"
+    }
+  },
+  "sysinfo": {
+    "temp": "Temperatura",
+    "cpuload": "Uso da CPU",
+    "conditions": "Condições",
+    "devices": "Dispositivos",
+    "diskspace": "Espaço em disco",
+    "memory_ram": "RAM usada",
+    "memory_swap": "SWAP usada",
+    "camera_storages": "Caminhos de armazenamento",
+    "refresh_button": "Atualizar",
+    "camera_model": "Modelo da câmera",
+    "camera_serial": "Número de série",
+    "cameras": "Câmeras/smartphones",
+    "system": "Sistema",
+    "model": "Modelo",
+    "device_states": "Estado dos dispositivos",
+    "wifi": {
+      "header": "Wi-Fi"
+    }
+  },
+  "sysconditions": {
+    "under_voltage_cur": "A tensão está baixa demais agora.",
+    "under_voltage_prev": "A tensão já esteve baixa demais.",
+    "arm_frq_capped_cur": "A frequência do ARM está limitada agora.",
+    "arm_frq_capped_prev": "A frequência do ARM já foi limitada.",
+    "cpu_throttled_cur": "A CPU está com desempenho reduzido agora.",
+    "cpu_throttled_prev": "A CPU já teve o desempenho reduzido.",
+    "temperature_limit_cur": "No limite suave de temperatura agora.",
+    "temperature_limit_prev": "Já atingiu o limite suave de temperatura.",
+    "normal": "Nenhuma condição anormal detectada."
+  },
+  "config": {
+    "message_settings_saved": "config.cfg foi gravado com sucesso.",
+    "lang_header": "Selecione o idioma",
+    "lang_label": "Language-selector will always be labeled in English too. (O seletor de idioma também aparece sempre em inglês.)",
+    "lang_browser_detect": "Detectar pelo navegador",
+    "view_section": "Aparência",
+    "view_theme_header": "Tema",
+    "view_theme_label": "Selecione um tema de cores:",
+    "view_theme_light": "claro",
+    "view_theme_dark": "escuro",
+    "view_theme_sepia": "sépia",
+    "view_bg_image_label": "Você pode escolher uma imagem de fundo. Guarde suas próprias imagens em",
+    "view_popup_header": "Mensagens pop-up",
+    "view_popup_label": "Permitir mensagens pop-up.",
+    "rsync_section": "Configuração do servidor rsync",
+    "rsync_server_header": "Servidor rsync",
+    "rsync_server_label": "Endereço do servidor rsync",
+    "rsync_port_header": "Porta rsync",
+    "rsync_port_label": "Porta do servidor rsync (padrão:",
+    "rsync_user_header": "Usuário",
+    "rsync_user_label": "Usuário do servidor rsync",
+    "rsync_password_header": "Senha",
+    "rsync_password_label": "Senha do servidor rsync",
+    "save_button": "Salvar",
+    "username": "Usuário",
+    "save_settings_section": "Baixar / enviar configurações",
+    "save_settings_download_header": "Baixar",
+    "save_settings_download_text": "Baixe um arquivo zip com suas configurações",
+    "save_settings_download_link_text": "Baixar configurações",
+    "save_settings_upload_header": "Enviar",
+    "save_settings_upload_label": "Selecione o arquivo de configurações",
+    "save_settings_upload_button": "Enviar configurações",
+    "rsync_module_header": "Módulo rsync",
+    "rsync_module_label1": "Nome do módulo no servidor rsync, por exemplo 'little-backup-box' (padrão:",
+    "rsync_module_label2": "). <br> O nome do módulo é definido no servidor, no rsyncd.conf, entre [colchetes]. Veja também o <a href='https://github.com/outdoorbits/little-backup-box/blob/main/readme_rsync.md'> readme_rsync.md </a>.",
+    "backup": {
+      "generate_thumbnails_header": "Miniaturas",
+      "generate_thumbnails_label": "Criar miniaturas para o View após o backup? (só armazenamento local)",
+      "update_exif_header": "Ajustar automaticamente os dados EXIF dos arquivos na importação",
+      "update_exif_label": "Ajustar dados EXIF na importação",
+      "default_settings_header": "Configurações do backup padrão primário",
+      "target": {
+        "requirements_header": "Requisitos da partição de destino",
+        "requirements_label": "Qual o tamanho mínimo da partição de destino para ser aceita?",
+        "requirements_size_ignore": "aceitar todas"
+      },
+      "none": "sem backup automático",
+      "power_off_label": "Desligar após o backup",
+      "section": "Backup",
+      "camera": {
+        "folder_mask_header": "Pastas a copiar de smartphones e câmeras",
+        "folder_mask_label": "Aqui você define quais pastas de quais câmeras ou smartphones entram no backup. <br>\nAs entradas têm o formato: <br>\n&quot;CÂMERA:CAMINHO&quot; <br>\nO nome de uma câmera conectada aparece na página &quot;Sistema&quot;, em &quot;Câmeras/smartphones&quot;. <br>\nPara aplicar uma regra a todas as câmeras, use &quot;*&quot; (sem mais nada) como curinga para todos os dispositivos. <br>\nO caminho não precisa estar completo. Basta um trecho que o identifique sem ambiguidade. <br>\nExemplos: <br>\n&quot;*:DCIM&quot; (todas as câmeras: todas as pastas que contêm &quot;DCIM&quot;) <br>\n&quot;*:DCIM;MinhaCamera:IMAGES&quot; (e também da câmera &quot;MinhaCamera&quot;: todas as pastas que contêm &quot;IMAGES&quot;) <br>\n&quot;&quot; (campo vazio: copiar todas as pastas de todas as câmeras.) <br>\n<br>\nEm vez de buscar por um padrão, você também pode informar caminhos absolutos. Eles sempre começam com &quot;!/&quot;:\n&quot;MinhaCamera:!/store_00020002/DCIM&quot; <br>\nQuando uma câmera tem um caminho absoluto, ela deixa de ser varrida por padrão. Isso economiza tempo.\nMais informações na <a href=\"https://github.com/outdoorbits/little-backup-box/wiki/04.-Setup\">wiki</a>",
+        "model_folders_header": "Pastas a sincronizar por modelo de câmera",
+        "specific_device_folders_header": "Pastas a sincronizar de uma câmera específica",
+        "device_folder_pattern": "Para usar como padrão nas Configurações"
+      },
+      "general_settings_header": "Configurações gerais",
+      "move_files_label": "Mover os arquivos em vez de copiá-los?",
+      "cloud": {
+        "target_basedir_header": "Pasta base nos servidores de nuvem",
+        "target_basedir_label": "O backup no servidor de nuvem é feito dentro desta pasta.",
+        "sync_method_header": "Método de transferência",
+        "sync_method_label": "Com uma conexão estável, a transferência com rclone costuma ser bem mais rápida.<br>\nO rsync, porém, pode levar vantagem quando a transferência é interrompida, principalmente com arquivos grandes.",
+        "sync_parameter_header": "Configurações de transferência",
+        "files_stay_in_place_header": "Local de armazenamento fixo",
+        "files_stay_in_place_label": "Os arquivos ficam no local de armazenamento logo após o envio ou são reorganizados? (Vale só para o rclone!)"
+      },
+      "move_files_header": "Copiar ou mover arquivos",
+      "default2_settings_header": "Configurações do backup padrão secundário",
+      "rename": {
+        "header": "Renomear arquivos",
+        "warning": "Atenção! Depois disso os arquivos devem ser apagados da origem. Caso contrário, serão transferidos de novo no próximo backup, renomeados e substituirão a versão do backup anterior.",
+        "desc": "O sistema tenta ler a data de criação de todos os arquivos de mídia nos armazenamentos locais. Quando consegue, o arquivo é renomeado neste padrão:<br>\nPor exemplo, &quot;Image0123.jpg&quot; vira &quot;2024-10-18_23-47-26_-_Image.jpg&quot;."
+      },
+      "checksum": {
+        "header": "Comparar checksum?",
+        "label": "Considerar os checksums dos arquivos ao comparar origem e destino. (Não vale para transferências de câmera.)",
+        "warning": "Cuidado: isso pode deixar as transferências bem mais lentas e aumentar muito o uso da CPU. Na sincronização com a nuvem, gera tráfego de rede extra. Principalmente quando já existem muitos arquivos idênticos na origem e no destino, a sincronização pode levar muito tempo sem transferir nada."
+      },
+      "default_header": "Modo de backup padrão",
+      "default_header2": "Modo de backup padrão secundário (só backups de rede)",
+      "default_label": "Selecione o modo de backup padrão:",
+      "default_label2": "Selecione um modo de backup padrão secundário, executado depois do primário:",
+      "update_exif_desc": "Mídias novas sem avaliação própria recebem a avaliação padrão. Quando possível, ela é gravada no arquivo original ou num arquivo sidecar."
+    },
+    "imageviewer": {
+      "section": "Visualizador de imagens View",
+      "convert_heic_header": "Converter imagens heic em jpeg",
+      "convert_heic_label": "Criar imagens jpeg a partir de imagens no formato heic (heif)",
+      "write_rating_exif_label": "Gravar as avaliações direto no arquivo",
+      "write_rating_exif_header": "Gravar avaliações alteradas nos arquivos originais imediatamente",
+      "write_rating_exif_desc": "As avaliações são gravadas na hora nos arquivos originais ou num arquivo sidecar e podem ser usadas no tratamento. Como alternativa, podem ser transferidas do banco de dados para os arquivos depois (página Backup)."
+    },
+    "mail": {
+      "password_header": "Senha",
+      "password_label": "Senha do servidor de e-mail",
+      "port_header": "Porta SMTP",
+      "port_label": "Porta do servidor de e-mail SMTP (padrão:",
+      "recipient_header": "Destinatário",
+      "recipient_label": "Endereço de e-mail do destinatário",
+      "section": "Notificações por e-mail",
+      "smtp_header": "Servidor SMTP",
+      "smtp_label": "Endereço do servidor de e-mail SMTP",
+      "user_header": "Usuário",
+      "user_label": "Usuário do servidor de e-mail",
+      "testmail_header": "Enviar e-mail de teste",
+      "testmail_label": "Depois de salvar, o sistema tenta enviar um e-mail de teste.",
+      "testmail_subject": "Saudações da LBB",
+      "testmail_content": "Parabéns, o envio de e-mails está funcionando.",
+      "testmail_sent": "E-mail de teste enviado",
+      "sender_header": "Remetente",
+      "sender_label": "Endereço de e-mail do remetente",
+      "security_header": "Segurança da conexão",
+      "timeout_header": "Tempo limite do e-mail",
+      "timeout_label": "Depois de quanto tempo o envio dos relatórios de backup deve ser cancelado?",
+      "notify_header": "Enviar e-mails",
+      "notify_backup_label": "Quando possível, enviar relatórios de backup por e-mail?",
+      "notify_ip_label": "Quando possível, enviar por e-mail os links atuais desta Little Backup Box?",
+      "html_header": "Enviar e-mails em HTML",
+      "html_label": "Se os e-mails estiverem ativados, devem ser formatados em HTML?"
+    },
+    "view": {
+      "bg_image_header": "Imagem de fundo"
+    },
+    "display_message_settings_saved_1": "Configurações",
+    "display_message_settings_saved_2": "salvas.",
+    "comitup": {
+      "section": "comitup",
+      "text": "Os dados de acesso Wi-Fi salvos serão apagados. Uma conexão Wi-Fi ativa é interrompida e o comitup entra em modo hotspot.<br>\nEm seguida, conecte-se ao hotspot Wi-Fi \"little-backup-box-nnnn\". O comitup fica acessível em <a href=\"http://10.41.0.1\">http://10.41.0.1</a>. A interface web da Little Backup Box fica em <a href=\"https://10.41.0.1\">https://10.41.0.1</a>.",
+      "linktext": "Apagar credenciais Wi-Fi"
+    },
+    "vpn": {
+      "section": "VPN",
+      "upload_header": "Enviar arquivo de configuração",
+      "upload_type_label": "Para qual tipo de VPN o arquivo de configuração deve ser usado?",
+      "upload_type_none": "Selecione",
+      "type_none": "Não usar VPN",
+      "type_header": "Qual VPN ativar?",
+      "upload_file_label": "Enviar arquivo de configuração",
+      "remove_header": "Apagar arquivo de configuração da VPN",
+      "timeout_header": "Tempo limite da VPN",
+      "timeout_label": "Quanto tempo, no máximo, esperar a conexão VPN ser estabelecida?",
+      "type_cloud_label": "Para serviços de nuvem",
+      "type_rsync_label": "Para backup em servidor rsync",
+      "type_desc": "Qual VPN deve ser ativada antes de transferir dados para um serviço de rede? Cuidado: a interface da Little Backup Box pode ficar inacessível durante o backup. Talvez você consiga acessar a box pelo IP da VPN, se seu dispositivo também estiver na mesma VPN."
+    },
+    "display": {
+      "section": "Display",
+      "connection_header": "Interface do display",
+      "connection_label": "Qual interface usar?",
+      "i2c_address_label": "Endereço i2c do display",
+      "i2c_header": "Configuração do display I2C",
+      "ip_label": "Mostrar o IP a cada minuto.",
+      "device_available": "Dispositivo detectado",
+      "behavior_header": "Comportamento do display",
+      "spi_header": "Configuração do display SPI",
+      "spi_port_label": "Porta SPI",
+      "driver_label": "Driver do display",
+      "resolution_x_label": "Resolução horizontal (pixels)",
+      "resolution_y_label": "Resolução vertical (pixels)",
+      "font_size_label": "Tamanho da fonte",
+      "frame_time_label": "Tempo mínimo de exibição por tela, em segundos",
+      "colors_header": "Cores ao usar um display colorido",
+      "color": {
+        "white": "branco",
+        "yellow": "amarelo",
+        "green": "verde",
+        "blue": "azul",
+        "red": "vermelho",
+        "grey": "cinza",
+        "lightgrey": "cinza-claro",
+        "orange": "laranja",
+        "black": "preto",
+        "alert_label": "Cor da fonte para avisos",
+        "high_label": "Cor da fonte para texto destacado",
+        "model_1": "Preto e branco",
+        "model_RGB": "RGB",
+        "model_RGBA": "RGBA (RGB com transparência)",
+        "model_label": "Cor",
+        "text_label": "Cor padrão da fonte",
+        "background_label": "Cor de fundo",
+        "bgr_label": "Notação de cor BGR (azul-verde-vermelho) em vez de RGB (vermelho-verde-azul)",
+        "inverse_label": "Cores invertidas"
+      },
+      "contrast_label": "Contraste",
+      "rotate_label": "Rotação do display",
+      "rotate_header": "Girar a tela",
+      "offset_x_label": "Deslocamento horizontal do display (em pixels)",
+      "offset_y_label": "Deslocamento vertical do display (em pixels)",
+      "frame_time_ip_label": "Tempo mínimo de exibição do IP, em segundos",
+      "statusbar": {
+        "label": "Mostrar barra de status"
+      },
+      "backlight_header": "Luz de fundo do display",
+      "backlight_enabled_label": "Ativar a luz de fundo do display (se houver)",
+      "backlight_pin_label": "Qual pino GPIO (notação BCM) está ligado à luz de fundo?",
+      "additional_settings_header": "Configurações adicionais do display",
+      "activate": {
+        "display_label": "Usar um display conectado via GPIO.",
+        "none_label": "Sem display",
+        "screen_label": "Usar uma tela (ou touchscreen) conectada via GPIO."
+      }
+    },
+    "menu": {
+      "enable_header": "Ativar menu do display",
+      "enable_label": "Ativar o menu do display?",
+      "button_combination_label": "Selecione uma variante pela tabela (pinos em GPIO.BCM). Obs.: o menu do display também precisa estar ativado.",
+      "button_combination_variant": "Variante",
+      "button_up": "cima",
+      "button_down": "baixo",
+      "button_right": "direita",
+      "button_left": "esquerda",
+      "button_bouncetime_label": "O tempo de bounce (em milissegundos) indica em quanto tempo um botão chega a um estado ligado estável. Depois de uma ação, o botão fica bloqueado por esse tempo.",
+      "button_rotate_label": "Rotação dos botões",
+      "rotate_header": "Girar o mapeamento dos botões",
+      "button_edge_detection_label": "Detecção de borda do botão",
+      "button_resistor_pull_label": "Resistor de pull",
+      "button_comment": "Comentário",
+      "button_edit_custom_configfile": "Editar arquivo de configuração personalizado",
+      "section": "Menu do display"
+    },
+    "hardware": {
+      "fan": {
+        "always_on": "sempre ligada",
+        "gpio_label": "GPIO para controle PWM da ventoinha",
+        "header": "Controle da ventoinha",
+        "temp_label": "Temperatura de acionamento"
+      },
+      "section": "Hardware"
+    },
+    "lang_time_section": "Idioma e fuso horário",
+    "time_zone_label": "Fuso horário",
+    "time_zone_header": "Selecione seu fuso horário",
+    "update": {
+      "development_linktext": "Atualizar agora - branch development",
+      "linktext": "Atualizar agora",
+      "text": "<h3>Atualizar a Little Backup Box</h3><p>Cuidado:<ul><li>A atualização pode deixar o sistema inutilizável.</li><li>A atualização pode gerar um volume grande de download e, com isso, custos.</li><li>A atualização pode levar vários minutos ou mais, dependendo da velocidade da internet.</li></ul><br>Só atualize se você ...<ul><li>puder fazer uma instalação nova, se for preciso</li><li>tiver uma conexão estável com a internet</li><li>tiver uma alimentação elétrica estável</li></ul></p>",
+      "section": "Atualização",
+      "available": "Atualização disponível",
+      "not_available": "Nenhuma atualização disponível",
+      "check_label": "Verificar se há atualização"
+    },
+    "display_message_settings_uploaded_1": "Configurações",
+    "display_message_settings_uploaded_2": "importadas.",
+    "display_message_settings_upload_error_2": "das config.",
+    "display_message_settings_upload_error_3": "falhou.",
+    "display_message_settings_upload_error_1": "Importação",
+    "screen": {
+      "section": "Tela",
+      "virtual_keyboard_enable_header": "Teclado virtual",
+      "virtual_keyboard_enable_label": "Ativar teclado virtual",
+      "description": "Configurações de uma tela com interface gráfica (desktop). Atenção: as configurações só valem depois de reiniciar.",
+      "driver": {
+        "header": "Driver da tela",
+        "label": "Selecione o driver adequado para a tela."
+      },
+      "rotate": {
+        "header": "Rotação da tela",
+        "label": "Selecione a rotação da tela em graus."
+      },
+      "speed": {
+        "header": "Velocidade da tela",
+        "label": "Selecione a velocidade suportada pela sua tela."
+      },
+      "usage_updated": "A configuração da tela foi salva."
+    },
+    "exit": {
+      "section": "Encerrar a LBB",
+      "desc": "Fecha a Little Backup Box e libera o computador para outras tarefas até o próximo boot.",
+      "idletime": "Isso também pausa o desligamento por tempo ocioso, se configurado.",
+      "stop_backup": "Para um backup que esteja em andamento.",
+      "submit": "Encerrar LBB"
+    },
+    "debug": {
+      "display_images_keep_header": "Capturas do display",
+      "display_images_keep_label": "Guardar as imagens do display?",
+      "section": "Depuração",
+      "log_sync_protokoll_header": "Registrar protocolo de sincronização",
+      "log_sync_protokoll_label": "Registrar detalhes da sincronização?",
+      "loglevel_header": "Nível de log",
+      "loglevel_label": "Selecione o nível de log:",
+      "loglevel_maximum": "máximo",
+      "loglevel_medium": "médio",
+      "loglevel_minimum": "mínimo",
+      "loglevel_text": "Registrar eventos do sistema (no monitor de log)?<br>(Arquivo de log:"
+    },
+    "energy": {
+      "section": "Economia de energia",
+      "power_off_idle_time_header": "Desligar após tempo ocioso",
+      "power_off_idle_time_label": "Selecione o tempo ocioso após o qual o sistema deve ser desligado.",
+      "power_off_idle_time_none": "nunca"
+    },
+    "social": {
+      "section": "Redes sociais",
+      "bluesky": {
+        "header": "Configurar Bluesky",
+        "install_desc": "Veja os preparativos na <a href=\"https://github.com/outdoorbits/little-backup-box/wiki/04f_Bluesky\">Wiki: Bluesky</a>",
+        "base_url_label": "URL base da API",
+        "identifier_label": "Identificador (e-mail ou handle)",
+        "app_password_label": "Senha de app"
+      },
+      "telegram": {
+        "header": "Configurar Telegram",
+        "install_desc": "Veja os preparativos na <a href=\"https://github.com/outdoorbits/little-backup-box/wiki/04c_Telegram\">Wiki: Telegram</a>",
+        "token_label": "Token",
+        "chat_id_label": "ID do chat",
+        "error_unreachable": "Telegram inacessível",
+        "error_invalid_token": "Token inválido",
+        "error_bad_api_response": "Resposta inválida da API",
+        "unknown": "desconhecido",
+        "without_name": "sem nome",
+        "selected": "Selecionado",
+        "select_chat_first": "Selecione um chat primeiro.",
+        "test_message": "Mensagem de teste da Little-Backup-Box via bot",
+        "test_message_sent_to": "Mensagem de teste enviada para",
+        "test_message_error": "Erro ao enviar",
+        "test_message_network_error": "Erro de rede",
+        "select_chat": "Selecionar chat",
+        "table_headers": "Exibição: Nome (Tipo) — <code>chat_id",
+        "close": "Fechar",
+        "accept": "Aceitar",
+        "test_message_send": "Enviar mensagem de teste",
+        "no_chats_found": "Nenhum chat encontrado. Envie uma mensagem ao público/canal de destino ou adicione o bot como administrador.",
+        "button_select_chat": "Selecionar chat"
+      },
+      "mastodon": {
+        "header": "Configurar Mastodon",
+        "install_desc": "Veja os preparativos na <a href=\"https://github.com/outdoorbits/little-backup-box/wiki/04e_Mastodon\">Wiki: Mastodon</a>",
+        "token_label": "Token de acesso",
+        "base_url_label": "URL base do Mastodon"
+      },
+      "general": {
+        "header": "Geral",
+        "date_label": "Publicar a data da foto",
+        "filename_label": "Publicar o nome do arquivo"
+      },
+      "matrix": {
+        "header": "Configurar Matrix",
+        "install_desc": "Veja os preparativos na <a href=\"https://github.com/outdoorbits/little-backup-box/wiki/04d_Matrix\">Wiki: Matrix</a>",
+        "homeserver_label": "Homeserver Matrix (ex.: https://matrix.example.org)",
+        "token_label": "Token de acesso da conta do bot",
+        "error": {
+          "invalid_token": "Token de acesso inválido.",
+          "unreachable": "Homeserver Matrix inacessível.",
+          "bad_api_response": "Resposta inesperada do servidor Matrix.",
+          "not_set_token": "Informe primeiro o token de acesso do Matrix.",
+          "not_set_homeserver": "Informe primeiro o homeserver Matrix."
+        },
+        "no_rooms_found": "Nenhuma sala encontrada.",
+        "select_room": "Selecionar sala Matrix",
+        "table_headers": "Nome — Alias — ID da sala",
+        "close": "Fechar",
+        "accept": "Aplicar",
+        "test_message_send": "Enviar mensagem de teste",
+        "without_name": "sem nome",
+        "selected": "Selecionada",
+        "select_room_first": "Selecione uma sala primeiro.",
+        "test_message": "Mensagem de teste Matrix da Little Backup Box",
+        "test_message_sent_to": "Mensagem de teste enviada para",
+        "test_message_error": "Erro ao enviar a mensagem de teste",
+        "button_select_room": "Selecionar sala",
+        "room_id_label": "ID da sala Matrix",
+        "gettoken": {
+          "header": "Obter token Matrix",
+          "desc": "Entre com sua conta de usuário Matrix para gerar um token de acesso para o bot. A senha não é armazenada.",
+          "username_label": "Usuário Matrix (ex.: @bot:example.org)",
+          "password_label": "Senha",
+          "button_label": "Obter token",
+          "enter_username_first": "Informe primeiro o usuário Matrix.",
+          "enter_password_first": "Informe primeiro a senha.",
+          "fetching": "Obtendo token …",
+          "error": {
+            "invalid_credentials": "Falha no login. Confira usuário e senha.",
+            "missing_parameters": "Dados faltando. Preencha todos os campos.",
+            "no_token": "O login deu certo, mas nenhum token de acesso foi retornado.",
+            "exception": "Erro ao obter o token."
+          },
+          "success": "Token obtido com sucesso para"
+        }
+      }
+    },
+    "cloud": {
+      "rclone": {
+        "gui": {
+          "header": "Interface do rclone",
+          "open": "Abrir a interface do rclone numa nova janela",
+          "restart_header": "Atualizar e reiniciar a interface do rclone",
+          "restart_label": "Atualizar e reiniciar a interface do rclone",
+          "restarted": "A interface do rclone foi reiniciada.",
+          "restart_desc": "É obrigatório ter conexão com a internet."
+        },
+        "desc": "Dependendo do serviço de nuvem, esta configuração pode valer só por tempo limitado."
+      },
+      "section": "Configurar serviços de nuvem"
+    },
+    "password": {
+      "password": "Senha",
+      "header": "Nova senha global",
+      "as_set_in": "Senha como definida em",
+      "changed": "Senha alterada.",
+      "global_lbb_label": "A senha que protege sua Little-Backup-Box. Usada na interface web, no gerenciador de arquivos, no ssh e nos compartilhamentos Samba/Windows. O usuário é sempre lbb. A senha também é definida para o usuário Linux &quot;pi&quot;.",
+      "remove_header": "Remover senha",
+      "remove_label": "Remover senha",
+      "removed": "Senha global removida.",
+      "repeat_label": "repita:",
+      "section": "Senha global",
+      "remove_desc": "Marque para remover a proteção por senha. As senhas dos usuários Linux (lbb, pi) não são removidas."
+    },
+    "alert": {
+      "password": {
+        "change_after_reboot_remove": "Senha global removida\nAs mudanças valem depois de reiniciar",
+        "change_after_reboot_set": "Senha global definida\nAs mudanças valem depois de reiniciar",
+        "global": "Senha global",
+        "not_identical": "A senha repetida não é igual.",
+        "too_short": "Senha curta demais. Número mínimo de caracteres:",
+        "mail": "Senha do e-mail",
+        "wifi": "Senha do Wi-Fi",
+        "rsync": "Senha do rsync",
+        "bluesky": "Senha do Bluesky",
+        "wifi_changed": "A senha do Wi-Fi foi alterada",
+        "too_long": "Senha longa demais. Número máximo de caracteres:",
+        "not_ascii": "Só são permitidos caracteres ASCII.",
+        "too_long_qr": "<strong>Atenção!</strong> O QR code do Wi-Fi só funciona com senhas de até 13 caracteres.",
+        "wifi_invalid_chars": "O QR code do Wi-Fi não consegue representar “:” nem “;”."
+      },
+      "settings": {
+        "upload_not_zip": "O arquivo enviado não é um .zip. Tente de novo.",
+        "upload_problem": "Houve um problema no envio. Tente de novo.",
+        "upload_success": "Seu arquivo de configurações foi enviado e estes arquivos foram instalados:"
+      },
+      "keyboard": {
+        "effect_after_reboot": "As configurações do teclado na tela só valem depois de reiniciar."
+      }
+    },
+    "wifi": {
+      "country": {
+        "header": "País do Wi-Fi",
+        "label": "Selecione o país onde esta Little Backup Box será usada"
+      },
+      "password": {
+        "header": "Senha do Wi-Fi",
+        "label": "A senha deve ter entre 8 e 63 caracteres.",
+        "static_label": "Será usada a senha informada abaixo.",
+        "dynamic_label": "Senha dinâmica",
+        "dynamic_desc": "Uma nova senha Wi-Fi aleatória é gerada a cada sessão. <strong>O acesso à rede Wi-Fi da Little Backup Box passa a ser possível só pelo display e pelo QR code!</strong><br />\nA mudança só é aplicada se o display estiver ativado e tiver resolução de pelo menos 64 x 64 pixels."
+      },
+      "section": "Configurações de Wi-Fi"
+    },
+    "touch": {
+      "calibration": {
+        "header": "Calibração do touchscreen",
+        "label": "Iniciar o programa de calibração no touchscreen.",
+        "started": "A calibração do touchscreen foi iniciada. Toque o mais precisamente possível no centro dos quatro marcadores que vão aparecer. Obs.: as mudanças só valem depois de reiniciar."
+      }
+    }
+  },
+  "tools": {
+    "tools": "Ferramentas",
+    "umount_b": "Remover",
+    "repair": "Reparar",
+    "format_b": "formatar disco!",
+    "select_format_fstype": "tipo de sistema de arquivos",
+    "select_partition": "Selecione a partição",
+    "fsck_check_b": "Verificar",
+    "fsck_autorepair_b": "Reparar",
+    "help": "Ajuda",
+    "help_text": "<h2>Reparar</h2>\n <p class='text-center'><mark>Não use se você não sabe o que está fazendo. Isso pode danificar seu armazenamento!</mark></p>\n <h3>Procedimento:</h3>\n <ol>\n <li>Confira a alimentação elétrica. Uma queda de energia pode danificar o armazenamento sem conserto.</li>\n <li>Garanta que nenhum backup esteja em andamento.</li>\n <li>Não clique em nenhum botão até todas as verificações e reparos terminarem. Não inicie nenhum processo!</li>\n <li>Rode primeiro a verificação do sistema de arquivos.</li>\n <li>Se aparecerem erros no log, rode o reparo do sistema de arquivos.</li>\n </ol>\n<h2>Formatar</h2>\n   <p class='text-center'><mark>Não use esta função se você não sabe o que está fazendo. Ela apaga seu armazenamento, e os dados perdidos não podem ser recuperados.</mark> </p>\n<h3>Opções:</h3>\n<ul>\n<li>FAT32 (Windows&#174;): muito difundido, tamanho de arquivo limitado a 4GB.</li>\n<li>exFAT (Windows&#174;): menos comum, sem limite de tamanho de arquivo.</li>\n<li>NTFS (Windows&#174;): compatibilidade limitada com muitos dispositivos, sem limite de tamanho de arquivo.\n<ul>\n<li>NTFS (com compressão): economiza espaço, mas pode reduzir bastante o desempenho.</li>\n<li>NTFS (sem compressão)</li>\n</ul>\n</li>\n<li>Ext4 (Linux): sistema de arquivos Linux atual</li>\n<li>Ext3 (Linux): antecessor do Ext4; só recomendado se o armazenamento também precisar funcionar em dispositivos antigos que ainda não suportam Ext4.</li>\n</ul>\n<h2>Verificar a autenticidade de um dispositivo USB</h2>\n   <p class='text-center'><mark>Não use esta função se você não sabe o que está fazendo. Ela pode apagar seu armazenamento, e os dados perdidos não podem ser recuperados.</mark> </p>\n<h3>Opções:</h3>\n<ul>\n<li>APAGAR dados (mais rápido): o f3probe roda sem tentar preservar os dados.</li>\n<li>tentar preservar dados (lento): o f3probe roda tentando preservar os dados.</li>\n</ul>",
+    "fsck_check_m": "verificação iniciada",
+    "fsck_autorepair_m": " reparo iniciado",
+    "f3": {
+      "select_action": "Selecione o teste",
+      "probe_non_destructive": "tentar preservar dados (lento)",
+      "probe_destructive": "APAGAR dados (mais rápido)",
+      "b": "iniciar teste"
+    },
+    "mount": {
+      "b": "Montar",
+      "header": "Montar armazenamento",
+      "target": "destino",
+      "source": "origem",
+      "usb": "USB",
+      "select_partition_label": "Partição",
+      "nvme": "SSD NVMe"
+    }
+  },
+  "cmd": {
+    "input_password": "Senha necessária para iniciar",
+    "execute": "executar",
+    "no_cmd": "Nenhum comando válido informado.",
+    "link_text_home": "Voltar para a Little Backup Box",
+    "update": {
+      "header": "Atualizador da Little Backup Box",
+      "warning": "NÃO interrompa nem recarregue enquanto estiver rodando!",
+      "return_link": "Voltar para a Little Backup Box - NÃO CLIQUE ANTES DE A ATUALIZAÇÃO TERMINAR!",
+      "development_header": "Atualizador da Little Backup Box - branch development",
+      "development_warning": "NÃO interrompa nem recarregue enquanto estiver rodando!",
+      "libraw_header": "Atualizar libraw para 0.21.2-2.1",
+      "libraw_warning": "Só rode isto se a versão padrão não conseguir gerar imagens de pré-visualização a partir de arquivos RAW.",
+      "mods": {
+        "header": "Modificações na instalação",
+        "description": "Estas mudanças são sobrescritas pelas atualizações e podem precisar ser executadas de novo."
+      }
+    },
+    "format": {
+      "header": "Formatar dispositivo",
+      "warning": "Perigo! Isso apaga todos os dados do dispositivo selecionado!",
+      "description": "Operação agendada"
+    },
+    "f3": {
+      "header": "Verificar a autenticidade de um dispositivo USB",
+      "warning_non_destructive": "Atenção: TODOS OS DADOS da mídia podem ser apagados!",
+      "warning_destructive": "Atenção: TODOS OS DADOS da mídia serão apagados!",
+      "description_non_destructive": "Os dados serão preservados na medida do possível.",
+      "description_destructive": "Os dados serão apagados!",
+      "description": "Verificar disco"
+    },
+    "password_input_info": "Nenhuma senha global foi definida. Não é possível continuar. Defina uma senha global primeiro.",
+    "password_set_link": "Definir senha global",
+    "link_text_home_running": "Voltar para a Little Backup Box - NÃO CLIQUE ANTES DE O COMANDO TERMINAR!<br>(Aguarde &quot;FINISHED&quot;.)",
+    "mail_result": "Enviar resultado por e-mail",
+    "reset": "resetar",
+    "fsck": {
+      "header": "Verificação do sistema de arquivos",
+      "warning": "O sistema de arquivos pode ser danificado!"
+    }
+  },
+  "view": {
+    "filter": {
+      "medium": "Mídia de armazenamento",
+      "section": "Filtro",
+      "images_per_page": "Imagens por página",
+      "medium_internal": "Arm. interno",
+      "directory": "Pasta",
+      "no_medium": "Nenhuma mídia válida selecionada.",
+      "date": "Data",
+      "order_by_filename": "Nome do arquivo",
+      "order_by_creationdate": "Data",
+      "rating": "Avaliação",
+      "rating_stars": "estrelas",
+      "rating_all": "todas",
+      "variable": "Valores EXIF",
+      "order_by_id": "ID",
+      "file_type_extension": "Extensão do arquivo",
+      "camera_model_name": "Câmera",
+      "file_type": "Tipo de arquivo",
+      "medium_source_usb": "Origem USB",
+      "medium_target_usb": "Destino USB",
+      "medium_source_nvme": "Origem NVMe local",
+      "medium_target_nvme": "Destino NVMe local",
+      "social_publish": "reservado para publicação",
+      "social_published": "publicado",
+      "apply": "Aplicar filtro"
+    },
+    "images": {
+      "download": "Baixar original",
+      "page": "Página",
+      "images": "Imagens",
+      "back_to_grid": "Voltar à visão geral",
+      "empty": "A seleção não contém imagens.",
+      "preview_low_resolution_video": "Vídeo de pré-visualização em baixa resolução!",
+      "magnifying_glass": "Clique na imagem para usar a lupa",
+      "preview_low_resolution_image": "Imagem de pré-visualização em baixa resolução!",
+      "comment": "Comentário"
+    },
+    "footer": {
+      "footer": "Atenção: aqui só aparecem imagens que têm miniatura. Gere as miniaturas automaticamente (Configurações, Backup) ou pela página Backup.<br>\nVeja a <a href=\"https://github.com/outdoorbits/little-backup-box/wiki/05a.-view-image-viewer\">Wiki</a> para mais informações."
+    },
+    "ratings_save_button": "Salvar",
+    "ratings_1_delete_button": "Apagar arquivos de mídia",
+    "date_format": "d/m/Y",
+    "slideshow": {
+      "header": "Apresentação de slides",
+      "stop": "parar"
+    },
+    "date_format_python": "Xd/Xm/XY XH:XM:XS",
+    "social": {
+      "publish_on": "publicar em",
+      "published_on": "publicado em",
+      "mark_for_publish_on": "marcar para publicação em"
+    },
+    "grid": {
+      "multi": "várias colunas",
+      "single": "uma coluna"
+    },
+    "saved": "Alterações salvas",
+    "characters": "caracteres"
+  },
+  "units": {
+    "minutes_long": "minutos",
+    "celsius": "°C"
+  }
+}

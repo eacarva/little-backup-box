@@ -510,7 +510,7 @@
       "connection_label": "Which interface should be used?",
       "i2c_address_label": "i2c address of the display",
       "i2c_header": "I2C display configuration",
-      "ip_label": "Print IP every minute.",
+      "ip_label": "Show the IP on the display when it changes.",
       "device_available": "Device detected",
       "behavior_header": "Display behavior",
       "spi_header": "SPI display configuration",

@@ -89,6 +89,11 @@ class clean(object):
 		except:
 			pass
 
+		try:
+			os.remove(f'{self.__const_DISPLAY_CONTENT_OLD_FILE}.ip')
+		except:
+			pass
+
 	def display_image(self):
 		try:
 			subprocess.run(f"/usr/bin/bash -c 'shopt -s nullglob; /usr/bin/rm -f {self.__const_DISPLAY_IMAGE_EXPORT_FILE}'", shell=True)

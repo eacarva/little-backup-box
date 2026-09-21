@@ -569,7 +569,7 @@ class DISPLAY(object):
 
 		# start endless loop to display content
 		while(self.loop_continue):
-			import_old_file 		= True
+			import_old_file 		= False # fork: one message per screen, no older lines pushed below
 			temp_screen				= False
 			hidden_info				= ''
 

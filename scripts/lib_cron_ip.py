@@ -69,20 +69,31 @@ class ip_info(object):
 		self.get_IPs()
 
 		if self.__IPs:
-			DisplayContentOld	= ''
-			if os.path.isfile(self.__const_DISPLAY_CONTENT_OLD_FILE):
-				with open(self.__const_DISPLAY_CONTENT_OLD_FILE,'r') as f:
-					DisplayContentOld	= f.read()
-
 			self.__IPsFormatted	= []
 
 			OnlineStatus	= lib_network.get_internet_status()
 			OnlineMessage	= self.__lan.l('box_cronip_online') if OnlineStatus else self.__lan.l('box_cronip_offline')
 
+			# show the IP only when it or the online status changed (QR screens are temporary and never land in the old display file)
+			ShownFile	= f'{self.__const_DISPLAY_CONTENT_OLD_FILE}.ip'
+			ShownState	= '\n'.join(sorted(f'{IP.strip()}|{OnlineStatus}' for IP in self.__IPs))
+			try:
+				with open(ShownFile, 'r') as f:
+					if f.read() == ShownState and not force:
+						return()
+			except:
+				pass
+
+			try:
+				with open(ShownFile, 'w') as f:
+					f.write(ShownState)
+			except:
+				pass
+
 			for IP in self.__IPs:
 				IP	= IP.strip()
 
-				if IP and ((IP not in DisplayContentOld) or (OnlineMessage not in DisplayContentOld) or force):
+				if IP:
 					IP_QR_FILE	= lib_network.create_ip_link_qr_image(IP=IP, OnlineStatus=OnlineStatus, IP_QR_FILE=self.__const_IP_QR_FILE_PATTERN, width=self.__conf_DISP_RESOLUTION_X, height=self.__conf_DISP_RESOLUTION_Y,font=self.__const_FONT_PATH, fontsize=self.__conf_DISP_FONT_SIZE)
 
 					if not IP_QR_FILE is None:

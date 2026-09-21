@@ -248,7 +248,7 @@
       "connection_label": "¿Qué interfaz se debe utilizar?",
       "i2c_address_label": "Dirección i2c de la pantalla",
       "i2c_header": "Configuración de pantalla I2C",
-      "ip_label": "Imprimir IP cada minuto.",
+      "ip_label": "Mostrar la IP en la pantalla cuando cambie.",
       "device_available": "Dispositivo detectado",
       "behavior_header": "Comportamiento de visualización",
       "spi_header": "Configuración de pantalla SPI",

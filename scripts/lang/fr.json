@@ -248,7 +248,7 @@
       "connection_label": "Quelle interface utiliser ?",
       "i2c_address_label": "Adresse i2c de l'écran",
       "i2c_header": "Configuration de l'affichage I2C",
-      "ip_label": "Imprimez l'IP toutes les minutes.",
+      "ip_label": "Afficher l’adresse IP à l’écran lorsqu’elle change.",
       "device_available": "Périphérique détecté",
       "behavior_header": "Comportement d'affichage",
       "spi_header": "Configuration de l'affichage SPI",

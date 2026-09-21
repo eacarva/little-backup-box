@@ -248,7 +248,7 @@
       "connection_label": "Welche Schnittstelle soll verwendet werden?",
       "i2c_address_label": "i2c-Adresse des Displays",
       "i2c_header": "I2C-Display-Konfiguration",
-      "ip_label": "IP minütlich einblenden.",
+      "ip_label": "IP-Adresse im Display anzeigen, wenn sie sich ändert.",
       "device_available": "Gerät erkannt",
       "behavior_header": "Display-Verhalten",
       "spi_header": "SPI-Display-Konfiguration",

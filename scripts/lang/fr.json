@@ -6,7 +6,17 @@
     "refresh_button": "Rafraîchir",
     "delete_button": "Supprimer le fichier journal"
   },
+  "home": {
+    "devices": "Connecté maintenant",
+    "no_devices": "Rien de connecté. Branchez une carte, un disque ou un appareil photo.",
+    "start": "Lancer la sauvegarde",
+    "running": "Sauvegarde en cours. La progression est affichée en haut.",
+    "no_default": "Aucune sauvegarde par défaut n’est définie.",
+    "setup_default": "Choisissez-en une dans Paramètres, Sauvegarde.",
+    "other": "Autre sauvegarde…"
+  },
   "mainmenue": {
+    "status": "État",
     "main": "Sauvegarde",
     "sysinfo": "système",
     "config": "Réglages",

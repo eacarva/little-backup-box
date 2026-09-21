@@ -6,7 +6,17 @@
     "refresh_button": "aktualisieren",
     "delete_button": "Logdatei löschen"
   },
+  "home": {
+    "devices": "Jetzt verbunden",
+    "no_devices": "Nichts verbunden. Karte, Laufwerk oder Kamera anschließen.",
+    "start": "Backup starten",
+    "running": "Backup läuft. Der Fortschritt steht oben.",
+    "no_default": "Kein Standard-Backup festgelegt.",
+    "setup_default": "In den Einstellungen unter Backup auswählen.",
+    "other": "Anderes Backup…"
+  },
   "mainmenue": {
+    "status": "Status",
     "main": "Backup",
     "sysinfo": "System",
     "config": "Einstellungen",

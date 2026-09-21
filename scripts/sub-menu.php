@@ -63,6 +63,7 @@
 
 		<div class="collapse navbar-collapse w-50" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0  w-100">
+				<li class="nav-item"><a class="nav-link<?php echo $scriptname=="status.php"?" active":""; ?>" href="/status.php"><?php echo L::mainmenue_status; ?></a></li>
 				<li class="nav-item"><a class="nav-link<?php echo $scriptname=="index.php"?" active":""; ?>" href="/index.php"><?php echo L::mainmenue_main; ?></a></li>
 				<li class="nav-item"><a class="nav-link<?php echo $scriptname=="sysinfo"?" active":""; ?>" href="/frame.php?page=sysinfo"><?php echo L::mainmenue_sysinfo; ?></a></li>
 				<li class="nav-item"><a class="nav-link<?php echo $scriptname=="tools.php"?" active":""; ?>" href="/tools.php"><?php echo L::mainmenue_tools; ?></a></li>

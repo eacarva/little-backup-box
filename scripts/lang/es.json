@@ -6,7 +6,17 @@
     "refresh_button": "Actualizar",
     "delete_button": "Eliminar archivo de registro"
   },
+  "home": {
+    "devices": "Conectado ahora",
+    "no_devices": "Nada conectado. Conecta una tarjeta, una unidad o una cámara.",
+    "start": "Iniciar copia",
+    "running": "Copia en curso. El progreso aparece arriba.",
+    "no_default": "No hay una copia predeterminada.",
+    "setup_default": "Elige una en Ajustes, Copia de seguridad.",
+    "other": "Otra copia…"
+  },
   "mainmenue": {
+    "status": "Estado",
     "main": "Respaldo",
     "sysinfo": "Info de sistema",
     "config": "Ajustes",

@@ -257,7 +257,17 @@
       }
     }
   },
+  "home": {
+    "devices": "Conectado agora",
+    "no_devices": "Nada conectado. Plugue um cartão, um disco ou uma câmera.",
+    "start": "Iniciar backup",
+    "running": "Backup em andamento. O progresso aparece acima.",
+    "no_default": "Nenhum backup padrão definido.",
+    "setup_default": "Escolha um em Configurações, Backup.",
+    "other": "Outro backup…"
+  },
   "mainmenue": {
+    "status": "Estado",
     "main": "Backup",
     "sysinfo": "Sistema",
     "config": "Configurações",

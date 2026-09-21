@@ -257,7 +257,17 @@
       }
     }
   },
+  "home": {
+    "devices": "Connected now",
+    "no_devices": "Nothing connected. Plug in a card, a drive or a camera.",
+    "start": "Start backup",
+    "running": "Backup running. Progress is shown above.",
+    "no_default": "No default backup is set.",
+    "setup_default": "Choose one in Settings, Backup.",
+    "other": "Other backup…"
+  },
   "mainmenue": {
+    "status": "Status",
     "main": "Backup",
     "sysinfo": "System",
     "config": "Settings",

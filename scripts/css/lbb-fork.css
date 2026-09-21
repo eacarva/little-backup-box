@@ -586,3 +586,122 @@ button:disabled, button[disabled] {
 		animation: none !important;
 	}
 }
+
+/* Status home page ######################################### */
+
+.page-home .display-panel > summary {
+	padding: 1rem 1.25rem;
+	font-size: 1.05rem;
+}
+
+.home-action {
+	display: flex;
+	flex-direction: column !important;
+	align-items: center;
+	gap: .75rem;
+	padding: 1.5rem 1.25rem !important;
+	text-align: center;
+}
+
+.home-start {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: .15rem;
+	width: min(100%, 22rem);
+	min-height: 64px;
+	margin: 0;
+	color: var(--cbg);
+	background: var(--cfg);
+	border-color: var(--cfg);
+	font-size: 1.15rem;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+}
+
+.home-start small {
+	font: 400 .85rem/1.3 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+	letter-spacing: 0;
+	text-transform: none;
+	opacity: .75;
+}
+
+.home-start:not([disabled]):hover {
+	color: var(--cbg);
+	background: var(--cemph);
+	border-color: var(--cemph);
+}
+
+.home-action button.danger {
+	margin: 0 !important;
+	width: min(100%, 22rem) !important;
+}
+
+.home-running {
+	margin: 0;
+	color: var(--cdark);
+}
+
+.home-other {
+	font-size: .9rem;
+	color: var(--cdark);
+}
+
+.home-devices {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.home-devices li {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: .25rem .75rem;
+	padding: .7rem 0;
+	margin: 0;
+	border-bottom: 1px solid var(--cline);
+}
+
+.home-devices li:last-child {
+	border-bottom: 0;
+}
+
+.home-devices li::before {
+	content: "";
+	width: .55rem;
+	height: .55rem;
+	border-radius: 50%;
+	background: var(--c, var(--cusb));
+}
+
+.home-devices .device-nvme { --c: var(--cusb); }
+.home-devices .device-camera { --c: var(--ccamera); }
+
+.device-name {
+	font-weight: 600;
+	color: var(--cfg);
+}
+
+.device-details {
+	color: var(--cdark);
+	font-variant-numeric: tabular-nums;
+}
+
+.device-role {
+	margin-left: auto;
+	padding: .1rem .55rem;
+	font-family: var(--font-label);
+	font-size: .8rem;
+	font-weight: 600;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+	color: var(--c, var(--cusb));
+	border: 1px solid color-mix(in srgb, var(--c, var(--cusb)) 50%, var(--cline));
+	border-radius: 999px;
+}
+
+.home-empty {
+	margin: 0;
+	color: var(--cdark);
+}

@@ -104,7 +104,7 @@ Please continue to report any issues, translation errors, or suggestions for imp
 Regular updates are strongly recommended to benefit from ongoing refinements and fixes.
 
 <h2>Please mind the wiki!</h2>
-As there is no manual available anymore, the github-wiki should replace it one day: <a href="https://github.com/outdoorbits/little-backup-box/wiki">https://github.com/outdoorbits/little-backup-box/wiki</a>. It's not particularly detailed yet, but it can certainly help with the most common questions.
+As there is no manual available anymore, the github-wiki should replace it one day: <a href="https://github.com/eacarva/little-backup-box/wiki">https://github.com/eacarva/little-backup-box/wiki</a>. It's not particularly detailed yet, but it can certainly help with the most common questions.
 
 <h2 id="installation">Installation</h2>
 <ol>
@@ -180,7 +180,7 @@ In Raspberry Pi Imager you can define options for your image. Shift+Ctrl+x opens
 		*** Please use the settings of the web UI to optimally adapt the Little Backup Box for you.<br />
 		***<br />
 		*** If you have further questions, please check the wiki first:<br />
-		*** https://github.com/outdoorbits/little-backup-box/wiki <br />
+		*** https://github.com/eacarva/little-backup-box/wiki <br />
 		***<br />
 		*** We are always happy to receive your feedback!<br />
 		******************************************************************************************<br />
@@ -193,7 +193,7 @@ If everything went well, it's done! Open a browser and enter https://IP.OF.YOUR.
 
 <h2 id="update">Update</h2>
 <ul>
-	<li>Updates can be carried out quickly and easily via the WebUI. Just follow the instructions in the <a href="https://github.com/outdoorbits/little-backup-box/wiki/03.-Installation#update">wiki</a>.</li>
+	<li>Updates can be carried out quickly and easily via the WebUI. Just follow the instructions in the <a href="https://github.com/eacarva/little-backup-box/wiki/03._Installation#update">wiki</a>.</li>
 	<li>Alternatively just login via ssh and execute the installation-command from above. It will run in update-mode.</li>
 </ul>
 

@@ -705,3 +705,29 @@ button:disabled, button[disabled] {
 	margin: 0;
 	color: var(--cdark);
 }
+
+/* Settings: sections ordered by how often they are needed ### */
+/* (reordered with CSS so setup.php stays as upstream) */
+
+form:has(> .card #conf_LANGUAGE) {
+	display: flex;
+	flex-direction: column;
+}
+
+form > .card:has(#conf_LANGUAGE) { order: 1; }
+form > .card:has(#conf_BACKUP_CHECKSUM) { order: 2; }
+form > .card:has(#conf_PASSWORD_1) { order: 3; }
+form > .card:has(#conf_BACKUP_GENERATE_THUMBNAILS) { order: 4; }
+form > .card:has(#conf_THEME) { order: 5; }
+form > .card:has(#conf_DISP_OLD) { order: 6; }
+form > .card:has(#conf_MENU_ENABLED) { order: 7; }
+form > .card:has(#conf_POWER_OFF_IDLE_TIME) { order: 8; }
+form > .card:has(#conf_FAN_PWM_TEMP_C) { order: 9; }
+form > .card:has(#conf_WIFI_PASSWORD_TYPE) { order: 10; }
+form > .card:has(#conf_VPN_TYPE_RSYNC) { order: 11; }
+form > .card:has(#conf_MAIL_NOTIFICATIONS) { order: 12; }
+form > .card:has([name='restart_rclone_gui']) { order: 13; }
+form > .card:has(#conf_RSYNC_SERVER) { order: 14; }
+form > .card:has(#conf_SOCIAL_PUBLISH_DATE) { order: 15; }
+form > .card:has(#conf_LOGLEVEL) { order: 16; }
+form > .card[style*="sticky"] { order: 99; }

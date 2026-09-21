@@ -16,6 +16,7 @@
     "other": "Autre sauvegarde…"
   },
   "mainmenue": {
+    "more": "Plus",
     "status": "État",
     "main": "Sauvegarde",
     "sysinfo": "système",
@@ -51,7 +52,7 @@
     "source_select": "sélectionner une option",
     "target_execute": "exécuter",
     "backup": {
-      "modifications": "Modifications",
+      "modifications": "Options pour cette sauvegarde uniquement",
       "backup": "Sauvegarde depuis",
       "generate_thumbnails_checkbox_label": "Générer des vignettes et lire dans la base de données (uniquement pour le stockage local)",
       "initiated": "initié",

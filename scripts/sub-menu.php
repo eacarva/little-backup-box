@@ -64,20 +64,25 @@
 		<div class="collapse navbar-collapse w-50" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0  w-100">
 				<li class="nav-item"><a class="nav-link<?php echo $scriptname=="status.php"?" active":""; ?>" href="/status.php"><?php echo L::mainmenue_status; ?></a></li>
-				<li class="nav-item"><a class="nav-link<?php echo $scriptname=="index.php"?" active":""; ?>" href="/index.php"><?php echo L::mainmenue_main; ?></a></li>
-				<li class="nav-item"><a class="nav-link<?php echo $scriptname=="sysinfo"?" active":""; ?>" href="/frame.php?page=sysinfo"><?php echo L::mainmenue_sysinfo; ?></a></li>
-				<li class="nav-item"><a class="nav-link<?php echo $scriptname=="tools.php"?" active":""; ?>" href="/tools.php"><?php echo L::mainmenue_tools; ?></a></li>
 				<li class="nav-item"><a class="nav-link<?php echo $scriptname=="view.php"?" active":""; ?>" href="/view.php"><?php echo L::mainmenue_view; ?></a></li>
+				<li class="nav-item"><a class="nav-link<?php echo $scriptname=="tools.php"?" active":""; ?>" href="/tools.php"><?php echo L::mainmenue_tools; ?></a></li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle<?php echo in_array($scriptname, ["index.php", "sysinfo", "files"])?" active":""; ?>" href="#" id="navbarDropdownMore" role="button" data-bs-toggle="dropdown" aria-expanded="false"><?php echo L::mainmenue_more; ?></a>
+					<ul class="dropdown-menu" aria-labelledby="navbarDropdownMore">
+						<li><a class="dropdown-item" href="/index.php"><?php echo L::mainmenue_main; ?></a></li>
+						<li><a class="dropdown-item" href="/frame.php?page=sysinfo"><?php echo L::mainmenue_sysinfo; ?></a></li>
+						<li><a class="dropdown-item" href="/frame.php?page=files"><?php echo L::mainmenue_filebrowser; ?></a></li>
+					</ul>
+				</li>
 			</ul>
 		</div>
 
 		<div class="collapse navbar-collapse w-50" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0  w-100">
-				<li class="nav-item"><a class="nav-link<?php echo $scriptname=="files"?" active":""; ?>" href="/frame.php?page=files"><?php echo L::mainmenue_filebrowser; ?></a></li>
 				<?php
-					if ($comitup_installed) {
+					if ($comitup_installed and $comitup_hotspot) {
 						?>
-							<li class="nav-item<?php echo $scriptname=="comitup"?" active":""; ?>"><a class="nav-link<?php echo $comitup_hotspot?'':' disabled'; ?>" href="/frame.php?page=comitup">comitup</a></li>
+							<li class="nav-item<?php echo $scriptname=="comitup"?" active":""; ?>"><a class="nav-link" href="/frame.php?page=comitup">comitup</a></li>
 						<?php
 					}
 

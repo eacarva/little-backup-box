@@ -269,6 +269,7 @@
     "other": "Outro backup…"
   },
   "mainmenue": {
+    "more": "Mais",
     "status": "Estado",
     "main": "Backup",
     "sysinfo": "Sistema",
@@ -304,7 +305,7 @@
     "source_select": "selecione uma opção",
     "target_execute": "executar",
     "backup": {
-      "modifications": "Modificações",
+      "modifications": "Opções só deste backup",
       "backup": "Backup de",
       "generate_thumbnails_checkbox_label": "Gerar miniaturas e importar no banco de dados (só armazenamento local)",
       "initiated": "iniciado",

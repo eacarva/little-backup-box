@@ -269,6 +269,7 @@
     "other": "Other backup…"
   },
   "mainmenue": {
+    "more": "More",
     "status": "Status",
     "main": "Backup",
     "sysinfo": "System",
@@ -304,7 +305,7 @@
     "source_select": "select option",
     "target_execute": "execute",
     "backup": {
-      "modifications": "Modifications",
+      "modifications": "Options for this backup only",
       "backup": "Backup from",
       "generate_thumbnails_checkbox_label": "Generate thumbnails and read into database (only for local storage)",
       "initiated": "initiated",

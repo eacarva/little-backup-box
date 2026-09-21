@@ -16,6 +16,7 @@
     "other": "Otra copia…"
   },
   "mainmenue": {
+    "more": "Más",
     "status": "Estado",
     "main": "Respaldo",
     "sysinfo": "Info de sistema",
@@ -51,7 +52,7 @@
     "source_select": "seleccionar opción",
     "target_execute": "ejecutar",
     "backup": {
-      "modifications": "Modificaciones",
+      "modifications": "Opciones solo para esta copia",
       "backup": "Copia de seguridad de",
       "generate_thumbnails_checkbox_label": "Genere miniaturas y lea en la base de datos (solo para almacenamiento local)",
       "initiated": "Copia de seguridad iniciada",

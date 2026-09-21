@@ -16,6 +16,7 @@
     "other": "Anderes Backup…"
   },
   "mainmenue": {
+    "more": "Mehr",
     "status": "Status",
     "main": "Backup",
     "sysinfo": "System",
@@ -51,7 +52,7 @@
     "source_select": "Option wählen",
     "target_execute": "ausführen",
     "backup": {
-      "modifications": "Modifikationen",
+      "modifications": "Optionen nur für dieses Backup",
       "backup": "Backup von",
       "generate_thumbnails_checkbox_label": "Vorschaubilder erzeugen und in Datenbank einlesen (nur für lokale Speicher)",
       "initiated": "eingeleitet",

@@ -2032,6 +2032,7 @@ CONFIGDATA;
 <!-- 					<li> -->
 						<?php echo ((isset($constants['const_SOFTWARE_BRANCH']) and $constants['const_SOFTWARE_BRANCH'] == 'main') ? '<b>' : ''); ?>
 							<button onclick="window.location.href='/cmd.php?CMD=update';"><?php echo L::config_update_linktext ?></button>
+							<button onclick="window.location.href='/cmd.php?CMD=update_code';"><?php echo L::config_update_linktext_code ?></button>
 						<?php echo ((isset($constants['const_SOFTWARE_BRANCH']) and $constants['const_SOFTWARE_BRANCH'] == 'main') ? '</b>' : ''); ?>
 <!-- 					</li> -->
 <!-- 					<li> -->

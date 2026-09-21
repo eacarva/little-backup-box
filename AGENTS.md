@@ -29,6 +29,11 @@ automático no boot.
 pela variável `SCRIPT_MODE` (`install` ou `update`, definida pela existência de
 `/var/www/little-backup-box`). Toda alteração feita nele precisa funcionar nos dois modos.
 
+Neste fork, o segundo argumento `code` (`install-little-backup-box.sh main code`, botão
+"Atualizar só a Little Backup Box" / `cmd.php?CMD=update_code`) faz a atualização pular
+`apt-get update`/`full-upgrade`, os `pip --upgrade` e a reinstalação do rclone — também nos
+scripts satélites, via `SYSTEM_UPGRADE`. Na instalação, o upgrade sempre roda.
+
 O que ele faz:
 - Detecta a versão do OS: 13 (Trixie) segue; 12 (Bookworm) redireciona para a branch
   `bookworm`; qualquer outra aborta.

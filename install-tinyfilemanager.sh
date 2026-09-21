@@ -46,12 +46,14 @@ if [ "${SCRIPT_MODE}" = "update" ]; then
 fi
 
 # Update source and perform the full system upgrade
-sudo apt-get update
-sudo DEBIAN_FRONTEND=noninteractive \
-		apt-get \
-		-o "Dpkg::Options::=--force-confold" \
-		-o "Dpkg::Options::=--force-confdef" \
-		full-upgrade -y -q --allow-downgrades --allow-remove-essential --allow-change-held-packages
+if [ "${SYSTEM_UPGRADE}" != "false" ]; then
+	sudo apt-get update
+	sudo DEBIAN_FRONTEND=noninteractive \
+			apt-get \
+			-o "Dpkg::Options::=--force-confold" \
+			-o "Dpkg::Options::=--force-confdef" \
+			full-upgrade -y -q --allow-downgrades --allow-remove-essential --allow-change-held-packages
+fi
 
 # Install the required packages
 sudo DEBIAN_FRONTEND=noninteractive \

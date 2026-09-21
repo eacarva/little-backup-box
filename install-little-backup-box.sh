@@ -18,7 +18,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #######################################################################
 
-# accepts one optional argument: branch
+# accepts optional arguments: branch, scope ('code' = on update, skip OS and package upgrades)
 
 # IMPORTANT for developers:
 # All actions have to be sufficient for modes install and update!
@@ -123,6 +123,12 @@ else
 		dialog
 fi
 
+SYSTEM_UPGRADE=true
+if [ "${SCRIPT_MODE}" = "update" ] && [ "${2}" = "code" ]; then
+	SYSTEM_UPGRADE=false
+	echo "Updating Little Backup Box only, no system upgrade"
+fi
+
 # Do all user-interactions
 ## Prompt to install comitup
 CHOICE_COMITUP=1
@@ -155,13 +161,15 @@ if [ "$(dpkg-query -W --showformat='${db:Status-Status}' "comitup" 2>&1)" = "ins
 fi
 
 # Update source and perform the full system upgrade
-echo "apt-get update..."
-sudo apt-get update
-sudo DEBIAN_FRONTEND=noninteractive \
-		apt-get \
-		-o "Dpkg::Options::=--force-confold" \
-		-o "Dpkg::Options::=--force-confdef" \
-		full-upgrade -y -q --allow-downgrades --allow-remove-essential --allow-change-held-packages
+if [ "${SYSTEM_UPGRADE}" != "false" ]; then
+	echo "apt-get update..."
+	sudo apt-get update
+	sudo DEBIAN_FRONTEND=noninteractive \
+			apt-get \
+			-o "Dpkg::Options::=--force-confold" \
+			-o "Dpkg::Options::=--force-confdef" \
+			full-upgrade -y -q --allow-downgrades --allow-remove-essential --allow-change-held-packages
+fi
 
 # Install the required packages
 
@@ -241,9 +249,11 @@ sudo DEBIAN_FRONTEND=noninteractive \
 			python3-annotated-types \
 			python3-typing-extensions
 
-sudo pip install --break-system-packages --no-deps --upgrade atproto libipld markdownify
+if [ "${SYSTEM_UPGRADE}" != "false" ]; then
+	sudo pip install --break-system-packages --no-deps --upgrade atproto libipld markdownify
 
-sudo pip install --break-system-packages --upgrade Mastodon.py
+	sudo pip install --break-system-packages --upgrade Mastodon.py
+fi
 
 # disable services
 sudo systemctl disable openvpn.service
@@ -298,7 +308,9 @@ echo "Loading restored settings from ${CONFIG}"
 source "${CONFIG}"
 
 # Install rclone
-curl https://rclone.org/install.sh | sudo bash
+if [ "${SYSTEM_UPGRADE}" != "false" ]; then
+	curl https://rclone.org/install.sh | sudo bash
+fi
 
 ## Install rclone gui (needs to start gui, random password for this session to prevent login)
 sudo rclone rcd --rc-web-gui --rc-web-gui-force-update --rc-web-gui-no-open-browser --rc-addr :5572 --rc-user lbb --rc-pass "$(echo $RANDOM | md5sum | head -c 20)" &

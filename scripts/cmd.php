@@ -105,6 +105,14 @@ switch($CMD) {
 		$ALLOW_MAIL_RESULT	= False;
 		break;
 
+	case 'update_code':
+		$CMD_HEADER			= L::cmd_update_header;
+		$INFO_TEXT			= L::cmd_update_warning;
+		$CMD_DESCRIPTION	= "";
+		$PASSWORD_REQ		= True;
+		$ALLOW_MAIL_RESULT	= False;
+		break;
+
 	case 'update_development':
 		$CMD_HEADER			= L::cmd_update_development_header;
 		$INFO_TEXT			= L::cmd_update_development_warning;
@@ -297,6 +305,12 @@ function exec_command($CMD, $PARAM1, $PARAM2, $MAIL_RESULT) {
 				$COMMAND_LINE	= "sudo python3 $WORKING_DIR/lib_display.py ':" . L::box_cmd_update_start1 . "' ':" . L::box_cmd_update_start2 . "'";
 				$COMMAND_LINE	.= ";sudo -u pi curl -sSL https://raw.githubusercontent.com/eacarva/little-backup-box/main/install-little-backup-box.sh -o ~pi/install-little-backup-box.sh";
 				$COMMAND_LINE	.= ";sudo -u pi bash ~pi/install-little-backup-box.sh main";
+				break;
+
+			case 'update_code':
+				$COMMAND_LINE	= "sudo python3 $WORKING_DIR/lib_display.py ':" . L::box_cmd_update_start1 . "' ':" . L::box_cmd_update_start2 . "'";
+				$COMMAND_LINE	.= ";sudo -u pi curl -sSL https://raw.githubusercontent.com/eacarva/little-backup-box/main/install-little-backup-box.sh -o ~pi/install-little-backup-box.sh";
+				$COMMAND_LINE	.= ";sudo -u pi bash ~pi/install-little-backup-box.sh main code";
 				break;
 
 			case 'update_development':

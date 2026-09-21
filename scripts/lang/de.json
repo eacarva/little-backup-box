@@ -331,7 +331,8 @@
     "time_zone_header": "Bitte wählen Sie Ihre Zeitzone",
     "update": {
       "development_linktext": "Update starten - development branch",
-      "linktext": "Update starten",
+      "linktext": "Alles aktualisieren (Little Backup Box und System)",
+      "linktext_code": "Nur Little Backup Box aktualisieren",
       "text": "<h3>Update Little Backup Box</h3><p>Achtung:<ul><li>Das Update kann das System unbrauchbar machen.</li><li>Das Update kann ein erhebliches Downloadvolumen und damit ggf. Kosten verursachen.</li><li>Das Update kann je nach Internetgeschwindigkeit mehrere Minuten oder länger dauern.</li></ul><br>Führen Sie das Update nur durch, wenn Sie ...<ul><li>notfalls auch die Möglichkeit hätten, eine Neuinstallation durchführen</li><li>eine stabile Internetverbindung haben</li><li>eine stabile Stromversorgung haben</li></ul></p>",
       "section": "Update",
       "available": "Update verfügbar",

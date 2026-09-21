@@ -593,7 +593,8 @@
     "time_zone_header": "Selecione seu fuso horário",
     "update": {
       "development_linktext": "Atualizar agora - branch development",
-      "linktext": "Atualizar agora",
+      "linktext": "Atualizar tudo (Little Backup Box e sistema)",
+      "linktext_code": "Atualizar só a Little Backup Box",
       "text": "<h3>Atualizar a Little Backup Box</h3><p>Cuidado:<ul><li>A atualização pode deixar o sistema inutilizável.</li><li>A atualização pode gerar um volume grande de download e, com isso, custos.</li><li>A atualização pode levar vários minutos ou mais, dependendo da velocidade da internet.</li></ul><br>Só atualize se você ...<ul><li>puder fazer uma instalação nova, se for preciso</li><li>tiver uma conexão estável com a internet</li><li>tiver uma alimentação elétrica estável</li></ul></p>",
       "section": "Atualização",
       "available": "Atualização disponível",

@@ -182,6 +182,12 @@ O único CI é CodeQL (JavaScript e Python), em `main` e em pull requests
 Portanto: **nenhuma alteração é validável neste repositório sozinho.** O que dá para fazer
 sem hardware é conferência estática — `python3 -m py_compile scripts/*.py`,
 `php -l scripts/<arquivo>.php`, `bash -n <script>.sh`. Validação real exige um Raspberry Pi.
+
+Para a web UI há um preview local (precisa de Docker): `dev/preview.sh [porta]` sobe a
+interface em PHP 8.4 (mesma versão do Trixie) em `http://localhost:8090`, com o `config.cfg`
+padrão do `lib_setup.py`. Também está no `.claude/launch.json` como `web-ui-preview`.
+Renderiza páginas e textos em qualquer idioma (`?lang=pt`); `sudo`, hardware e backups não
+funcionam ali. Reinicie o script para ver mudanças de código.
 Diga isso com clareza ao relatar o trabalho, em vez de afirmar que "está funcionando".
 
 ---
@@ -272,7 +278,7 @@ grep -rn 'outdoorbits' --include='*.py' --include='*.php' --include='*.sh' .
 
 ```bash
 python3 -m py_compile scripts/*.py
-for f in scripts/*.php; do php -l "$f"; done
+docker run --rm -v "$PWD/scripts:/s:ro" php:8.4-cli sh -c 'for f in /s/*.php; do php -l "$f"; done' | grep -v "^No syntax"
 bash -n install-little-backup-box.sh
 ```
 

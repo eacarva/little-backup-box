@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "web-ui-preview",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["dev/preview.sh", "8090"],
+      "port": 8090
+    }
+  ]
+}

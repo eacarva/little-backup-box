@@ -25,7 +25,10 @@ with open(sys.argv[2], 'w') as f:
 		f.write(f"{var}={sep}{value}{sep}\n")
 EOF
 
-exec docker run --rm -p "${PORT}:80" \
+# replace a preview left running (stopping docker run does not stop the container)
+docker rm -f lbb-preview >/dev/null 2>&1
+
+exec docker run --rm --name lbb-preview -p "${PORT}:80" \
 	-v "${REPO_DIR}/scripts:/src:ro" \
 	-v "${CONFIG_DIR}/config.cfg:/config.cfg:ro" \
 	php:8.4-cli \

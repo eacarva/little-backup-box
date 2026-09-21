@@ -189,6 +189,82 @@ hr {
 
 /* Display mirror: the box's own screen, enlarged ########### */
 
+/* status banner: the display's text, opens the live pixel view on click */
+.display-panel {
+	margin: 0 0 1.25rem;
+	--led: var(--cusb);
+}
+
+.display-panel.working {
+	--led: var(--ccamera);
+}
+
+.display-panel > summary {
+	display: flex;
+	align-items: center;
+	gap: .75rem;
+	padding: .7rem 1rem;
+	font: var(--font-p);
+	letter-spacing: 0 !important;
+	text-transform: none;
+	color: var(--cdark);
+	background: var(--csurface) no-repeat left bottom / 0 3px linear-gradient(var(--led), var(--led));
+	border: 1px solid var(--cline);
+	border-radius: var(--radius);
+	cursor: pointer;
+}
+
+.display-panel.working > summary {
+	background-size: var(--progress) 3px;
+}
+
+.display-panel > summary::before {
+	content: "";
+	flex: none;
+	width: .55rem;
+	height: .55rem;
+	border-radius: 50%;
+	background: var(--led);
+	box-shadow: 0 0 0 3px color-mix(in srgb, var(--led) 20%, transparent), 0 0 10px var(--led);
+}
+
+.display-panel.working > summary::before {
+	animation: led-blink 1.2s ease-in-out infinite;
+}
+
+@keyframes led-blink {
+	50% { opacity: .35; }
+}
+
+.display-panel > summary::after {
+	content: "\25BE";
+	margin-left: auto;
+	font-family: inherit;
+}
+
+.display-panel[open] > summary {
+	border-bottom: 1px solid var(--cline);
+	padding-bottom: .7rem;
+	margin-bottom: 1.25rem;
+}
+
+.display-panel[open] > summary::after {
+	content: "\25B4";
+}
+
+#display-status {
+	flex: 1;
+	min-width: 0;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+#display-status strong {
+	color: var(--cfg);
+	font-weight: 600;
+}
+
 #display {
 	float: none !important;
 	display: block;
@@ -501,5 +577,6 @@ button:disabled, button[disabled] {
 @media (prefers-reduced-motion: reduce) {
 	* {
 		transition: none !important;
+		animation: none !important;
 	}
 }

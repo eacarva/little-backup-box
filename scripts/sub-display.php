@@ -27,7 +27,22 @@ function display($clear=true) {
 	if ($config['conf_DISP'] == 'display' and $config['conf_DISP_RESOLUTION_X'] > 0 and $config['conf_DISP_RESOLUTION_Y'] > 0) {
 		?>
 
-		<img id="display" src="<?php echo str_replace('/var/www/little-backup-box', '' , $constants['const_DISPLAY_IMAGE_EXPORT_FILE']); ?>" style="width: <?php echo $constants['const_DISPLAY_SIZE_UI_X']; ?>px; height: <?php echo $constants['const_DISPLAY_SIZE_UI_Y']; ?>px; background: #000000; float: right;">
+		<details class="display-panel" id="display-panel">
+			<summary title="<?php echo L::config_display_section; ?>"><span id="display-status" data-src="<?php echo str_replace('/var/www/little-backup-box', '' , $constants['const_DISPLAY_CONTENT_OLD_FILE']); ?>"><?php echo L::config_display_section; ?></span></summary>
+			<img id="display" src="<?php echo str_replace('/var/www/little-backup-box', '' , $constants['const_DISPLAY_IMAGE_EXPORT_FILE']); ?>" style="width: <?php echo $constants['const_DISPLAY_SIZE_UI_X']; ?>px; height: <?php echo $constants['const_DISPLAY_SIZE_UI_Y']; ?>px; background: #000000; float: right;">
+		</details>
+		<script>
+			(function(panel) {
+				try {panel.open = localStorage.getItem('lbb-display-open') === '1';} catch(e) {}
+				panel.addEventListener('toggle', function() {
+					try {localStorage.setItem('lbb-display-open', panel.open ? '1' : '0');} catch(e) {}
+					if (panel.open) {
+						var display	= document.getElementById('display');
+						display.src	= display.src.split('?')[0] + '?t=' + new Date().getTime();
+					}
+				});
+			})(document.getElementById('display-panel'));
+		</script>
 
 		<?php
 		if ($clear) {

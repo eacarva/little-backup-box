@@ -137,7 +137,7 @@ mais recente, ainda alpha), calibração de touchscreen (`touch_cal_web.py`,
 
 ---
 
-## 3. Três coisas críticas ao trabalhar neste fork
+## 3. O que é crítico ao trabalhar neste fork
 
 ### 3.1 O auto-update aponta para este fork
 
@@ -195,13 +195,29 @@ Isso é uma decisão consciente do projeto (dispositivo de campo, isolado, opera
 Vale saber: **esta box não deve ser exposta à internet aberta**. Não "conserte" isso de
 passagem — é uma mudança de arquitetura, não um bug isolado; converse antes.
 
-### 3.3 Não existe suíte de testes
+### 3.3 Testes: simulações em `dev/sim/`, validação real só no Pi
 
 O único CI é CodeQL (JavaScript e Python), em `main` e em pull requests
-(`.github/workflows/codeql-analysis.yml`). Não há testes unitários, linter nem formatador.
+(`.github/workflows/codeql-analysis.yml`). Não há linter nem formatador.
 
-Portanto: **nenhuma alteração é validável neste repositório sozinho.** O que dá para fazer
-sem hardware é conferência estática — `python3 -m py_compile scripts/*.py`,
+Neste fork há simulações que rodam o código real sem hardware (precisam de Python 3,
+Pillow e DejaVu Sans; no macOS `brew install --cask font-dejavu`):
+
+```bash
+for f in dev/sim/sim_*.py; do python3 "$f" || echo "FAILED: $f"; done
+```
+
+- `sim_backup_loop.py`: escolha da próxima origem (modo normal e estação), `run()`/`finish()`
+  e `reporter.has_errors()`. Lê as linhas de `backup.py`/`lib_backup.py` a cada execução.
+- `sim_display.py`: faixa bicolor, estilos de destaque, laço principal do `display.py` com
+  painel falso, e a nova tentativa quando o I2C falha no início.
+- `LBB_SCRIPTS_DIR=<pasta>` roda contra outra cópia de `scripts/` (teste de mutação: quebre
+  algo de propósito numa cópia e confirme que o teste falha).
+
+Rode as duas ao mexer em `backup.py`, `lib_backup.py`, `display.py` ou `lib_display.py`, e
+acrescente um caso quando mudar comportamento. Elas não cobrem rsync, gphoto2, montagem nem
+o painel físico: **validação real continua exigindo um Raspberry Pi.** Fora isso, conferência
+estática — `python3 -m py_compile scripts/*.py`,
 `php -l scripts/<arquivo>.php`, `bash -n <script>.sh`. Validação real exige um Raspberry Pi.
 
 Para a web UI há um preview local (precisa de Docker): `dev/preview.sh [porta]` sobe a
@@ -212,6 +228,45 @@ funcionam ali. Reinicie o script para ver mudanças de código.
 Diga isso com clareza ao relatar o trabalho, em vez de afirmar que "está funcionando".
 
 ---
+
+### 3.4 Diagnóstico na box
+
+- **Log da Little Backup Box:** `/var/www/little-backup-box/tmp/little-backup-box.log`, também
+  no monitor de log (Ferramentas). É o primeiro lugar a olhar; o usuário consegue copiá-lo.
+- **Display congelado ou escuro:**
+  - `pgrep -fa 'little-backup-box/display.py'` — deve haver um processo (trava `tmp/display.lock`).
+  - `sudo pkill -USR1 -f 'little-backup-box/display.py'` grava em `tmp/display-stack.txt`
+    onde cada thread está parada (`faulthandler`).
+  - Quedas do `display.py` vão para o log como `display.py crashed:` com traceback; falha de
+    I2C no início aparece como `Display connection ... could not be enabled`.
+  - O espelho da web (`tmp/display.png`) e a faixa de status (`tmp/display-content-old.txt`)
+    são escritos pelo `display.py`: se congelaram, o processo parou, não só o painel.
+- **Burn-in no OLED:** teste com a tela toda acesa —
+  `python3 -c "from PIL import Image; Image.new('1',(128,64),1).save('/tmp/white.png')"` e
+  `sudo python3 /var/www/little-backup-box/lib_display.py 'set:time=15' ':IMAGE=/tmp/white.png'`.
+  Letras mais escuras no branco = desgaste físico; não é bug de software.
+- **Backup parado em "Insira o destino":** o destino é a primeira partição USB não montada
+  que passa em `get_available_partitions` (tamanho mínimo, sistema de arquivos). Veja
+  `sudo lsblk -o NAME,SIZE,FSTYPE,LABEL,MOUNTPOINT` e o log (`pre mount usb, target`).
+
+### 3.5 Armadilhas conhecidas
+
+- **OLED apaga quando um `display.py` sai:** a `luma` desliga o painel no `atexit`. Por isso o
+  `display.py` religa o painel a cada quadro e só um processo pode desenhar (trava de arquivo).
+- **"Desligar após o backup" ligado** faz a box desligar ao fim de cada backup — parece
+  "a tela apagou". Confira `conf_POWER_OFF` antes de caçar bug de display.
+- **`umount -l` é preguiçoso:** retorna antes de gravar tudo. Antes de dizer que um cartão pode
+  sair, rode `sync` (o `backup.py` já faz).
+- **Esperas sem limite:** qualquer laço que espera o display ou um dispositivo precisa de
+  tempo máximo; `wait_for_empty_stack` travava reboot e desligamento sem ele.
+- **Resumo por origem:** o `reporter` é recriado a cada origem; decisões sobre a execução
+  inteira usam `__SourcesFailed`, não o último `reporter`.
+- **"0 de 0 arquivos copiados"** com um cartão cheio significa que tudo já estava no destino
+  (o rsync é incremental por nome e tamanho), não falha.
+- **Painéis bicolores** (faixa amarela de 16 px): sem `conf_DISP_BAND_TOP`, a linha 2 cruza a
+  divisa das cores.
+- **Módulos OLED usados** podem vir com burn-in de uso anterior (ex.: tela de estatísticas da
+  Adafruit) — sombra permanente que parece "texto sobreposto".
 
 ## 4. Convenções de código
 
@@ -248,6 +303,7 @@ Imite o código ao redor. O estilo do upstream é consistente e deliberado:
 ├── setup-*.sh, set_locale.sh       ambiente gráfico, firefox, locale
 ├── README.md, changelog.md         também servem de site GitHub Pages (_config.yml, CNAME)
 ├── etc/                            configs de sistema (apache, samba, proftpd, sudoers)
+├── dev/                            só no fork: preview.sh (web UI em Docker) e sim/ (simulações sem hardware)
 ├── scripts/                        → copiado para /var/www/little-backup-box
 │   ├── backup.py                   orquestrador de backup
 │   ├── backup-autorun.py           backup automático no boot

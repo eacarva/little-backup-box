@@ -634,8 +634,6 @@ class storage(object):
 					if Part:
 						if Column == 'SERIAL':
 							Part	= Part[-5:].strip()
-						if Column == 'UUID':
-							continue
 
 						Parts.append(Part)
 

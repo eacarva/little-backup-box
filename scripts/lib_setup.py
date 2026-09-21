@@ -260,6 +260,7 @@ class setup(object):
 					'conf_BACKUP_TARGET_SIZE_MIN':						{'value': 0, 'type': 'int'},
 					'conf_BACKUP_MOVE_FILES':							{'value': False, 'type': 'bool'},
 					'conf_POWER_OFF':									{'value': False, 'type': 'bool'},
+					'conf_BACKUP_STATION':								{'value': False, 'type': 'bool'},
 					'conf_VIEW_CONVERT_HEIC':							{'value': True, 'type': 'bool'},
 					'conf_VIEW_WRITE_RATING_EXIF':						{'value': False, 'type': 'bool'},
 					'conf_DISP':										{'value': '0', 'type': 'str'}, 					# ['display', 'screen', '0']

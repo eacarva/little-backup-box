@@ -159,7 +159,9 @@
       "not_configured": "não configurado",
       "delay_rate_limit": "Limite de taxa",
       "source_done_1": "Origem copiada",
-      "source_done_2": "Pode remover"
+      "source_done_2": "Pode remover",
+      "source_failed_1": "ERRO NA CÓPIA",
+      "source_failed_2": "Não formate o cartão"
     },
     "poweroff": {
       "poweroff": "Desligando",
@@ -419,6 +421,8 @@
       },
       "none": "sem backup automático",
       "power_off_label": "Desligar após o backup",
+      "station_label": "Modo estação: continuar esperando o próximo cartão",
+      "station_desc": "Depois de cada lote, a box espera o próximo cartão ou câmera em vez de terminar. Para encerrar, use PARAR. Neste modo o backup secundário não roda e a box não se desliga sozinha.",
       "section": "Backup",
       "camera": {
         "folder_mask_header": "Pastas a copiar de smartphones e câmeras",

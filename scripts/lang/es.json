@@ -155,6 +155,8 @@
       },
       "none": "sin respaldo automático",
       "power_off_label": "Apagar después de la copia de seguridad",
+      "station_label": "Modo estación: esperar la siguiente tarjeta",
+      "station_desc": "Tras cada tanda, la caja espera la siguiente tarjeta o cámara en lugar de terminar. Se detiene con PARAR. En este modo no se ejecuta la copia secundaria y la caja no se apaga sola.",
       "section": "Respaldo",
       "camera": {
         "folder_mask_header": "Directorios para respaldar desde los teléfonos inteligentes y cámaras",
@@ -745,7 +747,9 @@
       "not_configured": "no configurado",
       "delay_rate_limit": "Límite de velocidad",
       "source_done_1": "Origen copiado",
-      "source_done_2": "Puede retirarse"
+      "source_done_2": "Puede retirarse",
+      "source_failed_1": "ERROR DE COPIA",
+      "source_failed_2": "No formatees la tarjeta"
     },
     "cronip": {
       "offline": "desconectado",

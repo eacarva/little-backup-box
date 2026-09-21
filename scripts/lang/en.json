@@ -159,7 +159,9 @@
       "not_configured": "not configured",
       "delay_rate_limit": "Rate limit",
       "source_done_1": "Source copied",
-      "source_done_2": "Safe to remove"
+      "source_done_2": "Safe to remove",
+      "source_failed_1": "COPY ERROR",
+      "source_failed_2": "Do not format the card"
     },
     "poweroff": {
       "poweroff": "Power off",
@@ -419,6 +421,8 @@
       },
       "none": "no automatic backup",
       "power_off_label": "Power down after backup",
+      "station_label": "Station mode: keep waiting for the next card",
+      "station_desc": "After each batch the box waits for the next card or camera instead of finishing. Stop it with STOP. A secondary backup does not run in this mode, and the box does not power off by itself.",
       "section": "Backup",
       "camera": {
         "folder_mask_header": "Directories to be backed up on smartphones and cameras",

@@ -177,6 +177,12 @@ class backup(object):
 		self.__mail_threads_started		= []
 		self.__break_generateThumbnails	= False
 
+		# fork: station mode keeps waiting for the next source after each batch
+		self.__StationMode				= self.__setup.get_val('conf_BACKUP_STATION') and self.SourceStorageType in ['anyusb', 'usb', 'camera'] and not self.DeviceIdentifierPresetSource
+		self.__completedSources_usb		= []
+		self.__completedSources_camera	= []
+		self.__SourcesFailed			= 0 # the report of the last source is not enough to call the whole run complete
+
 		# define TransferMode for _non_ camera transfers
 		self.TransferMode	= 'rsync' if (self.SourceStorageType in ['anyusb', 'usb', 'internal', 'nvme'] and self.TargetStorageType in ['anyusb', 'usb', 'internal', 'nvme']) or self.SourceStorageType == 'cloud_rsync' or self.TargetStorageType == 'cloud_rsync' else 'rclone'
 
@@ -248,26 +254,32 @@ class backup(object):
 			self.finish()
 			return()
 
-		# backup
-		if (self.TargetDevice and (self.SourceStorageType not in ['thumbnails', 'database', 'exif', 'rename'])):
-			self.backup()
+		while True: # station mode repeats this for every batch of sources
+			# backup
+			BackupCompleted	= False
+			if (self.TargetDevice and (self.SourceStorageType not in ['thumbnails', 'database', 'exif', 'rename'])):
+				BackupCompleted	= self.backup()
 
-		if not self.TransferMode is None and not self.TransferMode in ['social']:
-			# rename
-			if self.DoRenameFiles:
-				self.RenameFiles()
+			if not self.TransferMode is None and not self.TransferMode in ['social']:
+				# rename
+				if self.DoRenameFiles:
+					self.RenameFiles()
 
-			# sync database
-			if self.ForceSyncDatabase or self.__TIMSCopied:
-				self.syncDatabase()
+				# sync database
+				if self.ForceSyncDatabase or self.__TIMSCopied:
+					self.syncDatabase()
 
-			# update exif
-			if self.TargetDevice and self.DoUpdateEXIF:
-				self.updateEXIF()
+				# update exif
+				if self.TargetDevice and self.DoUpdateEXIF:
+					self.updateEXIF()
 
-			# generate thumbnails
-			if self.TargetDevice and self.DoGenerateThumbnails_primary:
-					self.generateThumbnails(Device=self.TargetDevice)
+				# generate thumbnails
+				if self.TargetDevice and self.DoGenerateThumbnails_primary:
+						self.generateThumbnails(Device=self.TargetDevice)
+
+			# station mode goes on only after a clean batch, so errors are not buried under the next card
+			if not (self.__StationMode and BackupCompleted and not self.__SourcesFailed):
+				break
 
 		self.finish()
 
@@ -516,8 +528,9 @@ class backup(object):
 		SourceStorageType			= self.SourceStorageType
 		SourceService			= self.SourceService
 
-		completedSources_usb		= []
-		completedSources_camera		= []
+		# kept across batches in station mode, so a source still plugged in is not copied again
+		completedSources_usb		= self.__completedSources_usb
+		completedSources_camera		= self.__completedSources_camera
 
 		Identifier					= self.DeviceIdentifierPresetSource
 		Identifier_OLD				= ''
@@ -556,9 +569,14 @@ class backup(object):
 					availableSources_camera	= lib_storage.get_available_cameras()
 
 					# remove disconnected cameras from completedSources_camera
-					completedSources_camera	= list(set(completedSources_camera) & set(availableSources_camera))
+					completedSources_camera[:]	= list(set(completedSources_camera) & set(availableSources_camera))
 					todoSources				= list(set(availableSources_camera) - set(completedSources_camera))
 					SourceStorageType		= 'camera'
+
+				if self.__StationMode and self.SourceStorageType in ['anyusb', 'usb']:
+					# forget sources that were unplugged, so they are copied again when they come back
+					connectedSources_usb	= lib_storage.get_available_partitions(StorageType=self.SourceStorageType, TargetDeviceIdentifier=self.TargetDevice.DeviceIdentifier)
+					completedSources_usb[:]	= [Source for Source in completedSources_usb if Source in connectedSources_usb]
 
 				if self.SourceStorageType in ['anyusb', 'usb', 'nvme'] and not todoSources:
 					todoSources			= lib_storage.get_available_partitions(StorageType=self.SourceStorageType, TargetDeviceIdentifier=self.TargetDevice.DeviceIdentifier, excludePartitions=completedSources_usb)
@@ -1036,8 +1054,13 @@ class backup(object):
 			if self.SourceDevice.mountable:
 				self.SourceDevice.umount()
 
-			# fork: the source is not needed anymore (database and thumbnails work on the target)
-			if self.SourceDevice.StorageType in ['usb', 'camera'] and not self.__reporter.has_errors():
+			# fork: tell whether this source can go (database and thumbnails work on the target only)
+			if self.__reporter.has_errors():
+				self.__SourcesFailed	+= 1
+				self.__display.message(['set:time=4', f"s=a:{self.__lan.l('box_backup_source_failed_1')}", f":{self.__lan.l('box_backup_source_failed_2')}"])
+			elif self.SourceDevice.StorageType in ['usb', 'camera']:
+				# umount is lazy: flush everything before saying the card can go
+				subprocess.run(['/usr/bin/sync'])
 				self.__display.message(['set:time=4', f"s=h:{self.__lan.l('box_backup_source_done_1')}", f":{self.__lan.l('box_backup_source_done_2')}"])
 
 			# Set the PWR LED ON to indicate that the backup has finished
@@ -1056,6 +1079,8 @@ class backup(object):
 				break
 
 		self.__display.message([f":{self.__lan.l('box_finished')}"])
+
+		return(True) # all sources processed, the early returns above mean an aborted run
 
 	def __checkLostDevice(self):
 		lostTargetDevice	= False
@@ -1649,6 +1674,11 @@ class backup(object):
 		else:
 			self.__reporter.prepare_display_summary()
 			display_summary	= self.__reporter.display_summary
+
+		# fork: never report complete if any source failed, not just the last one
+		if self.__SourcesFailed:
+			Complete		= f":{self.__lan.l('box_backup_complete')}."
+			display_summary	= [f"s=a:{self.__lan.l('box_backup_source_failed_1')}", f":{self.__lan.l('box_backup_source_failed_2')}"] + [Line for Line in display_summary if Line != Complete]
 
 		self.__cleanup()
 

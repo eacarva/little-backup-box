@@ -155,6 +155,8 @@
       },
       "none": "pas de sauvegarde automatique",
       "power_off_label": "Mise hors tension après sauvegarde",
+      "station_label": "Mode station : attendre la carte suivante",
+      "station_desc": "Après chaque lot, la box attend la carte ou l’appareil suivant au lieu de terminer. Arrêtez avec STOP. La sauvegarde secondaire ne s’exécute pas dans ce mode et la box ne s’éteint pas toute seule.",
       "section": "Sauvegarde",
       "camera": {
         "folder_mask_header": "Répertoires à sauvegarder sur les smartphones et les caméras",
@@ -745,7 +747,9 @@
       "not_configured": "non configuré",
       "delay_rate_limit": "Limite de débit",
       "source_done_1": "Source copiée",
-      "source_done_2": "Retrait possible"
+      "source_done_2": "Retrait possible",
+      "source_failed_1": "ERREUR DE COPIE",
+      "source_failed_2": "Ne formatez pas la carte"
     },
     "cronip": {
       "offline": "hors ligne",

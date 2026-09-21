@@ -167,6 +167,17 @@ descarta o UUID, e cartões iguais formatados em câmeras iguais geravam o mesmo
 sobrescrevia arquivos de mesmo nome. Neste fork o ID termina com o UUID
 (`..._EOS_DIGITAL_0F77-1041`). Validado numa box. Preserve isso ao sincronizar com o upstream.
 
+**Comportamento do backup neste fork** (`backup.py`), preserve ao sincronizar com o upstream:
+- Depois de copiar e desmontar cada origem, o OLED diz "Origem copiada / Pode remover" (com
+  `sync` antes, porque o `umount` é preguiçoso) ou "ERRO NA CÓPIA / Não formate o cartão".
+- `finish()` nunca diz "Backup concluído" se qualquer origem falhou. O upstream olhava só o
+  `reporter` da última origem.
+- Modo estação (`conf_BACKUP_STATION`): `run()` repete cópia e pós-processamento a cada lote e
+  para no primeiro lote com erro ou abortado. `backup()` retorna `True` só quando termina normal.
+- Página inicial é `status.php` (`DirectoryIndex` no site do Apache); `index.php` é o backup
+  completo, no menu "Mais".
+- OLED: uma mensagem por tela (sem histórico), IP só quando muda, barra de status só com alertas.
+
 ### 3.2 O modelo de segurança pressupõe rede confiável
 
 - `etc/sudoers_d_www-data` contém `www-data ALL=(ALL) NOPASSWD:ALL` — o servidor web tem

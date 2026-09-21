@@ -155,6 +155,8 @@
       },
       "none": "kein automatisches Backup",
       "power_off_label": "Ausschalten nach Backup",
+      "station_label": "Stationsmodus: auf die nächste Karte warten",
+      "station_desc": "Nach jedem Durchgang wartet die Box auf die nächste Karte oder Kamera, statt zu beenden. Mit STOPP beenden. Ein sekundäres Backup läuft in diesem Modus nicht, und die Box schaltet sich nicht selbst aus.",
       "section": "Backup",
       "camera": {
         "folder_mask_header": "Zu sichernde Verzeichnisse auf Smartphones und Kameras",
@@ -745,7 +747,9 @@
       "not_configured": "nicht konfiguriert",
       "delay_rate_limit": "Posting-Sperre",
       "source_done_1": "Quelle kopiert",
-      "source_done_2": "Kann entfernt werden"
+      "source_done_2": "Kann entfernt werden",
+      "source_failed_1": "KOPIERFEHLER",
+      "source_failed_2": "Karte nicht formatieren"
     },
     "cronip": {
       "offline": "offline",

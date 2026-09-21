@@ -230,6 +230,7 @@
 		$conf_BACKUP_DEFAULT_GENERATE_THUMBNAILS	= isset($conf_BACKUP_DEFAULT_GENERATE_THUMBNAILS)?'true':'false';
 		$conf_BACKUP_MOVE_FILES						= isset($conf_BACKUP_MOVE_FILES)?'true':'false';
 		$conf_POWER_OFF								= isset($conf_POWER_OFF)?'true':'false';
+		$conf_BACKUP_STATION						= isset($conf_BACKUP_STATION)?'true':'false';
 		$conf_MAIL_IP								= isset($conf_MAIL_IP)?'true':'false';
 		$conf_MAIL_NOTIFICATIONS					= isset($conf_MAIL_NOTIFICATIONS)?'true':'false';
 		$conf_MAIL_HTML								= isset($conf_MAIL_HTML)?'true':'false';
@@ -355,6 +356,7 @@ conf_BACKUP_SYNC_METHOD_CLOUDS='$conf_BACKUP_SYNC_METHOD_CLOUDS'
 conf_BACKUP_CLOUDS_TARGET_FILES_STAY_IN_PLACE='$conf_BACKUP_CLOUDS_TARGET_FILES_STAY_IN_PLACE'
 conf_BACKUP_MOVE_FILES=$conf_BACKUP_MOVE_FILES
 conf_POWER_OFF=$conf_POWER_OFF
+conf_BACKUP_STATION=$conf_BACKUP_STATION
 conf_DISP='$conf_DISP'
 conf_DISP_CONNECTION='$conf_DISP_CONNECTION'
 conf_DISP_DRIVER='$conf_DISP_DRIVER'
@@ -706,6 +708,10 @@ CONFIGDATA;
 					<br />
 					<input type="checkbox" id="conf_POWER_OFF" name="conf_POWER_OFF"<?php echo $config['conf_POWER_OFF']=="1"?" checked":""; ?>>
 					<label for="conf_POWER_OFF"><?php echo L::config_backup_power_off_label; ?></label><br />
+					<br />
+					<input type="checkbox" id="conf_BACKUP_STATION" name="conf_BACKUP_STATION"<?php echo $config['conf_BACKUP_STATION']=="1"?" checked":""; ?>>
+					<label for="conf_BACKUP_STATION"><?php echo L::config_backup_station_label; ?></label><br />
+					<?php echo L::config_backup_station_desc; ?><br />
 
 					<h4><?php echo L::config_backup_target_requirements_header; ?></h3>
 						<label for="conf_BACKUP_TARGET_SIZE_MIN"><?php echo L::config_backup_target_requirements_label; ?></label><br />

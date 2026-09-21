@@ -28,10 +28,11 @@ EOF
 
 # replace a preview left running (stopping docker run does not stop the container)
 docker rm -f lbb-preview >/dev/null 2>&1
+trap 'docker rm -f lbb-preview >/dev/null 2>&1' EXIT INT TERM
 
 docker run --rm --name lbb-preview -p "${PORT}:80" \
 	-v "${REPO_DIR}/scripts:/src:ro" \
 	-v "${CONFIG_DIR}/config.cfg:/config.cfg:ro" \
 	php:8.4-cli \
 	sh -c 'cp -r /src /var/www/little-backup-box && cp /config.cfg /var/www/little-backup-box/ && cp /config.cfg /var/www/little-backup-box/config-standards.cfg && mkdir -p /var/www/little-backup-box/tmp && cd /var/www/little-backup-box && php -d display_errors=0 -d log_errors=1 -d error_reporting="E_ALL & ~E_DEPRECATED" -S 0.0.0.0:80' 2>&1 \
-	| grep --line-buffered -v -E ' (Accepted|Closing)$|^sh: [0-9]+: .*: not found$|^(find|cat): '
+	| grep --line-buffered -v -E ' (Accepted|Closing)$|\[200\]: GET /(tmp|css|js|img)/|\[200\]: GET /favicon|^sh: [0-9]+: .*: not found$|^(find|cat): '

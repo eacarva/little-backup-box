@@ -142,8 +142,12 @@ Ainda apontam para `outdoorbits`, de propósito:
 - Os links de wiki (`install-little-backup-box.sh`, `scripts/displaymenu.py`). O fork não
   tem wiki.
 
-**Pendência:** `update_development` busca a branch `development`, que o fork ainda não
-tem. Crie a branch ou remova o comando da UI antes de usá-lo numa box.
+**Branch `development`:** o fork não tem. O comando `update_development` do `cmd.php`
+busca essa branch, mas o botão que o dispara já vem comentado no upstream
+(`scripts/setup.php`, "update_development_linktext"), então só é alcançável digitando
+`/cmd.php?CMD=update_development` na mão — e falha. Decisão: não criar a branch enquanto
+houver uma box só. Se um dia precisar de canal de teste, crie `development` a partir da
+`main` e descomente o botão.
 
 ### 3.2 O modelo de segurança pressupõe rede confiável
 

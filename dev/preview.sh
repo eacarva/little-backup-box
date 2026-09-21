@@ -4,6 +4,7 @@
 # Needs docker and python3. Usage: dev/preview.sh [port]  ->  http://localhost:<port> (default 8090)
 # Hardware, sudo and backups do not work here: pages render with default settings only.
 # Restart the script to pick up code changes.
+# PHP errors go to this terminal, not into the page (as on the box).
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PORT="${1:-8090}"
@@ -32,4 +33,4 @@ exec docker run --rm --name lbb-preview -p "${PORT}:80" \
 	-v "${REPO_DIR}/scripts:/src:ro" \
 	-v "${CONFIG_DIR}/config.cfg:/config.cfg:ro" \
 	php:8.4-cli \
-	sh -c 'cp -r /src /var/www/little-backup-box && cp /config.cfg /var/www/little-backup-box/ && mkdir -p /var/www/little-backup-box/tmp && cd /var/www/little-backup-box && php -S 0.0.0.0:80'
+	sh -c 'cp -r /src /var/www/little-backup-box && cp /config.cfg /var/www/little-backup-box/ && cp /config.cfg /var/www/little-backup-box/config-standards.cfg && mkdir -p /var/www/little-backup-box/tmp && cd /var/www/little-backup-box && php -d display_errors=0 -d log_errors=1 -S 0.0.0.0:80'

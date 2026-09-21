@@ -4,7 +4,7 @@
 # Needs docker and python3. Usage: dev/preview.sh [port]  ->  http://localhost:<port> (default 8090)
 # Hardware, sudo and backups do not work here: pages render with default settings only.
 # Restart the script to pick up code changes.
-# PHP errors go to this terminal, not into the page (as on the box).
+# PHP errors go to this terminal, not into the page (as on the box). Noise from missing Pi tools is filtered.
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PORT="${1:-8090}"
@@ -29,8 +29,9 @@ EOF
 # replace a preview left running (stopping docker run does not stop the container)
 docker rm -f lbb-preview >/dev/null 2>&1
 
-exec docker run --rm --name lbb-preview -p "${PORT}:80" \
+docker run --rm --name lbb-preview -p "${PORT}:80" \
 	-v "${REPO_DIR}/scripts:/src:ro" \
 	-v "${CONFIG_DIR}/config.cfg:/config.cfg:ro" \
 	php:8.4-cli \
-	sh -c 'cp -r /src /var/www/little-backup-box && cp /config.cfg /var/www/little-backup-box/ && cp /config.cfg /var/www/little-backup-box/config-standards.cfg && mkdir -p /var/www/little-backup-box/tmp && cd /var/www/little-backup-box && php -d display_errors=0 -d log_errors=1 -S 0.0.0.0:80'
+	sh -c 'cp -r /src /var/www/little-backup-box && cp /config.cfg /var/www/little-backup-box/ && cp /config.cfg /var/www/little-backup-box/config-standards.cfg && mkdir -p /var/www/little-backup-box/tmp && cd /var/www/little-backup-box && php -d display_errors=0 -d log_errors=1 -d error_reporting="E_ALL & ~E_DEPRECATED" -S 0.0.0.0:80' 2>&1 \
+	| grep --line-buffered -v -E ' (Accepted|Closing)$|^sh: [0-9]+: .*: not found$|^(find|cat): '

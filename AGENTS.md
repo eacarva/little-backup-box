@@ -255,3 +255,43 @@ bash -n install-little-backup-box.sh
 
 **Regra geral:** localize com `grep -n`, leia só a faixa de linhas relevante, e prefira
 `git diff` a reler o arquivo depois de editar.
+
+---
+
+## 8. Modos ativos por padrão (ponytail + caveman)
+
+Os dois plugins são habilitados por `.claude/settings.json`, portanto valem em qualquer
+sessão aberta neste repositório — local ou na nuvem — sem precisar invocar nada.
+
+| Plugin | Governa | Nível |
+|---|---|---|
+| **ponytail** | O que você constrói: YAGNI, stdlib antes de dependência, menor diff que funciona | `full` |
+| **caveman** | Como você escreve: corta filler, mantém termo técnico, código e erro exatos | `full` |
+
+Eles são complementares e não se sobrepõem: ponytail encurta a solução, caveman encurta
+a prosa. Desligar numa sessão: `stop ponytail` / `normal mode` e `stop caveman`.
+
+### Por que se encaixam neste repositório
+
+- **Fork de um upstream ativo.** O menor diff possível é o que mantém os rebases limpos.
+  Use `full`, não `ultra`: deleção agressiva gera conflito na próxima sincronização
+  com o upstream.
+- **Sem suíte de testes.** A regra do ponytail de deixar *uma* verificação executável
+  atrás de lógica não-trivial (um `assert` num `__main__`, não um framework) é a única
+  rede de segurança viável aqui.
+- **Hardware real.** O ponytail já prevê isso: deixe a manopla de calibração, não só
+  menos código. Vale para display, GPIO, sensores e os timeouts de montagem.
+- **Estilo da casa.** O upstream quase não comenta e não abstrai por antecipação — o
+  ponytail é a disciplina que o código já segue.
+
+### O que os modos NÃO comprimem
+
+- **Strings de i18n.** Os 4 JSON de idioma são texto de produto, não prosa de resposta.
+  Escreva a string por extenso e correta, em `en`, `de`, `es` e `fr`.
+- **Mensagens de commit.** Seguem o estilo do upstream (inglês, minúsculas, descritivo),
+  não o registro caveman.
+- **Comentários `ponytail:`.** Uma simplificação deliberada com teto conhecido leva o
+  comentário nomeando o teto e o caminho de upgrade — isso é documentação, não filler.
+- **As regras de segurança da seção 3.** "Menor diff" nunca justifica remover
+  `escapeshellarg()`, validação de entrada ou tratamento de erro que evita perda de dados.
+  Numa box em que `www-data` é root, essa é a linha que não se corta.

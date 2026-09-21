@@ -507,7 +507,7 @@ RuntimeDirectory=php-fpm
 RuntimeDirectoryMode=0755
 
 [Install]
-WantedBy=multi-user.target" | tee /etc/systemd/system/multi-user.target.wants/php${PHP_VERSION}-fpm.service
+WantedBy=multi-user.target" | sudo tee /etc/systemd/system/php${PHP_VERSION}-fpm.service
 
 #start php-fpm service
 sudo systemctl daemon-reload

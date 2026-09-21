@@ -127,17 +127,23 @@ mais recente, ainda alpha), calibração de touchscreen (`touch_cal_web.py`,
 
 ## 3. Três coisas críticas ao trabalhar neste fork
 
-### 3.1 O auto-update aponta para o upstream, não para este fork
+### 3.1 O auto-update aponta para este fork
 
-O repositório `outdoorbits/little-backup-box` está hardcoded em 5 pontos:
+O caminho de auto-atualização usa `eacarva/little-backup-box`:
 
 - `scripts/lib_git.py` — checagem de versão via API do GitHub
 - `scripts/cmd.php` — comandos `update` e `update_development`
-- `install-little-backup-box.sh` — `git clone` e o redirecionamento para Bookworm
+- `install-little-backup-box.sh` — o `git clone`
 
-**Consequência:** se você instalar esta versão numa box e clicar em "Update" na web UI,
-o código do upstream sobrescreve as alterações do fork. Para um fork instalável de verdade,
-esses pontos precisam apontar para `eacarva/little-backup-box`.
+Ainda apontam para `outdoorbits`, de propósito:
+
+- `install-little-backup-box.sh:45` — o redirecionamento para Bookworm. O fork não tem
+  branch `bookworm`; esse suporte legado vive no upstream.
+- Os links de wiki (`install-little-backup-box.sh`, `scripts/displaymenu.py`). O fork não
+  tem wiki.
+
+**Pendência:** `update_development` busca a branch `development`, que o fork ainda não
+tem. Crie a branch ou remova o comando da UI antes de usá-lo numa box.
 
 ### 3.2 O modelo de segurança pressupõe rede confiável
 

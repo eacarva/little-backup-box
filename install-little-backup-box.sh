@@ -335,7 +335,7 @@ sudo setfacl -R \
 	"${const_MEDIA_DIR}"
 
 # move background images in place
-mv "${INSTALLER_DIR}/scripts/img/backgrounds/"* "${const_MEDIA_DIR}/${const_BACKGROUND_IMAGES_DIR}/lbb/"
+sudo mv "${INSTALLER_DIR}/scripts/img/backgrounds/"* "${const_MEDIA_DIR}/${const_BACKGROUND_IMAGES_DIR}/lbb/"
 
 # add user www-data to sudoers
 sudo usermod -aG sudo ${USER_WWW_DATA}

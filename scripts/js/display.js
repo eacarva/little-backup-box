@@ -35,14 +35,15 @@ function refreshDisplay() {
 	}
 }
 
-// display content lines look like "s=hc:Text"; "set:..." lines are settings, "PGBAR=n" is progress
+// display content lines look like "s=hc:Text"; "set:..." lines are settings, "PGBAR=n" is progress,
+// "s=b:..." lines are older messages kept below the current one, so they are skipped
 function renderDisplayStatus(status, text) {
 	let lines		= [];
 	let progress	= null;
 
 	text.split('\n').forEach(function(line) {
 		line = line.trim();
-		if (!line || line.startsWith('set:')) {return;}
+		if (!line || line.startsWith('set:') || line.startsWith('s=b:')) {return;}
 
 		line = line.slice(line.indexOf(':') + 1).trim();
 		if (!line || line.startsWith('IMAGE=')) {return;}
@@ -52,6 +53,9 @@ function renderDisplayStatus(status, text) {
 		} else if (line.startsWith('>') && lines.length) {
 			// "USB" + "> USB" is source and target
 			lines[lines.length - 1] += ' → ' + line.slice(1).trim();
+		} else if (/^\p{Ll}/u.test(line) && lines.length) {
+			// the display wraps one sentence over two lines: "Settings" + "saved."
+			lines[lines.length - 1] += ' ' + line;
 		} else {
 			lines.push(line);
 		}

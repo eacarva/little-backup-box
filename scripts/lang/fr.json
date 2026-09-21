@@ -298,6 +298,7 @@
       "rotate_header": "Rotation de l'écran",
       "offset_x_label": "Décalage d'affichage horizontal (en pixels)",
       "offset_y_label": "Décalage d'affichage vertical (en pixels)",
+      "band_top_label": "Écran bicolore : hauteur de la bande supérieure en pixels (0 = désactivé, souvent 16). La première ligne est placée dans la bande, les autres en dessous.",
       "frame_time_ip_label": "Temps d'affichage minimum de l'IP en secondes",
       "statusbar": {
         "label": "Afficher la barre d'état"

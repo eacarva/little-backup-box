@@ -116,6 +116,7 @@ class DISPLAY(object):
 		self.__conf_DISP_COLOR_ALERT				= self.__setup.get_val('conf_DISP_COLOR_ALERT')
 		self.__conf_DISP_COLOR_BACKGROUND			= self.__setup.get_val('conf_DISP_COLOR_BACKGROUND')
 		self.__conf_DISP_FONT_SIZE					= self.__setup.get_val('conf_DISP_FONT_SIZE')
+		self.__conf_DISP_BAND_TOP					= self.__setup.get_val('conf_DISP_BAND_TOP')
 		self.__conf_DISP_FRAME_TIME					= self.__setup.get_val('conf_DISP_FRAME_TIME')
 		self.__conf_DISP_SHOW_STATUSBAR				= self.__setup.get_val('conf_DISP_SHOW_STATUSBAR')
 		self.__conf_DISP_BACKLIGHT_PIN				= self.__setup.get_val('conf_DISP_BACKLIGHT_PIN')
@@ -267,7 +268,13 @@ class DISPLAY(object):
 
 		self.line_height = bottom - top
 
-		self.maxLines = int(self.device.height / self.line_height)
+		# fork: two-color panels get the first line inside the top band and the others below it, so no line crosses the color border
+		self.band_top	= self.__conf_DISP_BAND_TOP if self.line_height <= self.__conf_DISP_BAND_TOP <= self.device.height - self.line_height else 0
+
+		if self.band_top:
+			self.maxLines = 1 + int((self.device.height - self.band_top) / self.line_height)
+		else:
+			self.maxLines = int(self.device.height / self.line_height)
 
 		if self.maxLines > self.__const_DISPLAY_LINES_LIMIT:
 			self.maxLines = self.__const_DISPLAY_LINES_LIMIT
@@ -407,7 +414,11 @@ class DISPLAY(object):
 					if FormatType == 'u':
 						underline = True
 
-				y	= (n) * self.line_height + y_shift - 1 + y_space
+				if self.band_top:
+					Spare_Y_band	= self.device.height - self.band_top - (self.maxLines - 1) * self.line_height
+					y	= int((self.band_top - self.line_height) / 2) - 1 if n == 0 else self.band_top + (n - 1) * self.line_height - 1 + int(Spare_Y_band / 2)
+				else:
+					y	= (n) * self.line_height + y_shift - 1 + y_space
 
 				# Draw a filled box in case of inverted output
 				if bg_fill != self.color_bg:

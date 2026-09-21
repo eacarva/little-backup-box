@@ -564,6 +564,7 @@
       "rotate_header": "Rotate screen",
       "offset_x_label": "Display shift horizontally (in pixels)",
       "offset_y_label": "Display shift vertically (in pixels)",
+      "band_top_label": "Two-color panel: height of the top color band in pixels (0 = off, usually 16). The first line is placed inside the band, the others below it.",
       "frame_time_ip_label": "Minimum display time of the IP in seconds",
       "statusbar": {
         "label": "Show status bar"

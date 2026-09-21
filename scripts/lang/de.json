@@ -298,6 +298,7 @@
       "rotate_header": "Display drehen",
       "offset_x_label": "Display-Verschiebung horizontal (in Pixeln)",
       "offset_y_label": "Display-Verschiebung vertikal (in Pixeln)",
+      "band_top_label": "Zweifarbiges Display: Höhe des oberen Farbstreifens in Pixeln (0 = aus, meist 16). Die erste Zeile steht im Streifen, die anderen darunter.",
       "frame_time_ip_label": "Minimale Anzeigedauer der IP in Sekunden",
       "statusbar": {
         "label": "Statusleiste einblenden"

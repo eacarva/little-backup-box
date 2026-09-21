@@ -298,6 +298,7 @@
       "rotate_header": "Girar pantalla",
       "offset_x_label": "Desplazamiento de la pantalla horizontalmente (en píxeles)",
       "offset_y_label": "Desplazamiento de la pantalla verticalmente (en píxeles)",
+      "band_top_label": "Pantalla bicolor: altura de la franja superior en píxeles (0 = desactivado, normalmente 16). La primera línea va dentro de la franja y las demás debajo.",
       "frame_time_ip_label": "Tiempo mínimo de visualización de la IP en segundos",
       "statusbar": {
         "label": "Mostrar barra de estado"

@@ -1678,7 +1678,9 @@ class backup(object):
 		# fork: never report complete if any source failed, not just the last one
 		if self.__SourcesFailed:
 			Complete		= f":{self.__lan.l('box_backup_complete')}."
-			display_summary	= [f"s=a:{self.__lan.l('box_backup_source_failed_1')}", f":{self.__lan.l('box_backup_source_failed_2')}"] + [Line for Line in display_summary if Line != Complete]
+			FailedTries		= f" {self.__lan.l('box_backup_failed_attempts')}"
+			# the display shows 5 lines: keep the alert, the errors and the counts, drop the failed tries line
+			display_summary	= [f"s=a:{self.__lan.l('box_backup_source_failed_1')}", f":{self.__lan.l('box_backup_source_failed_2')}"] + [Line for Line in display_summary if Line != Complete and not Line.endswith(FailedTries)]
 
 		self.__cleanup()
 

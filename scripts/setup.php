@@ -366,6 +366,7 @@ conf_DISP_RESOLUTION_X=$conf_DISP_RESOLUTION_X
 conf_DISP_RESOLUTION_Y=$conf_DISP_RESOLUTION_Y
 conf_DISP_OFFSET_X=$conf_DISP_OFFSET_X
 conf_DISP_OFFSET_Y=$conf_DISP_OFFSET_Y
+conf_DISP_BAND_TOP=$conf_DISP_BAND_TOP
 conf_DISP_ROTATE='$conf_DISP_ROTATE'
 conf_DISP_CONTRAST=$conf_DISP_CONTRAST
 conf_DISP_COLOR_BGR=$conf_DISP_COLOR_BGR
@@ -1180,6 +1181,17 @@ CONFIGDATA;
 									<?php
 										for ($display_offset=-30; $display_offset<=30; $display_offset++) {
 											echo "<option value='" . $display_offset . "' " . ($config["conf_DISP_OFFSET_Y"] == $display_offset?" selected":"") . ">" . $display_offset . "</option>";
+										}
+									?>
+								</select>
+						</div>
+
+						<div>
+							<label for="conf_DISP_BAND_TOP"><?php echo L::config_display_band_top_label; ?></label><br />
+								<select name="conf_DISP_BAND_TOP" id="conf_DISP_BAND_TOP">
+									<?php
+										for ($display_band=0; $display_band<=32; $display_band++) {
+											echo "<option value='" . $display_band . "' " . ($config["conf_DISP_BAND_TOP"] == $display_band?" selected":"") . ">" . $display_band . "</option>";
 										}
 									?>
 								</select>

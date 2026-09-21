@@ -564,6 +564,7 @@
       "rotate_header": "Girar a tela",
       "offset_x_label": "Deslocamento horizontal do display (em pixels)",
       "offset_y_label": "Deslocamento vertical do display (em pixels)",
+      "band_top_label": "Painel bicolor: altura da faixa de cor superior em pixels (0 = desligado, normalmente 16). A primeira linha fica dentro da faixa e as outras abaixo dela.",
       "frame_time_ip_label": "Tempo mínimo de exibição do IP, em segundos",
       "statusbar": {
         "label": "Mostrar barra de status"

@@ -359,6 +359,9 @@ class reporter(object):
 	def get_errors(self):
 		return(self.__BackupReports[self.__Folder][-1]['Errors'])
 
+	def has_errors(self):
+		return(any(Tries[-1]['Errors'] for Tries in self.__BackupReports.values() if Tries))
+
 	def get_time_elapsed(self):
 		if self.StopTime == 0:
 			self.StopTime	= lib_system.get_uptime_sec()

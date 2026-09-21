@@ -742,7 +742,9 @@
         "ok": "FTP o.k."
       },
       "not_configured": "nicht konfiguriert",
-      "delay_rate_limit": "Posting-Sperre"
+      "delay_rate_limit": "Posting-Sperre",
+      "source_done_1": "Quelle kopiert",
+      "source_done_2": "Kann entfernt werden"
     },
     "cronip": {
       "offline": "offline",

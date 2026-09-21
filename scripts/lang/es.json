@@ -742,7 +742,9 @@
         "ok": "FTP o.k."
       },
       "not_configured": "no configurado",
-      "delay_rate_limit": "Límite de velocidad"
+      "delay_rate_limit": "Límite de velocidad",
+      "source_done_1": "Origen copiado",
+      "source_done_2": "Puede retirarse"
     },
     "cronip": {
       "offline": "desconectado",

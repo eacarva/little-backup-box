@@ -222,12 +222,6 @@ class DISPLAY(object):
 		# calculate line dimensions
 		self.calculate_LineSize()
 
-		# prepare statusbar
-		if self.__conf_DISP_SHOW_STATUSBAR:
-			self.traffic_monitor		= lib_network.traffic_monitor()
-			self.statusbar_toggle		= 0
-			self.statusbar_toggle_time	= 0
-
 		# create folders
 		## ensure const_DISPLAY_CONTENT_PATH exists
 		if not os.path.isdir(self.__const_DISPLAY_CONTENT_PATH):
@@ -279,77 +273,42 @@ class DISPLAY(object):
 			self.maxLines = self.__const_DISPLAY_LINES_LIMIT
 
 	def get_statusbar(self):
+		# fork: only what needs attention, otherwise no statusbar line at all
 		if not self.__conf_DISP_SHOW_STATUSBAR:
 			return(None)
 
+		# tasks running in the background
+		try:
+			TaskFilesList	= [TaskFile for TaskFile in os.listdir(self.__const_TASKS_PATH) if TaskFile.endswith('.txt')]
+		except:
+			TaskFilesList	= []
+
+		Tasks	= []
+		for TaskFile in TaskFilesList:
+			try:
+				with open(os.path.join(self.__const_TASKS_PATH, TaskFile)) as f:
+					Tasks.append(f.readline().strip())
+			except:
+				continue
+
+		if Tasks:
+			return(['|'.join(Tasks)])
+
 		statusbar	= []
 
-		# select item to dispay?
-		if time.time() - self.statusbar_toggle_time >= self.__const_DISPLAY_STATUSBAR_TOGGLE_SEC:
-			self.statusbar_toggle_time	= time.time()
-			self.statusbar_toggle	= self.statusbar_toggle + 1 if self.statusbar_toggle < 2 else 0
+		# hotspot active: connect to it
+		if lib_comitup.comitup().get_status()['state'] == 'HOTSPOT':
+			statusbar.append('HOT')
 
-		# print active tasks (without comitup information)
-		if self.statusbar_toggle == 0:
-			# look for task files
-			try:
-				TaskFilesList	= [TaskFile for TaskFile in os.listdir(self.__const_TASKS_PATH) if TaskFile.endswith('.txt')]
-			except:
-				TaskFilesList	= []
-
-			Tasks	= []
-			if TaskFilesList:
-				for TaskFile in TaskFilesList:
-					try:
-						with open(os.path.join(self.__const_TASKS_PATH, TaskFile)) as f:
-							Tasks.append(f.readline().strip())
-					except:
-						continue
-
-			if Tasks:
-				statusbar.append(Tasks[0])
-				for Task in Tasks[1:]:
-					statusbar[0]	+= f'|{Task}'
-				return(statusbar)
-			else:
-				self.statusbar_toggle	= 1
-
-		#comitup
-		comitup_status	= lib_comitup.comitup().get_status()['state']
-
-		match comitup_status:
-			case 'HOTSPOT':
-				statusbar.append('HOT')
-			case 'CONNECTING':
-				statusbar.append('..?')
-			case 'CONNECTED':
-				statusbar.append('WiFi')
-
-		if self.statusbar_toggle == 1:
-			#network traffic
-			statusbar	+=[self.traffic_monitor.get_traffic()]
-			return(statusbar)
-
-		# if sill not retuned: CPU usage
-		try:
-			vmstat	= subprocess.check_output(['/usr/bin/vmstat']).decode().strip().split('\n')
-		except:
-			vmstat	= []
-
-		if vmstat:
-			vmstat_fields	= vmstat[-1].split()
-
-			if len(vmstat_fields) >= 14:
-				statusbar.append(f'{100-float(vmstat_fields[14]):.0f}%')
-
-		# temperature
+		# temperature, from 70 °C on
 		try:
 			temp_c	= float(subprocess.check_output(['/usr/bin/cat', '/sys/class/thermal/thermal_zone0/temp']).decode()) / 1000
-			statusbar.append(f'{temp_c:.0f}°C')
+			if temp_c >= 70:
+				statusbar.append(f'{temp_c:.0f}°C')
 		except:
 			pass
 
-		return(statusbar)
+		return(statusbar if statusbar else None)
 
 	def show(self, Lines, statusbar=None, new_content=True):
 		# fill line count to const_DISPLAY_LINES_LIMIT

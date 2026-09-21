@@ -157,7 +157,9 @@
         "ok": "FTP ok"
       },
       "not_configured": "não configurado",
-      "delay_rate_limit": "Limite de taxa"
+      "delay_rate_limit": "Limite de taxa",
+      "source_done_1": "Origem copiada",
+      "source_done_2": "Pode remover"
     },
     "poweroff": {
       "poweroff": "Desligando",

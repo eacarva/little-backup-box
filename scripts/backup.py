@@ -1036,6 +1036,10 @@ class backup(object):
 			if self.SourceDevice.mountable:
 				self.SourceDevice.umount()
 
+			# fork: the source is not needed anymore (database and thumbnails work on the target)
+			if self.SourceDevice.StorageType in ['usb', 'camera'] and not self.__reporter.has_errors():
+				self.__display.message(['set:time=4', f"s=h:{self.__lan.l('box_backup_source_done_1')}", f":{self.__lan.l('box_backup_source_done_2')}"])
+
 			# Set the PWR LED ON to indicate that the backup has finished
 			lib_system.rpi_leds(led='PWR', trigger='none', brightness='1')
 

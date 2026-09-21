@@ -130,7 +130,9 @@ class display(object):
 		if self.conf_DISP != 'display':
 			return(None)
 
-		while self.display_content_files.get_ContentFilesList():
+		# fork: give up after a while, a display that cannot run must not block reboot or power off forever
+		EndTime	= time.time() + 30
+		while self.display_content_files.get_ContentFilesList() and time.time() < EndTime:
 			self.__start_display()
 			time.sleep(self.conf_DISP_FRAME_TIME / 2)
 

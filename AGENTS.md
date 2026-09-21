@@ -107,6 +107,11 @@ parsers vão lê-la.
 
 Sem framework: PHP procedural + Bootstrap 5 (vendorizado em `scripts/css` e `scripts/js`).
 
+O visual deste fork vive só em `scripts/css/lbb-fork.css`, carregado por último em
+`sub-standards-header-loader.php`. Mude a aparência ali, não em `lbb.css`/`classless-lbb.css`
+(upstream). Os temas `light`/`dark`/`sepia` são tokens no topo do arquivo. Sem fontes
+externas: a box funciona offline.
+
 | Arquivo | Papel |
 |---|---|
 | `index.php` | Tela principal; dispara `backup.py` em background |

@@ -1,0 +1,505 @@
+/* Fork theme: loaded after bootstrap.min.css and lbb.css, overrides both. */
+/* Upstream CSS stays untouched so rebases stay clean. */
+
+/* Tokens ################################################### */
+
+:root, html[data-theme='light'] {
+	--cbg: #eceef1;
+	--csurface: #ffffff;
+	--csurface2: #f5f6f8;
+	--cline: #d6dae0;
+	--cfg: #1b1e22;
+	--cdark: #5f6670;
+	--clink: #2c6bb3;
+	--cemph: #174f8f;
+	--cusb: #1f8a5b;
+	--canyusb: #967000;
+	--ccamera: #b5650f;
+	--ccloud: #2a77b6;
+	--csocial: #5f52c2;
+	--cdanger: #c8262b;
+	--cdisabled: #aab0b8;
+	--cled-off: #c9ced5;
+	--bezel: #111316;
+	--shadow: 0 1px 2px rgba(20, 24, 30, .06), 0 8px 24px -16px rgba(20, 24, 30, .25);
+
+	--font-p: 400 15px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, "DejaVu Sans", sans-serif;
+	--font-h: 600 1rem/1.2 var(--font-label);
+	--font-c: 400 13px/1.5 var(--font-mono);
+	--font-label: "Avenir Next Condensed", "Roboto Condensed", "Arial Narrow", sans-serif-condensed, system-ui, sans-serif;
+	--font-mono: ui-monospace, "SF Mono", "Roboto Mono", "DejaVu Sans Mono", monospace;
+	--width: 56rem;
+	--radius: 12px;
+}
+
+html[data-theme='dark'] {
+	color-scheme: dark;
+	--cbg: #15171a;
+	--csurface: #1d2025;
+	--csurface2: #23272d;
+	--cline: #2e333a;
+	--cfg: #e4dfd4;
+	--cdark: #8c929b;
+	--clink: #8fb3e3;
+	--cemph: #c6d9f3;
+	--cusb: #79c99e;
+	--canyusb: #e3c25b;
+	--ccamera: #e6a14e;
+	--ccloud: #7db4e4;
+	--csocial: #a9a2f0;
+	--cdanger: #e5484d;
+	--cdisabled: #4b5058;
+	--cled-off: #3a3f47;
+	--bezel: #07080a;
+	--shadow: 0 1px 0 rgba(255, 255, 255, .03) inset, 0 12px 30px -18px rgba(0, 0, 0, .8);
+}
+
+html[data-theme='sepia'] {
+	--cbg: #f3ede2;
+	--csurface: #fbf7f0;
+	--csurface2: #f6f0e6;
+	--cline: #dccfbc;
+	--cfg: #3a2f28;
+	--cdark: #7a6a5e;
+	--clink: #8a4b1f;
+	--cemph: #5e3010;
+	--cusb: #3f7d4f;
+	--canyusb: #8a6a00;
+	--ccamera: #a85a12;
+	--ccloud: #3d6f9c;
+	--csocial: #6b4fa0;
+	--cdanger: #b8322a;
+	--cdisabled: #b9ab99;
+	--cled-off: #d6c8b4;
+	--bezel: #1a1512;
+}
+
+/* Base ##################################################### */
+
+html, body {
+	background-color: var(--cbg);
+	color: var(--cfg);
+}
+
+body {
+	max-width: var(--width);
+	padding: 1rem 1rem 4rem;
+	font: var(--font-p);
+	-webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5 {
+	font-family: var(--font-label);
+	color: var(--cfg);
+}
+
+h1 {
+	font-size: clamp(1.5rem, 5vw, 2.1rem);
+	font-weight: 600;
+	letter-spacing: .22em !important;
+	text-transform: uppercase;
+	text-align: center;
+	margin: 0 0 1.5rem !important;
+}
+
+h2 {
+	font-size: 1rem;
+	font-weight: 600;
+	font-variant: normal;
+	text-transform: uppercase;
+	letter-spacing: .12em;
+}
+
+h3 {
+	font-size: .95rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: .14em;
+	color: var(--cdark);
+	margin: 1.75rem 0 .5rem;
+}
+
+h4 {
+	font-size: 1rem;
+	letter-spacing: .04em;
+}
+
+a {
+	color: var(--clink);
+	text-decoration-color: color-mix(in srgb, var(--clink) 40%, transparent);
+	text-underline-offset: .2em;
+}
+
+a:hover {
+	color: var(--cemph);
+}
+
+:focus-visible {
+	outline: 2px solid var(--clink) !important;
+	outline-offset: 2px;
+}
+
+hr {
+	border-top: 1px solid var(--cline);
+	opacity: 1;
+}
+
+/* Navigation ############################################### */
+
+.navbar {
+	background: transparent !important;
+	border-bottom: 1px solid var(--cline);
+	margin-bottom: 1.5rem;
+	padding: .25rem 0;
+}
+
+.navbar .nav-link {
+	font-family: var(--font-label);
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: .1em;
+	color: var(--cdark) !important;
+	padding: .6rem .7rem !important;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+	color: var(--cfg) !important;
+}
+
+.navbar .nav-link.active {
+	box-shadow: inset 0 -2px 0 var(--cfg);
+}
+
+.dropdown-menu {
+	background: var(--csurface);
+	border: 1px solid var(--cline);
+	border-radius: var(--radius);
+	box-shadow: var(--shadow);
+}
+
+.dropdown-item {
+	color: var(--cfg);
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+	background: var(--csurface2);
+	color: var(--cfg);
+}
+
+/* Display mirror: the box's own screen, enlarged ########### */
+
+#display {
+	float: none !important;
+	display: block;
+	/* whole-number scale of the 128 px panel keeps every pixel the same size */
+	width: 256px !important;
+	height: auto !important;
+	image-rendering: pixelated;
+	box-sizing: content-box;
+	margin: 7px auto 1.25rem;
+	padding: .9rem;
+	background: #000 !important;
+	border-radius: 16px;
+	box-shadow:
+		0 0 0 6px var(--bezel),
+		0 0 0 7px var(--cline),
+		0 18px 40px -20px rgba(0, 0, 0, .7);
+}
+
+/* Cards and sections ####################################### */
+
+.card {
+	background: var(--csurface) !important;
+	border: 1px solid var(--cline) !important;
+	border-radius: var(--radius) !important;
+	box-shadow: var(--shadow) !important;
+	padding: 1.25rem 1.25rem 1rem !important;
+	color: var(--cfg);
+}
+
+details > summary {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	list-style: none;
+	font-family: var(--font-label);
+	font-weight: 600;
+	letter-spacing: .12em !important;
+	text-transform: uppercase;
+	color: var(--cfg);
+	text-decoration: none;
+	padding: .15rem 0;
+}
+
+details > summary::-webkit-details-marker {
+	display: none;
+}
+
+details > summary::after {
+	content: "+";
+	font-family: var(--font-mono);
+	color: var(--cdark);
+}
+
+details[open] > summary {
+	border-bottom: 1px solid var(--cline);
+	padding-bottom: .75rem;
+	margin-bottom: .75rem;
+}
+
+details[open] > summary::after {
+	content: "\2212";
+}
+
+/* Settings: slim sticky save bar */
+.card[style*="sticky"] {
+	display: flex;
+	flex-direction: row !important;
+	justify-content: flex-end;
+	padding: .6rem 1rem !important;
+	margin-top: 1.5rem !important;
+	background: color-mix(in srgb, var(--csurface) 88%, transparent) !important;
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
+}
+
+.card[style*="sticky"] button {
+	margin: 0 !important;
+}
+
+/* Controls ################################################# */
+
+button, select {
+	font-family: var(--font-label);
+	font-weight: 600;
+	letter-spacing: .06em;
+	color: var(--cfg);
+	background-color: var(--csurface2);
+	border: 1px solid var(--cline);
+	border-radius: 10px;
+	min-height: 44px;
+	padding: .55rem 1rem;
+}
+
+button:not([disabled]):hover, select:hover {
+	color: var(--cfg);
+	border-color: var(--cdark);
+}
+
+button[name='save'] {
+	color: var(--cbg);
+	background: var(--cfg);
+	border-color: var(--cfg);
+	padding-inline: 1.5rem;
+}
+
+button[name='save']:not([disabled]):hover {
+	color: var(--cbg);
+	background: var(--cemph);
+	border-color: var(--cemph);
+}
+
+input:not([type='checkbox']):not([type='radio']), textarea {
+	background: var(--csurface2);
+	color: var(--cfg);
+	border: 1px solid var(--cline);
+	border-radius: 10px;
+}
+
+input[type='checkbox'], input[type='radio'] {
+	accent-color: var(--clink);
+	width: 1.05rem;
+	height: 1.05rem;
+	vertical-align: -.15em;
+	margin-right: .35rem;
+}
+
+table {
+	border-collapse: collapse;
+	font-variant-numeric: tabular-nums;
+}
+
+th {
+	font-family: var(--font-label);
+	text-transform: uppercase;
+	letter-spacing: .08em;
+	color: var(--cdark);
+}
+
+td, th {
+	border-bottom: 1px solid var(--cline);
+	padding: .45rem .6rem;
+}
+
+pre, code, iframe {
+	font: var(--font-c);
+}
+
+iframe {
+	background: var(--csurface2);
+	border: 1px solid var(--cline);
+	border-radius: 10px;
+}
+
+/* log monitor shows a plain-text file with a white inline background */
+html[data-theme='dark'] #logmonitor {
+	filter: invert(.9) hue-rotate(180deg);
+}
+
+/* Backup page: source slots with an indicator LED ########## */
+
+.radio-usb { --c: var(--cusb); }
+.radio-anyusb { --c: var(--canyusb); }
+.radio-camera { --c: var(--ccamera); }
+.radio-cloud { --c: var(--ccloud); }
+
+.radio-usb, .radio-anyusb, .radio-camera, .radio-cloud, .backup-buttons {
+	margin: .35rem 0;
+}
+
+.radio-usb br, .radio-anyusb br, .radio-camera br, .radio-cloud br, .backup-buttons br {
+	display: none;
+}
+
+.radio-usb label, .radio-anyusb label, .radio-camera label, .radio-cloud label {
+	display: flex !important;
+	align-items: center;
+	gap: .75rem;
+	width: min(100%, 17rem) !important;
+	min-height: 48px;
+	margin: .4rem auto !important;
+	padding: .6rem 1rem !important;
+	text-align: left;
+	font-family: var(--font-label);
+	font-weight: 600;
+	letter-spacing: .06em !important;
+	color: var(--cfg) !important;
+	background: var(--csurface2) !important;
+	border: 1px solid var(--cline) !important;
+	border-radius: 10px !important;
+	transition: border-color .15s, background-color .15s;
+}
+
+.radio-usb label::before, .radio-anyusb label::before, .radio-camera label::before, .radio-cloud label::before {
+	content: "";
+	flex: none;
+	width: .6rem;
+	height: .6rem;
+	border-radius: 50%;
+	background: color-mix(in srgb, var(--c) 30%, var(--cled-off));
+	transition: background-color .15s, box-shadow .15s;
+}
+
+.radio-usb label:hover, .radio-anyusb label:hover, .radio-camera label:hover, .radio-cloud label:hover {
+	border-color: color-mix(in srgb, var(--c) 60%, var(--cline)) !important;
+}
+
+.radio-usb input:checked + label, .radio-anyusb input:checked + label,
+.radio-camera input:checked + label, .radio-cloud input:checked + label {
+	border-color: var(--c) !important;
+	background: color-mix(in srgb, var(--c) 12%, var(--csurface2)) !important;
+}
+
+.radio-usb input:checked + label::before, .radio-anyusb input:checked + label::before,
+.radio-camera input:checked + label::before, .radio-cloud input:checked + label::before {
+	background: var(--c);
+	box-shadow: 0 0 0 3px color-mix(in srgb, var(--c) 22%, transparent), 0 0 12px var(--c);
+}
+
+.radio-usb input:focus-visible + label, .radio-anyusb input:focus-visible + label,
+.radio-camera input:focus-visible + label, .radio-cloud input:focus-visible + label {
+	outline: 2px solid var(--clink);
+	outline-offset: 2px;
+}
+
+/* Backup page: targets are actions ######################### */
+
+button.usb { --c: var(--cusb); }
+button.camera { --c: var(--ccamera); }
+button.cloud { --c: var(--ccloud); }
+button.social { --c: var(--csocial); }
+button.danger { --c: var(--cdanger); }
+
+button.usb, button.camera, button.cloud, button.social {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: .75rem;
+	width: min(100%, 17rem) !important;
+	min-height: 48px;
+	margin: .4rem auto !important;
+	text-align: left;
+	color: var(--c);
+	border-color: color-mix(in srgb, var(--c) 45%, var(--cline));
+	background: var(--csurface2);
+}
+
+.backup-buttons button::after {
+	content: "\2192";
+	font-family: var(--font-mono);
+	opacity: .8;
+}
+
+button.usb:not([disabled]):hover, button.camera:not([disabled]):hover,
+button.cloud:not([disabled]):hover, button.social:not([disabled]):hover {
+	color: var(--c);
+	border-color: var(--c);
+	background: color-mix(in srgb, var(--c) 12%, var(--csurface2));
+}
+
+button.danger {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	gap: .6rem;
+	width: min(100%, 35.5rem) !important;
+	color: var(--c);
+	border-color: color-mix(in srgb, var(--c) 55%, var(--cline));
+	background: color-mix(in srgb, var(--c) 8%, var(--csurface2));
+	letter-spacing: .14em;
+}
+
+button.danger::before {
+	content: "";
+	width: .6rem;
+	height: .6rem;
+	border-radius: 2px;
+	background: currentColor;
+}
+
+button.danger:not([disabled]):hover {
+	color: var(--c);
+	border-color: var(--c);
+	background: color-mix(in srgb, var(--c) 16%, var(--csurface2));
+}
+
+button:disabled, button[disabled] {
+	color: var(--cdisabled) !important;
+	border-color: var(--cline) !important;
+	background: transparent !important;
+	cursor: not-allowed;
+}
+
+.backup-buttons button[disabled]::after {
+	opacity: 0;
+}
+
+@media (max-width: 640px) {
+	.column {
+		float: none !important;
+		width: 100% !important;
+	}
+
+	.column + .column {
+		margin-top: 1rem;
+		padding-top: .5rem;
+		border-top: 1px solid var(--cline);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	* {
+		transition: none !important;
+	}
+}

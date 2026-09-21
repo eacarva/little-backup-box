@@ -641,7 +641,7 @@ sudo python3 "${const_WEB_ROOT_LBB}/lib_password.py" "$(echo $conf_PASSWORD | ba
 sudo samba restart
 
 # setup hardware
-	source "${const_WEB_ROOT_LBB}/set_hardware.sh"
+	sudo bash "${const_WEB_ROOT_LBB}/set_hardware.sh"
 
 # post-install-information
 IP=$(python3 "${const_WEB_ROOT_LBB}/lib_network.py" --Mode 'ip' --OneLine)

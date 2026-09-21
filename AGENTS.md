@@ -149,6 +149,12 @@ busca essa branch, mas o botão que o dispara já vem comentado no upstream
 houver uma box só. Se um dia precisar de canal de teste, crie `development` a partir da
 `main` e descomente o botão.
 
+**ID de dispositivo inclui o UUID** (`lib_storage.py`, `__calculate_device_id`): o upstream
+descarta o UUID, e cartões iguais formatados em câmeras iguais geravam o mesmo ID
+(ex.: `lbb_59.4G_exfat_1.0_EOS_DIGITAL`), caindo na mesma pasta de destino — o `rsync`
+sobrescrevia arquivos de mesmo nome. Neste fork o ID termina com o UUID
+(`..._EOS_DIGITAL_0F77-1041`). Validado numa box. Preserve isso ao sincronizar com o upstream.
+
 ### 3.2 O modelo de segurança pressupõe rede confiável
 
 - `etc/sudoers_d_www-data` contém `www-data ALL=(ALL) NOPASSWD:ALL` — o servidor web tem

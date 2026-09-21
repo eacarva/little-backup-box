@@ -10,9 +10,18 @@ REPO="${LBB_REPO:-https://github.com/eacarva/little-backup-box.git}"
 WEB_ROOT="${LBB_WEB_ROOT:-/var/www/little-backup-box}"
 INSTALLED_DIR="${LBB_INSTALLED_DIR:-$HOME/little-backup-box}"	# clone left by the installer, used as the reference
 
-if pgrep -f "${WEB_ROOT}/backup.py" >/dev/null; then
-	echo "A backup is running. Update after it ends."
-	exit 1
+# a backup that is copying is never interrupted; one that only waits for devices is stopped and started again at the end
+WAITING_BACKUP=()
+BACKUP_PID="$(pgrep -f "^[^ ]*python3 ${WEB_ROOT}/backup.py( |$)" | head -1)" # the python process, not a sudo or shell around it
+if [ -n "${BACKUP_PID}" ]; then
+	if pgrep -x 'rsync|gphoto2|exiftool|convert|ffmpeg' >/dev/null || pgrep -f 'rclone (copy|move|sync|check)' >/dev/null; then
+		echo "A backup is copying. Update after it ends."
+		exit 1
+	fi
+
+	mapfile -d '' WAITING_BACKUP < "/proc/${BACKUP_PID}/cmdline"
+	echo "The backup is only waiting for devices: stopping it for the update, it starts again at the end."
+	sudo bash "${WEB_ROOT}/stop_backup.sh" >/dev/null 2>&1
 fi
 
 NEW_DIR="$(mktemp -d)/little-backup-box"
@@ -51,5 +60,10 @@ sudo python3 "${WEB_ROOT}/lib_display.py" "set:temp,time=3" ":$(python3 "${WEB_R
 # this download is the reference for the next quick update
 sudo rm -rf "${INSTALLED_DIR}"
 mv "${NEW_DIR}" "${INSTALLED_DIR}"
+
+if [ ${#WAITING_BACKUP[@]} -gt 0 ]; then
+	echo "Starting the waiting backup again."
+	sudo setsid "${WAITING_BACKUP[@]}" >/dev/null 2>&1 < /dev/null &
+fi
 
 echo "Update completed, no reboot needed."

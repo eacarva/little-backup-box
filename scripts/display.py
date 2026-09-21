@@ -61,6 +61,7 @@ import threading
 import time
 
 import lib_comitup
+import lib_log
 import lib_network
 import lib_setup
 import lib_system
@@ -95,6 +96,7 @@ class DISPLAY(object):
 
 		# objects
 		self.__setup							= lib_setup.setup()
+		self.__log								= lib_log.log()
 		self.__display_content_files			= display_content_files(self.__setup)
 
 		# setup
@@ -164,59 +166,7 @@ class DISPLAY(object):
 				self.color_alert	= (*self.color_alert, 255)
 				self.color_bg		= (*self.color_bg, 255)
 
-		self.hardware_ready	= True
-
-		serial	= None
-		try:
-			if self.__conf_DISP_CONNECTION == 'I2C':
-				serial = i2c(port=1, address=self.__conf_DISP_I2C_ADDRESS)
-			elif self.__conf_DISP_CONNECTION == 'SPI':
-				if self.__conf_DISP_DRIVER == 'ST7735':
-					serial = spi(port=self.__conf_DISP_SPI_PORT, device=0, bus_speed_hz=40000000)
-				elif self.__conf_DISP_DRIVER == 'ST7735 WAVESHARE LCD display HAT':
-					serial = spi(port=self.__conf_DISP_SPI_PORT, device=0, bus_speed_hz=40000000, gpio_DC=25, gpio_RST=27)
-				else:
-					serial = spi(port=self.__conf_DISP_SPI_PORT, device=0)
-			else:
-				print('Error: No valid connection type for display',file=sys.stderr)
-				if self.__conf_DISP_DRIVER != 'none':
-					raise Exception('Error: No valid connection type for display')
-		except:
-			self.hardware_ready	= False
-			print(f'Display connection to {self.__conf_DISP_CONNECTION} could not be enabled.', file=sys.stderr)
-
-		try:
-			if self.__conf_DISP_DRIVER == 'none' or serial is None:
-				self.device	= self.__display_dummy()
-				self.hardware_ready	= False
-			elif self.__conf_DISP_DRIVER == 'SSD1306':
-				self.device	= ssd1306(serial_interface=serial, h_offset=self.__conf_DISP_OFFSET_X, v_offset=self.__conf_DISP_OFFSET_Y)
-			elif self.__conf_DISP_DRIVER == 'SSD1309':
-				self.device	= ssd1309(serial_interface=serial, h_offset=self.__conf_DISP_OFFSET_X, v_offset=self.__conf_DISP_OFFSET_Y)
-			elif self.__conf_DISP_DRIVER == 'SSD1322':
-				self.device	= ssd1322(serial_interface=serial, h_offset=self.__conf_DISP_OFFSET_X, v_offset=self.__conf_DISP_OFFSET_Y)
-			elif self.__conf_DISP_DRIVER == 'SSD1331':
-				self.device	= ssd1331(serial_interface=serial, h_offset=self.__conf_DISP_OFFSET_X, v_offset=self.__conf_DISP_OFFSET_Y)
-			elif self.__conf_DISP_DRIVER == 'SH1106':
-				self.device	= sh1106(serial_interface=serial, h_offset=self.__conf_DISP_OFFSET_X, v_offset=self.__conf_DISP_OFFSET_Y)
-			elif self.__conf_DISP_DRIVER == 'ST7735':
-				self.device	= st7735(serial_interface=serial, h_offset=self.__conf_DISP_OFFSET_X, v_offset=self.__conf_DISP_OFFSET_Y, gpio_LIGHT=(self.__conf_DISP_BACKLIGHT_PIN if self.__conf_DISP_BACKLIGHT_PIN > 0 else 18), bgr=self.__conf_DISP_COLOR_BGR, inverse=self.__conf_DISP_COLOR_INVERSE) # pin: GPIO Backlight
-				self.device.backlight(self.__conf_DISP_BACKLIGHT_ENABLED)
-			elif self.__conf_DISP_DRIVER == 'ST7735 WAVESHARE LCD display HAT':
-				self.device	= st7735(serial_interface=serial, h_offset=self.__conf_DISP_OFFSET_X, v_offset=self.__conf_DISP_OFFSET_Y, gpio_LIGHT=(self.__conf_DISP_BACKLIGHT_PIN if self.__conf_DISP_BACKLIGHT_PIN > 0 else 18), bgr=self.__conf_DISP_COLOR_BGR, inverse=self.__conf_DISP_COLOR_INVERSE) # pin: GPIO Backlight
-				self.device.backlight(self.__conf_DISP_BACKLIGHT_ENABLED)
-			else:
-				print('Error: No valid display driver', file=sys.stderr)
-		except:
-			self.hardware_ready	= False
-			print(f'Display driver {self.__conf_DISP_DRIVER} could not be enabled.', file=sys.stderr)
-
-		if self.hardware_ready:
-			self.device.capabilities(width=self.__conf_DISP_RESOLUTION_X, height=self.__conf_DISP_RESOLUTION_Y, rotate=self.__conf_DISP_ROTATE, mode=self.__conf_DISP_COLOR_MODEL)
-
-			self.device.contrast(self.__conf_DISP_CONTRAST)
-
-			self.device.persist	= False
+		self.__init_hardware()
 
 		# define font
 		self.FONT = ImageFont.truetype(self.__const_FONT_PATH, self.__conf_DISP_FONT_SIZE)
@@ -256,6 +206,64 @@ class DISPLAY(object):
 				thread.start()
 			except:
 				pass
+
+	def __init_hardware(self):
+		# fork: also called again from main() while the panel does not answer, e.g. I2C not ready right after boot
+		self.hardware_ready	= True
+
+		serial	= None
+		try:
+			if self.__conf_DISP_CONNECTION == 'I2C':
+				serial = i2c(port=1, address=self.__conf_DISP_I2C_ADDRESS)
+			elif self.__conf_DISP_CONNECTION == 'SPI':
+				if self.__conf_DISP_DRIVER == 'ST7735':
+					serial = spi(port=self.__conf_DISP_SPI_PORT, device=0, bus_speed_hz=40000000)
+				elif self.__conf_DISP_DRIVER == 'ST7735 WAVESHARE LCD display HAT':
+					serial = spi(port=self.__conf_DISP_SPI_PORT, device=0, bus_speed_hz=40000000, gpio_DC=25, gpio_RST=27)
+				else:
+					serial = spi(port=self.__conf_DISP_SPI_PORT, device=0)
+			else:
+				print('Error: No valid connection type for display',file=sys.stderr)
+				if self.__conf_DISP_DRIVER != 'none':
+					raise Exception('Error: No valid connection type for display')
+		except:
+			self.hardware_ready	= False
+			self.__log.message(f'Display connection to {self.__conf_DISP_CONNECTION} could not be enabled.')
+
+		try:
+			if self.__conf_DISP_DRIVER == 'none' or serial is None:
+				self.device	= self.__display_dummy()
+				self.hardware_ready	= False
+			elif self.__conf_DISP_DRIVER == 'SSD1306':
+				self.device	= ssd1306(serial_interface=serial, h_offset=self.__conf_DISP_OFFSET_X, v_offset=self.__conf_DISP_OFFSET_Y)
+			elif self.__conf_DISP_DRIVER == 'SSD1309':
+				self.device	= ssd1309(serial_interface=serial, h_offset=self.__conf_DISP_OFFSET_X, v_offset=self.__conf_DISP_OFFSET_Y)
+			elif self.__conf_DISP_DRIVER == 'SSD1322':
+				self.device	= ssd1322(serial_interface=serial, h_offset=self.__conf_DISP_OFFSET_X, v_offset=self.__conf_DISP_OFFSET_Y)
+			elif self.__conf_DISP_DRIVER == 'SSD1331':
+				self.device	= ssd1331(serial_interface=serial, h_offset=self.__conf_DISP_OFFSET_X, v_offset=self.__conf_DISP_OFFSET_Y)
+			elif self.__conf_DISP_DRIVER == 'SH1106':
+				self.device	= sh1106(serial_interface=serial, h_offset=self.__conf_DISP_OFFSET_X, v_offset=self.__conf_DISP_OFFSET_Y)
+			elif self.__conf_DISP_DRIVER == 'ST7735':
+				self.device	= st7735(serial_interface=serial, h_offset=self.__conf_DISP_OFFSET_X, v_offset=self.__conf_DISP_OFFSET_Y, gpio_LIGHT=(self.__conf_DISP_BACKLIGHT_PIN if self.__conf_DISP_BACKLIGHT_PIN > 0 else 18), bgr=self.__conf_DISP_COLOR_BGR, inverse=self.__conf_DISP_COLOR_INVERSE) # pin: GPIO Backlight
+				self.device.backlight(self.__conf_DISP_BACKLIGHT_ENABLED)
+			elif self.__conf_DISP_DRIVER == 'ST7735 WAVESHARE LCD display HAT':
+				self.device	= st7735(serial_interface=serial, h_offset=self.__conf_DISP_OFFSET_X, v_offset=self.__conf_DISP_OFFSET_Y, gpio_LIGHT=(self.__conf_DISP_BACKLIGHT_PIN if self.__conf_DISP_BACKLIGHT_PIN > 0 else 18), bgr=self.__conf_DISP_COLOR_BGR, inverse=self.__conf_DISP_COLOR_INVERSE) # pin: GPIO Backlight
+				self.device.backlight(self.__conf_DISP_BACKLIGHT_ENABLED)
+			else:
+				print('Error: No valid display driver', file=sys.stderr)
+		except:
+			self.hardware_ready	= False
+			self.__log.message(f'Display driver {self.__conf_DISP_DRIVER} could not be enabled.')
+
+		if self.hardware_ready:
+			self.device.capabilities(width=self.__conf_DISP_RESOLUTION_X, height=self.__conf_DISP_RESOLUTION_Y, rotate=self.__conf_DISP_ROTATE, mode=self.__conf_DISP_COLOR_MODEL)
+
+			self.device.contrast(self.__conf_DISP_CONTRAST)
+
+			self.device.persist	= False
+
+		self.hardware_init_time	= time.time()
 
 	def calculate_LineSize(self):
 		# calculate size of text
@@ -552,6 +560,15 @@ class DISPLAY(object):
 
 		# start endless loop to display content
 		while(self.loop_continue):
+			# fork: the panel did not answer: try again every 30 s and redraw the current screen once it does
+			if not self.hardware_ready and self.__conf_DISP_DRIVER != 'none' and time.time() - self.hardware_init_time >= 30:
+				self.__init_hardware()
+				if self.hardware_ready:
+					self.__log.message('Display answers again.')
+					self.calculate_LineSize()
+					if Lines:
+						self.show(Lines=Lines, statusbar=self.get_statusbar(), new_content=False)
+
 			import_old_file 		= False # fork: one message per screen, no older lines pushed below
 			temp_screen				= False
 			hidden_info				= ''
@@ -733,8 +750,18 @@ if __name__ == "__main__":
 	else:
 		sys.exit() # another display.py drives the panel
 
-	display	= DISPLAY()
-	display.main()
+	# fork: 'sudo pkill -USR1 -f display.py' writes where every thread is right now into tmp/display-stack.txt
+	import faulthandler
+	faulthandler.register(signal.SIGUSR1, file=open(os.path.join(WORKING_DIR, 'tmp', 'display-stack.txt'), 'w'), all_threads=True)
+
+	# fork: a crash used to vanish, the display just went dark. Put the traceback into the Little Backup Box log.
+	try:
+		display	= DISPLAY()
+		display.main()
+	except Exception:
+		import traceback
+		lib_log.log().message(f'display.py crashed:\n{traceback.format_exc()}')
+		raise
 
 	sys.exit()
 

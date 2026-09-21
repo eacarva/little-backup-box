@@ -141,7 +141,7 @@
     "message_settings_saved": "config.cfg a été écrit avec succès.",
     "rsync_module_header": "Module rsync",
     "rsync_module_label1": "Nom du module sur le serveur rsync, par exemple 'little-backup-box' (par défaut :",
-    "rsync_module_label2": "). <br> Le nom du module est défini côté serveur dans rsyncd.conf et est mis entre [crochets]. Notez également <a href='https://github.com/outdoorbits/little-backup-box/blob/main/readme_rsync.md'> readme_rsync.md </a>.",
+    "rsync_module_label2": "). <br> Le nom du module est défini côté serveur dans rsyncd.conf et est mis entre [crochets]. Notez également <a href='https://github.com/eacarva/little-backup-box/blob/main/readme_rsync.md'> readme_rsync.md </a>.",
     "backup": {
       "generate_thumbnails_header": "Vignettes",
       "generate_thumbnails_label": "Créer des vignettes pour View après la sauvegarde? (Uniquement pour le stockage local)",
@@ -941,7 +941,7 @@
       "comment": "Commentaire"
     },
     "footer": {
-      "footer": "Attention, seules les images qui ont des vignettes sont affichées ici. Générez-les soit automatiquement (Paramètres, Sauvegarde) soit via la page Sauvegarde.<br>\nConsulte la <a href=\"https://github.com/outdoorbits/little-backup-box/wiki/05a.-view-image-viewer\">Wiki</a> para obtener más información."
+      "footer": "Seules les images avec vignette sont affichées ici. Activez les vignettes automatiques dans Réglages › Visionneuse d'images View, ou créez-les maintenant dans Plus › Sauvegarde › View-Base de données.<br>\nConsulte la <a href=\"https://github.com/outdoorbits/little-backup-box/wiki/05a.-view-image-viewer\">Wiki</a> para obtener más información."
     },
     "ratings_save_button": "Sauvegarder",
     "ratings_1_delete_button": "Supprimer des fichiers multimédias",

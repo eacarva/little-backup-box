@@ -407,7 +407,7 @@
     "save_settings_upload_button": "Upload settings",
     "rsync_module_header": "rsync module",
     "rsync_module_label1": "Module name on the rsync server, e.g. 'little-backup-box' (default:",
-    "rsync_module_label2": "). <br> The module name is defined on the server side in rsyncd.conf and is set in [square brackets]. Also note <a href='https://github.com/outdoorbits/little-backup-box/blob/main/readme_rsync.md'> readme_rsync.md </a>.",
+    "rsync_module_label2": "). <br> The module name is defined on the server side in rsyncd.conf and is set in [square brackets]. Also note <a href='https://github.com/eacarva/little-backup-box/blob/main/readme_rsync.md'> readme_rsync.md </a>.",
     "backup": {
       "generate_thumbnails_header": "Thumbnails",
       "generate_thumbnails_label": "Create thumbnails for View after backup? (Local storages only)",
@@ -941,7 +941,7 @@
       "comment": "Comment"
     },
     "footer": {
-      "footer": "Warning, only images that have thumbnails are displayed here. Generate them either automatically (Settings, Backup) or via the Backup page.<br>\nSee the <a href=\"https://github.com/outdoorbits/little-backup-box/wiki/05a.-view-image-viewer\">Wiki</a> for more information."
+      "footer": "Only images that have thumbnails are shown here. Turn on automatic thumbnails in Settings › Image viewer View, or create them now in More › Backup › View-Database.<br>\nSee the <a href=\"https://github.com/outdoorbits/little-backup-box/wiki/05a.-view-image-viewer\">Wiki</a> for more information."
     },
     "ratings_save_button": "Save",
     "ratings_1_delete_button": "Delete media files",

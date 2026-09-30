@@ -77,6 +77,7 @@ html[data-theme='sepia'] {
 /* Base ##################################################### */
 
 html, body {
+	height: auto;
 	background-color: var(--cbg);
 	color: var(--cfg);
 }

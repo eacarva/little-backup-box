@@ -74,15 +74,14 @@
 		display();
 	?>
 
+		<?php if ($frame_index == "sysinfo") { ?>
+			<iframe id="pageframe" src="<?php echo $framed_pages[$frame_index]; ?>" style="display: block; width: 100%; padding: 0; border: none; border-radius: 0; background: none;"></iframe>
+			<script>startIframeRefresh('pageframe', '<?php echo $framed_pages[$frame_index]; ?>', 10000);</script>
+		<?php } else { ?>
  		<div style="width: 100vw; height: 60vh; margin-left: calc(-50vw + 50%); border: none;">
  			<iframe id="pageframe" src="<?php echo $framed_pages[$frame_index]; ?>" style="width: 100%; height: 100%; border: none;"></iframe>
 		</div>
-
-		<?php
-			if ($frame_index == "sysinfo") {
-				echo "<script>startIframeRefresh('pageframe', '$framed_pages[$frame_index]', 10000);</script>";
-			}
-		?>
+		<?php } ?>
 
 		<?php include "sub-logmonitor.php";
 			logmonitor($sourcefile=$constants['const_LOGFILE'], $title=L::log_logmonitor, $allow_logfile_operations=true);

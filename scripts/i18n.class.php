@@ -176,10 +176,16 @@ class i18n {
 			if( ! is_dir($this->cachePath))
 				mkdir($this->cachePath, 0755, true);
 
-            if (file_put_contents($this->cacheFilePath, $compiled) === FALSE) {
+            // write and rename: pi, root and www-data all compile here, and may replace each other's stale cache
+            $tmpFilePath = $this->cacheFilePath . '.' . getmypid();
+            if (file_put_contents($tmpFilePath, $compiled) === FALSE) {
                 throw new Exception("Could not write cache file to path '" . $this->cacheFilePath . "'. Is it writable?");
             }
-            chmod($this->cacheFilePath, 0755);
+            chmod($tmpFilePath, 0755);
+            if (! rename($tmpFilePath, $this->cacheFilePath)) {
+                unlink($tmpFilePath);
+                throw new Exception("Could not write cache file to path '" . $this->cacheFilePath . "'. Is it writable?");
+            }
 
         }
 

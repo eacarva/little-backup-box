@@ -18,6 +18,9 @@
 #######################################################################
 
 import base64
+import glob
+import importlib.util
+import json
 import os
 from PIL import Image, ImageDraw, ImageFont
 import qrcode
@@ -287,7 +290,37 @@ class comitup(object):
 
 		return()
 
+	def install_web_templates(self):
+		# Little Backup Box look for the comitup page, in the box language (or the phone's) and theme.
+		# Rewritten on every hotspot start, so a comitup upgrade never keeps the stock page for long.
+		spec	= importlib.util.find_spec('comitup_web')
+		target	= os.path.join(os.path.dirname(spec.origin), 'templates') if spec and spec.origin else ''
+		if not os.path.isdir(target):
+			target	= '/usr/share/comitup/templates'
+		if not os.path.isdir(target):
+			return
+
+		texts	= {}
+		for path in glob.glob(f'{self.WORKING_DIR}/lang/*.json'):
+			with open(path, encoding='utf-8') as f:
+				texts[os.path.basename(path)[:-5]]	= json.load(f).get('comitup_web', {})
+
+		language	= self.__setup.get_val('conf_LANGUAGE')
+		language	= language if language in texts else ''
+
+		for name in ['lbb_style.html', 'index.html', 'confirm.html', 'connect.html']:
+			shutil.copy(f'{self.WORKING_DIR}/comitup-web/{name}', target)
+
+		with open(f'{target}/lbb_text.html', 'w', encoding='utf-8') as f:
+			f.write(f"{{% set LANG = {json.dumps(language)} %}}{{% set THEME = {json.dumps(self.__setup.get_val('conf_THEME'))} %}}{{% set T = {json.dumps(texts)} %}}\n")
+
 	def new_status(self, status):
+		if status in ['HOTSPOT', 'RESET']:
+			try:
+				self.install_web_templates()
+			except Exception as e:
+				print(f'comitup page not restyled: {e}', file=sys.stderr)
+
 		# display new status
 		status_translated	= None
 		if status in ['HOTSPOT', 'CONNECTING', 'CONNECTED']:
@@ -371,6 +404,7 @@ if __name__ == "__main__":
 			Password	= None
 
 		comitup().config(Password)
+		comitup().install_web_templates()
 
 	elif Mode == '--get_status':
 		print(comitup().get_status())

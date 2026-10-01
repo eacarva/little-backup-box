@@ -1,0 +1,109 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Little Backup Box · Wi-Fi</title>
+<style>
+	:root, [data-theme='light'] {
+		--cbg: #eceef1; --csurface: #ffffff; --csurface2: #f5f6f8; --cline: #d6dae0;
+		--cfg: #1b1e22; --cdark: #5f6670; --clink: #2c6bb3; --cok: #1f8a5b; --cwarn: #967000;
+		--bfg: #ffffff;
+	}
+	[data-theme='dark'] {
+		color-scheme: dark;
+		--cbg: #15171a; --csurface: #1d2025; --csurface2: #23272d; --cline: #2e333a;
+		--cfg: #e4dfd4; --cdark: #8c929b; --clink: #8fb3e3; --cok: #79c99e; --cwarn: #e3c25b;
+		--bfg: #15171a;
+	}
+	[data-theme='sepia'] {
+		--cbg: #f3ede2; --csurface: #fbf7f0; --csurface2: #f6f0e6; --cline: #dccfbc;
+		--cfg: #3a2f28; --cdark: #7a6a5e; --clink: #8a4b1f; --cok: #3f7d4f; --cwarn: #8a6a00;
+		--bfg: #fbf7f0;
+	}
+	* { box-sizing: border-box; }
+	html { background: var(--cbg); }
+	body {
+		margin: 0 auto;
+		max-width: 30rem;
+		padding: 1.5rem 1rem 3rem;
+		background: var(--cbg);
+		color: var(--cfg);
+		font: 400 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, "DejaVu Sans", sans-serif;
+		-webkit-font-smoothing: antialiased;
+	}
+	.brand, .label {
+		font-family: "Avenir Next Condensed", "Roboto Condensed", "Arial Narrow", sans-serif;
+		font-weight: 600;
+		letter-spacing: .14em;
+		text-transform: uppercase;
+		font-size: .75rem;
+		color: var(--cdark);
+	}
+	h1 { font-size: 1.45rem; line-height: 1.25; margin: .35rem 0 .4rem; }
+	p { margin: 0 0 1rem; }
+	.hint { color: var(--cdark); font-size: .92rem; }
+	.card {
+		background: var(--csurface);
+		border: 1px solid var(--cline);
+		border-radius: 12px;
+		margin: 1.25rem 0;
+		overflow: hidden;
+	}
+	.card.pad { padding: 1rem; }
+	.network {
+		display: flex;
+		align-items: center;
+		gap: .75rem;
+		min-height: 52px;
+		padding: .75rem 1rem;
+		border-top: 1px solid var(--cline);
+		color: var(--cfg);
+		text-decoration: none;
+	}
+	.network:first-child { border-top: 0; }
+	.network:active { background: var(--csurface2); }
+	.network span { flex: 1; overflow-wrap: anywhere; }
+	.network svg { flex: none; width: 1rem; height: 1rem; fill: none; stroke: var(--cdark); stroke-width: 2; }
+	.network::after { content: "\203A"; color: var(--cdark); font-size: 1.3rem; }
+	.empty { padding: 1rem; color: var(--cdark); }
+	input[type=text], input[type=password] {
+		display: block;
+		width: 100%;
+		min-height: 48px;
+		margin: .4rem 0 .75rem;
+		padding: .6rem .8rem;
+		font: inherit;
+		color: var(--cfg);
+		background: var(--csurface2);
+		border: 1px solid var(--cline);
+		border-radius: 10px;
+	}
+	input:focus-visible, button:focus-visible, a:focus-visible { outline: 2px solid var(--clink); outline-offset: 2px; }
+	button, .button {
+		display: block;
+		width: 100%;
+		min-height: 48px;
+		padding: .6rem 1rem;
+		font: 600 .95rem/1.2 "Avenir Next Condensed", "Roboto Condensed", "Arial Narrow", sans-serif;
+		letter-spacing: .08em;
+		text-transform: uppercase;
+		text-align: center;
+		text-decoration: none;
+		color: var(--bfg);
+		background: var(--cfg);
+		border: 0;
+		border-radius: 10px;
+		cursor: pointer;
+	}
+	.secondary { color: var(--cfg); background: var(--csurface2); border: 1px solid var(--cline); }
+	.check { display: flex; align-items: center; gap: .5rem; margin: 0 0 1rem; color: var(--cdark); font-size: .92rem; }
+	.back { display: inline-block; margin-bottom: 1rem; color: var(--clink); text-decoration: none; }
+	.note { padding: .75rem 1rem; border-left: 3px solid var(--cwarn); background: var(--csurface); border-radius: 0 10px 10px 0; font-size: .92rem; }
+	.locate { display: flex; align-items: center; justify-content: center; gap: .75rem; margin-top: 1.5rem; }
+	.locate button { width: auto; }
+	.spinner {
+		width: 2.5rem; height: 2.5rem; margin: 2rem auto;
+		border: 3px solid var(--cline); border-top-color: var(--cok); border-radius: 50%;
+		animation: spin 1s linear infinite;
+	}
+	@keyframes spin { to { transform: rotate(360deg); } }
+	@media (prefers-reduced-motion: reduce) { .spinner { animation: none; } }
+</style>

@@ -1,0 +1,45 @@
+{#- Little Backup Box look for the comitup page; lib_comitup.py installs it into comitup's templates. -#}
+{%- import 'lbb_text.html' as text -%}
+{%- set lang = text.LANG or request.accept_languages.best_match(text.T|list) or 'en' -%}
+{%- set L = text.T[lang] -%}
+<!DOCTYPE html>
+<html lang="{{ lang }}" data-theme="{{ text.THEME }}">
+<head>
+{% include 'lbb_style.html' %}
+</head>
+<body>
+	<div class="brand">Little Backup Box</div>
+	<h1>{{ L.choose }}</h1>
+	<p class="hint">{{ L.choose_hint }}</p>
+
+	<div class="card">
+		{% for point in points %}
+			<a class="network" href="confirm?ssid={{ point.ssid_encoded }}&amp;encrypted={{ point.security }}">
+				<span>{{ point.ssid }}</span>
+				{% if point.security == 'encrypted' %}
+					<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+				{% endif %}
+			</a>
+		{% else %}
+			<div class="empty">{{ L.no_networks }}</div>
+		{% endfor %}
+	</div>
+
+	<a class="button secondary" href="/">{{ L.reload }}</a>
+
+	<form class="card pad" action="/confirm">
+		<label class="label" for="ssid">{{ L.other_network }}</label>
+		<input type="hidden" name="encrypted" value="encrypted">
+		<input type="text" id="ssid" name="ssid" required placeholder="{{ L.other_placeholder }}" autocapitalize="off" autocorrect="off" spellcheck="false">
+		<button type="submit">{{ L.next }}</button>
+	</form>
+
+	{% if can_blink %}
+		<div class="locate">
+			<img src="img/ledoff.gif" id="ledimg" alt="">
+			<button type="button" class="secondary" onclick="blink()">{{ L.locate }}</button>
+		</div>
+		<script src="js/blink.js"></script>
+	{% endif %}
+</body>
+</html>

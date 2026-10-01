@@ -141,6 +141,17 @@ do upstream em `.help`, pareia checkbox + label em `.settings-field` e conta as 
 não salvas na barra de Salvar. Sem JS, a página volta a ser a sanfona do upstream.
 Ao mexer: compare `[...new FormData(form)]` de cada form com e sem o script (no preview).
 
+**Página do comitup (hotspot, `http://10.41.0.1`):** o fork troca os templates do
+`comitup-web` pelos de `scripts/comitup-web/` (visual e tema da LBB, sem UIkit).
+`lib_comitup.install_web_templates()` copia esses arquivos para a pasta de templates do
+pacote (a mesma que o `comitup_web` usa) e gera `lbb_text.html` com os textos de
+`comitup_web` dos 5 `lang/*.json`, o idioma e o tema da box. Idioma vazio (detectar pelo
+navegador) → o Jinja escolhe pelo `Accept-Language` do celular, com fallback `en`. Roda
+a cada estado `HOTSPOT`/`RESET` do callback e no `--config`, então um `apt upgrade` do
+comitup não deixa a página original por muito tempo. Os templates usam só as variáveis
+e rotas do comitup original (`points`, `ssid`, `ssid_encoded`, `encrypted`, `mode`,
+`can_blink`; `/confirm`, `/connect`, `/blink`) — confira ao atualizar o comitup.
+
 **`frame.php?page=sysinfo`:** o iframe acompanha a altura do conteúdo (sem rolagem
 própria) e `js/refresh_iframe.js` troca o `body` a cada 10 s sem recarregar. O
 `lbb.css` do upstream tem `html, body { height: 200% }`; o fork anula com `height: auto`.

@@ -1,4 +1,23 @@
 {
+  "comitup_web": {
+    "choose": "WLAN auswählen",
+    "choose_hint": "Die Little Backup Box verbindet sich mit dem gewählten Netzwerk.",
+    "other_network": "Verstecktes oder nicht gelistetes Netzwerk",
+    "other_placeholder": "Netzwerkname (SSID)",
+    "next": "Weiter",
+    "locate": "Box finden",
+    "no_networks": "Keine Netzwerke gefunden.",
+    "reload": "Erneut suchen",
+    "back": "Andere Netzwerke",
+    "connect_to": "Mit {ssid} verbinden",
+    "password": "WLAN-Passwort",
+    "show_password": "Passwort anzeigen",
+    "connect": "Verbinden",
+    "note_single": "Dieser Hotspot wird abgeschaltet. Verbinde dein Gerät mit {ssid} und öffne die Little Backup Box über die IP auf ihrem Display. Wenn die Verbindung scheitert, startet der Hotspot von selbst neu.",
+    "note_multi": "Der Hotspot bleibt aktiv, aber diese Seite wird geschlossen. Wenn die Verbindung scheitert, ist sie wieder da.",
+    "connecting": "Verbinde…",
+    "connecting_text": "Verbindung zu {ssid} wird versucht. Achte auf das Display der Box; dort erscheint die neue IP."
+  },
   "help": "Hilfe",
   "right_arrow": " &rarr; ",
   "log": {

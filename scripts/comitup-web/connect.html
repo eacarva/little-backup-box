@@ -1,0 +1,17 @@
+{#- Little Backup Box look for the comitup page; lib_comitup.py installs it into comitup's templates. -#}
+{%- import 'lbb_text.html' as text -%}
+{%- set lang = text.LANG or request.accept_languages.best_match(text.T|list) or 'en' -%}
+{%- set L = text.T[lang] -%}
+<!DOCTYPE html>
+<html lang="{{ lang }}" data-theme="{{ text.THEME }}">
+<head>
+<meta http-equiv="refresh" content="10;http://blank.org/">
+{% include 'lbb_style.html' %}
+</head>
+<body>
+	<div class="brand">Little Backup Box</div>
+	<h1>{{ L.connecting }}</h1>
+	<div class="spinner" role="status"></div>
+	<p class="hint">{{ L.connecting_text | replace('{ssid}', ssid) }}</p>
+</body>
+</html>

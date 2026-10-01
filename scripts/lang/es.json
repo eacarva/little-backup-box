@@ -108,6 +108,15 @@
     }
   },
   "config": {
+    "nav_group_use": "Uso",
+    "nav_group_box": "Dispositivo",
+    "nav_group_network": "Red y nube",
+    "nav_group_alerts": "Avisos",
+    "nav_group_system": "Sistema",
+    "nav_group_other": "Otros",
+    "unsaved_none": "Sin cambios",
+    "unsaved_one": "1 cambio sin guardar",
+    "unsaved_count": "{n} cambios sin guardar",
     "lang_header": "Seleccione el idioma/Select language",
     "lang_label": "Language-selector will always be labeled in English too.",
     "lang_browser_detect": "Detección del navegador/Browser detect",

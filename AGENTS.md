@@ -132,6 +132,19 @@ externas: a box funciona offline.
 | `tools.php` + `cmd.php` | Operações destrutivas (formatar, fsck, f3probe, update) — exigem senha e rodam em background com log ao vivo |
 | `frame.php`, `sub-*.php` | Includes: menu, footer, ícones SVG, logmonitor, popups |
 
+**Configurações (`setup.php`) neste fork:** `js/setup-nav.js` transforma as sanfonas em menu
+lateral por grupos (no celular: lista → seção), uma seção por vez, sem mover nenhum card
+para dentro ou fora de um form — o POST é idêntico ao do upstream. Cada seção é
+reconhecida por um campo interno (tabela `SECTIONS` no topo do script); seção nova do
+upstream cai em "Outros" até ganhar uma linha lá. O mesmo script embrulha o texto solto
+do upstream em `.help`, pareia checkbox + label em `.settings-field` e conta as alterações
+não salvas na barra de Salvar. Sem JS, a página volta a ser a sanfona do upstream.
+Ao mexer: compare `[...new FormData(form)]` de cada form com e sem o script (no preview).
+
+**`frame.php?page=sysinfo`:** o iframe acompanha a altura do conteúdo (sem rolagem
+própria) e `js/refresh_iframe.js` troca o `body` a cada 10 s sem recarregar. O
+`lbb.css` do upstream tem `html, body { height: 200% }`; o fork anula com `height: auto`.
+
 **i18n:** `i18n.class.php` compila os JSON de `scripts/lang/` numa classe com constantes
 (`L::main_usb_button`). Os JSON são aninhados e a chave é achatada com underscore:
 `box.backup.primary` vira `box_backup_primary`. O Python acessa as mesmas chaves via

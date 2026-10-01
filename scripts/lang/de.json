@@ -108,6 +108,15 @@
     }
   },
   "config": {
+    "nav_group_use": "Nutzung",
+    "nav_group_box": "Gerät",
+    "nav_group_network": "Netzwerk & Cloud",
+    "nav_group_alerts": "Benachrichtigungen",
+    "nav_group_system": "System",
+    "nav_group_other": "Sonstiges",
+    "unsaved_none": "Keine Änderungen",
+    "unsaved_one": "1 ungespeicherte Änderung",
+    "unsaved_count": "{n} ungespeicherte Änderungen",
     "lang_header": "Sprache auswählen/Select language",
     "lang_label": "Language-selector will always be labeled in English too.",
     "lang_browser_detect": "Browser-Erkennung/Browser detect",

@@ -2104,6 +2104,24 @@ CONFIGDATA;
 		?>
 
 		<?php include "sub-footer.php"; ?>
+
+		<script>
+			var SETTINGS_TEXT = <?php echo json_encode(array(
+				'back'			=> L::mainmenue_config,
+				'groups'		=> array(
+					'use'		=> L::config_nav_group_use,
+					'box'		=> L::config_nav_group_box,
+					'network'	=> L::config_nav_group_network,
+					'alerts'	=> L::config_nav_group_alerts,
+					'system'	=> L::config_nav_group_system,
+					'other'		=> L::config_nav_group_other
+				),
+				'unsavedNone'	=> L::config_unsaved_none,
+				'unsavedOne'	=> L::config_unsaved_one,
+				'unsavedCount'	=> L::config_unsaved_count
+			)); ?>;
+		</script>
+		<script src="js/setup-nav.js"></script>
 </body>
 
 </html>

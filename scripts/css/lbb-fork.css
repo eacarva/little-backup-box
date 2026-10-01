@@ -707,28 +707,278 @@ button:disabled, button[disabled] {
 	color: var(--cdark);
 }
 
-/* Settings: sections ordered by how often they are needed ### */
-/* (reordered with CSS so setup.php stays as upstream) */
+/* Settings: side menu, one section at a time (js/setup-nav.js) */
+/* Without JS the page stays the upstream accordion. */
 
-form:has(> .card #conf_LANGUAGE) {
+.settings {
+	display: grid;
+	grid-template-columns: 12rem minmax(0, 1fr);
+	gap: 1.5rem;
+	align-items: start;
+	margin-top: 1.5rem;
+}
+
+.settings-nav {
+	position: sticky;
+	top: 1rem;
+	max-height: calc(100vh - 2rem);
+	overflow-y: auto;
 	display: flex;
 	flex-direction: column;
 }
 
-form > .card:has(#conf_LANGUAGE) { order: 1; }
-form > .card:has(#conf_BACKUP_CHECKSUM) { order: 2; }
-form > .card:has(#conf_PASSWORD_1) { order: 3; }
-form > .card:has(#conf_BACKUP_GENERATE_THUMBNAILS) { order: 4; }
-form > .card:has(#conf_THEME) { order: 5; }
-form > .card:has(#conf_DISP_OLD) { order: 6; }
-form > .card:has(#conf_MENU_ENABLED) { order: 7; }
-form > .card:has(#conf_POWER_OFF_IDLE_TIME) { order: 8; }
-form > .card:has(#conf_FAN_PWM_TEMP_C) { order: 9; }
-form > .card:has(#conf_WIFI_PASSWORD_TYPE) { order: 10; }
-form > .card:has(#conf_VPN_TYPE_RSYNC) { order: 11; }
-form > .card:has(#conf_MAIL_NOTIFICATIONS) { order: 12; }
-form > .card:has([name='restart_rclone_gui']) { order: 13; }
-form > .card:has(#conf_RSYNC_SERVER) { order: 14; }
-form > .card:has(#conf_SOCIAL_PUBLISH_DATE) { order: 15; }
-form > .card:has(#conf_LOGLEVEL) { order: 16; }
-form > .card[style*="sticky"] { order: 99; }
+.settings-group {
+	font-family: var(--font-label);
+	font-weight: 600;
+	font-size: .72rem;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--cdark);
+	margin: 1.1rem .75rem .35rem;
+}
+
+.settings-group:first-child {
+	margin-top: 0;
+}
+
+.settings-nav a {
+	padding: .4rem .75rem;
+	border-radius: 8px;
+	color: var(--cdark);
+	text-decoration: none;
+}
+
+.settings-nav a:hover {
+	color: var(--cfg);
+}
+
+.settings-nav a[aria-current] {
+	background: var(--csurface2);
+	color: var(--cfg);
+}
+
+.settings-hidden,
+.settings-noform .card[style*="sticky"] {
+	display: none !important;
+}
+
+.settings-back {
+	display: none;
+	margin-bottom: .75rem;
+	text-decoration: none;
+}
+
+.settings-main .card {
+	margin-top: 0 !important;
+}
+
+.settings-main details > summary {
+	cursor: default;
+}
+
+.settings-main details > summary::after {
+	content: none;
+}
+
+.settings-main details details > summary {
+	font-size: .75rem;
+	color: var(--cdark);
+	border: 0;
+	border-top: 1px solid var(--cline);
+	margin: 1.5rem 0 .5rem;
+	padding: 1.1rem 0 0;
+}
+
+.settings-main details br {
+	display: none;
+}
+
+.settings-main details label {
+	display: block;
+	margin-top: .35rem;
+}
+
+.settings-main .settings-field {
+	display: flex;
+	align-items: center;
+	gap: .65rem;
+	margin: 1rem 0 .15rem;
+}
+
+.settings-main .settings-field label {
+	margin: 0;
+}
+
+.settings-main details select,
+.settings-main details textarea,
+.settings-main details input:not([type='checkbox']):not([type='radio']):not([type='hidden']):not([type='submit']) {
+	display: block;
+	max-width: 100%;
+	margin: .35rem 0 .5rem;
+}
+
+.settings-main .help,
+.settings-main details p {
+	display: block;
+	color: var(--cdark);
+	font-size: .86rem;
+	margin: .2rem 0 .4rem;
+}
+
+.settings-main details > strong,
+.settings-main details > div > strong {
+	display: block;
+	font-weight: 400;
+	font-size: .86rem;
+	color: var(--canyusb);
+	margin: .2rem 0 .4rem;
+}
+
+.settings-main details > strong::before,
+.settings-main details > div > strong::before {
+	content: "\26A0\FE0E  ";
+}
+
+.settings-main .indent {
+	padding-left: calc(34px + .65rem);
+}
+
+.settings-main details h3,
+.settings-main details h4 {
+	font-family: var(--font-label);
+	font-weight: 600;
+	font-size: .75rem;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--cdark);
+	margin: 1.5rem 0 .5rem;
+	padding-top: 1.1rem;
+	border-top: 1px solid var(--cline);
+}
+
+.settings-main details h5 {
+	font-size: .9rem;
+	font-weight: 600;
+	margin: 1rem 0 0;
+}
+
+.settings-main details > summary + h3,
+.settings-main details > summary + div > h3:first-child {
+	margin-top: .5rem;
+	padding-top: 0;
+	border-top: 0;
+}
+
+.settings-main input[type='checkbox'] {
+	appearance: none;
+	-webkit-appearance: none;
+	flex: none;
+	position: relative;
+	width: 34px;
+	height: 20px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: 10px;
+	background: var(--cdisabled);
+	cursor: pointer;
+	vertical-align: middle;
+	transition: background-color .15s;
+}
+
+.settings-main input[type='checkbox']::before {
+	content: "";
+	position: absolute;
+	top: 3px;
+	left: 3px;
+	width: 14px;
+	height: 14px;
+	border-radius: 50%;
+	background: #fff;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .35);
+	transition: transform .15s;
+}
+
+.settings-main input[type='checkbox']:checked {
+	background: var(--cusb);
+}
+
+.settings-main input[type='checkbox']:checked::before {
+	transform: translateX(14px);
+}
+
+.settings-main input[type='checkbox']:focus-visible {
+	outline: 2px solid var(--clink);
+	outline-offset: 2px;
+}
+
+.settings-dirty {
+	margin-right: auto;
+	color: var(--cdark);
+	font-size: .86rem;
+}
+
+.settings-unsaved .settings-dirty {
+	color: var(--canyusb);
+}
+
+.settings-unsaved .settings-dirty::before {
+	content: "\25CF  ";
+}
+
+.settings-clean button[name='save'] {
+	opacity: .55;
+}
+
+@media (max-width: 699px) {
+	.settings {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.settings-nav {
+		position: static;
+		max-height: none;
+		background: var(--csurface);
+		border: 1px solid var(--cline);
+		border-radius: var(--radius);
+		box-shadow: var(--shadow);
+		padding: 1rem 0 .25rem;
+	}
+
+	.settings-nav a {
+		display: flex;
+		justify-content: space-between;
+		padding: .85rem 1rem;
+		border-radius: 0;
+		border-top: 1px solid var(--cline);
+		color: var(--cfg);
+	}
+
+	.settings-nav a::after {
+		content: "\203A";
+		color: var(--cdark);
+	}
+
+	.settings-nav a[aria-current] {
+		background: none;
+	}
+
+	.settings-group {
+		margin: 1.25rem 1rem .5rem;
+	}
+
+	.settings-list .settings-main,
+	.settings-section .settings-nav {
+		display: none;
+	}
+
+	.settings-section .settings-back {
+		display: inline-block;
+	}
+
+	.settings-main details select,
+	.settings-main details textarea,
+	.settings-main details input:not([type='checkbox']):not([type='radio']):not([type='hidden']):not([type='submit']) {
+		width: 100%;
+	}
+}

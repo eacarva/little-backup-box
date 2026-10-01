@@ -374,6 +374,15 @@
     "normal": "Nenhuma condição anormal detectada."
   },
   "config": {
+    "nav_group_use": "Uso",
+    "nav_group_box": "Box",
+    "nav_group_network": "Rede e nuvem",
+    "nav_group_alerts": "Avisos",
+    "nav_group_system": "Sistema",
+    "nav_group_other": "Outros",
+    "unsaved_none": "Nenhuma alteração",
+    "unsaved_one": "1 alteração não salva",
+    "unsaved_count": "{n} alterações não salvas",
     "message_settings_saved": "config.cfg foi gravado com sucesso.",
     "lang_header": "Selecione o idioma",
     "lang_label": "Language-selector will always be labeled in English too. (O seletor de idioma também aparece sempre em inglês.)",

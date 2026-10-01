@@ -374,6 +374,15 @@
     "normal": "No abnormal conditions have been detected."
   },
   "config": {
+    "nav_group_use": "Use",
+    "nav_group_box": "Device",
+    "nav_group_network": "Network & cloud",
+    "nav_group_alerts": "Alerts",
+    "nav_group_system": "System",
+    "nav_group_other": "Other",
+    "unsaved_none": "No changes",
+    "unsaved_one": "1 unsaved change",
+    "unsaved_count": "{n} unsaved changes",
     "message_settings_saved": "config.cfg was written successfully.",
     "lang_header": "Select language",
     "lang_label": "Language-selector will always be labeled in English too.",

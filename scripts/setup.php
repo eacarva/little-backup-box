@@ -2121,7 +2121,7 @@ CONFIGDATA;
 				'unsavedCount'	=> L::config_unsaved_count
 			)); ?>;
 		</script>
-		<script src="js/setup-nav.js"></script>
+		<script src="js/setup-nav.js?v=<?php echo filemtime(__DIR__ . '/js/setup-nav.js'); ?>"></script>
 </body>
 
 </html>

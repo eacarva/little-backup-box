@@ -62,7 +62,7 @@
 	<script type="text/javascript" src="js/display.js"></script>
 	<script type="text/javascript" src="js/logmonitor.js"></script>
 	<?php
-		if ($frame_index == "sysinfo") {echo '<script src="js/refresh_iframe.js"></script>';}
+		if ($frame_index == "sysinfo") {echo '<script src="js/refresh_iframe.js?v=' . filemtime(__DIR__ . '/js/refresh_iframe.js') . '"></script>';}
 	?>
 </head>
 

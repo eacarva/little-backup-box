@@ -155,7 +155,12 @@
 		var details = sections[hash].details;
 		tidy(details);
 		group(details);
-		details.querySelectorAll('summary').forEach(function (summary) {
+		// the section title opens that section (also when a stale cached CSS shows every section)
+		details.querySelector(':scope > summary').addEventListener('click', function (event) {
+			event.preventDefault();
+			location.hash = hash;
+		});
+		details.querySelectorAll('details > summary').forEach(function (summary) {
 			summary.addEventListener('click', function (event) { event.preventDefault(); });
 		});
 	});

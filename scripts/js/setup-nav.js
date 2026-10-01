@@ -132,9 +132,29 @@
 		flush();
 	}
 
+	// each subsection (h3, inner accordion, field div) becomes its own block
+	function group(details) {
+		var block = null;
+		Array.from(details.children).forEach(function (n) {
+			if (n.tagName === 'SUMMARY') return;
+			if (n.tagName === 'DETAILS' || (n.tagName === 'DIV' && !n.className && n.querySelector(':scope > h3'))) {
+				n.classList.add('settings-block');
+				block = null;
+				return;
+			}
+			if (n.tagName === 'H3' || !block) {
+				block = document.createElement('div');
+				block.className = 'settings-block';
+				n.before(block);
+			}
+			block.append(n);
+		});
+	}
+
 	order.forEach(function (hash) {
 		var details = sections[hash].details;
 		tidy(details);
+		group(details);
 		details.querySelectorAll('summary').forEach(function (summary) {
 			summary.addEventListener('click', function (event) { event.preventDefault(); });
 		});

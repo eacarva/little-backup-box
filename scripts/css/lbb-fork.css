@@ -723,6 +723,7 @@ button:disabled, button[disabled] {
 	top: 1rem;
 	max-height: calc(100vh - 2rem);
 	overflow-y: auto;
+	scrollbar-width: thin;
 	display: flex;
 	flex-direction: column;
 }
@@ -735,6 +736,12 @@ button:disabled, button[disabled] {
 	text-transform: uppercase;
 	color: var(--cdark);
 	margin: 1.1rem .75rem .35rem;
+}
+
+.settings-group:not(:first-child) {
+	margin-top: .9rem;
+	padding-top: .9rem;
+	border-top: 1px solid var(--cline);
 }
 
 .settings-group:first-child {
@@ -862,11 +869,33 @@ button:disabled, button[disabled] {
 	margin: 1rem 0 0;
 }
 
-.settings-main details > summary + h3,
-.settings-main details > summary + div > h3:first-child {
-	margin-top: .5rem;
-	padding-top: 0;
-	border-top: 0;
+.settings-main .settings-block {
+	background: var(--csurface2);
+	border: 1px solid var(--cline);
+	border-radius: 10px;
+	padding: .9rem 1rem .6rem;
+	margin: .9rem 0 0;
+}
+
+.settings-main .settings-block select,
+.settings-main .settings-block textarea,
+.settings-main .settings-block input:not([type='checkbox']):not([type='radio']):not([type='hidden']):not([type='submit']) {
+	background-color: var(--csurface) !important;
+}
+
+.settings-main .settings-block > h3:first-child,
+.settings-main .settings-block > summary,
+.settings-main details details.settings-block > summary {
+	color: var(--cfg);
+	font-size: .8rem;
+	margin: 0 0 .35rem;
+	padding: 0;
+	border: 0;
+}
+
+.settings-main .settings-block > .settings-field:first-child,
+.settings-main .settings-block > h3:first-child + .settings-field {
+	margin-top: .4rem;
 }
 
 .settings-main input[type='checkbox'] {
@@ -963,8 +992,11 @@ button:disabled, button[disabled] {
 		background: none;
 	}
 
-	.settings-group {
+	.settings-group,
+	.settings-group:not(:first-child) {
 		margin: 1.25rem 1rem .5rem;
+		padding-top: 0;
+		border-top: 0;
 	}
 
 	.settings-list .settings-main,

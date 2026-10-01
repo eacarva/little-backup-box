@@ -311,6 +311,8 @@ function exec_command($CMD, $PARAM1, $PARAM2, $MAIL_RESULT) {
 				$COMMAND_LINE	= "sudo python3 $WORKING_DIR/lib_display.py ':" . L::box_cmd_update_start1 . "' ':" . L::box_cmd_update_start2 . "'";
 				$COMMAND_LINE	.= ";sudo -u pi curl -sSL https://raw.githubusercontent.com/eacarva/little-backup-box/main/update-quick.sh -o ~pi/update-quick.sh";
 				$COMMAND_LINE	.= ";sudo -u pi bash ~pi/update-quick.sh main";
+				$COMMAND_LINE	.= ";echo ''";
+				$COMMAND_LINE	.= ";echo 'FINISHED.'";
 				break;
 
 			case 'update_development':
